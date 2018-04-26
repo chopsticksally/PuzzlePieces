@@ -57,11 +57,12 @@ public class UserDAOImpl implements UserDAO{
     return search;
 	}
 	@Override
-	public List<User> userLoginByUserNameAndPassword(String userName, String password) {
+	public User userLoginByUserNameAndPassword(String userName, String password) {
 	 String queryString = "SELECT u FROM User u WHERE u.userName = :name and u.password = :password";
      List<User> search = em.createQuery(queryString, User.class)
              .setParameter("name",  userName).setParameter("password", password).getResultList();
-     return search;
+     User user = search.get(0);
+     return user;
 	}
 	
 	@Override

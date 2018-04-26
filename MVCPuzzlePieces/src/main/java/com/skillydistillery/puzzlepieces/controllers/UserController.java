@@ -1,12 +1,17 @@
 package com.skillydistillery.puzzlepieces.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.puzzlepieces.data.UserDAO;
+import com.skilldistillery.puzzlepieces.entities.User;
 
 @Controller
 public class UserController {
@@ -25,27 +30,22 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
-	public ModelAndView loggingIn() {
+	public ModelAndView loggingIn(@RequestParam("userName") String userName,
+			@RequestParam(name = "password") String password, HttpSession session, Errors errors) {
 		ModelAndView mv = new ModelAndView();
-		try {
+		User userLoggingIn = dao.userLoginByUserNameAndPassword(userName, password);
+		if (userLoggingIn == null) {
+			errors.rejectValue("userName", "Username or password is incorrect, please try again");
 			
-			mv.setViewName("logged-in");
-			
-		} catch (Exception e) {
-			// TODO: handle exception
 		}
+		if (userLoggingIn != null) {
+			session.setAttribute("userLoggedIn", userLoggingIn);
+			mv.addObject("user", userLoggingIn);
+			mv.setViewName("logged-in");
+		}
+
 		return mv;
-		
-		
 	}
-	
-//	@RequestMapping(path = "/loggedIn.do", method = RequestMethod.GET)
-//	public ModelAndView loggedIn() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("logged-in");
-//		return mv;
-//
-//	}
 
 	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout() {
@@ -59,7 +59,6 @@ public class UserController {
 	public ModelAndView updateUserInfo() {
 		ModelAndView mv = new ModelAndView();
 		try {
-			
 
 		} catch (IllegalArgumentException e) {
 			mv.setViewName("redirect:");
@@ -71,11 +70,10 @@ public class UserController {
 
 	}
 
-	@RequestMapping(path="/searchUser.do", method=RequestMethod.GET)
+	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
 	public ModelAndView searchUser() {
 		ModelAndView mv = new ModelAndView();
 		try {
-			
 
 		} catch (NullPointerException n) {
 			mv.setViewName("redirect:");
@@ -83,17 +81,16 @@ public class UserController {
 
 		return mv;
 	}
-	
-	@RequestMapping(path="/puzzleDetails.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "/puzzleDetails.do", method = RequestMethod.GET)
 	public ModelAndView displayPuzzleDetails() {
 		ModelAndView mv = new ModelAndView();
 		try {
-			
-			
+
 		} catch (NullPointerException n) {
 			mv.setViewName("redirect:");
 		}
-		
+
 		return mv;
 	}
 
