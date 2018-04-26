@@ -28,5 +28,4 @@
 
 <tx:annotation-driven transaction-manager="myTransactionManager" />
 
-<!-- test -->
 </beans>
