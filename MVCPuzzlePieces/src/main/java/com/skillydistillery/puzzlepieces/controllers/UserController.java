@@ -24,13 +24,53 @@ public class UserController {
 
 	}
 
-	@RequestMapping(path = "loggedIn.do")
+	@RequestMapping(path = "loggedIn.do", method = RequestMethod.GET)
 	public ModelAndView loggedIn() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("logged-in");
 		return mv;
 
 	}
-	
-	
+
+	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
+	public ModelAndView logout() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("log-out");
+		return mv;
+
+	}
+
+	@RequestMapping(path = "updateUserInfo.do", method = RequestMethod.POST)
+	public ModelAndView updateUserInfo() {
+		ModelAndView mv = new ModelAndView();
+		try {
+
+		} catch (IllegalArgumentException e) {
+			mv.setViewName("redirect:");
+		} catch (NullPointerException n) {
+			mv.setViewName("redirect:");
+		}
+
+		return mv;
+
+	}
+
+	@RequestMapping(path = "*", method = RequestMethod.GET)
+	public String fallback() {
+		return "fallback";
+	}
+
+	@RequestMapping
+	public ModelAndView searchUser() {
+		ModelAndView mv = new ModelAndView();
+		try {
+			
+
+		} catch (NullPointerException n) {
+			mv.setViewName("redirect:");
+		}
+
+		return mv;
+	}
+
 }
