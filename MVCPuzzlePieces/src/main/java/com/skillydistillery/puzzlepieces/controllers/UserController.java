@@ -13,22 +13,92 @@ public class UserController {
 	@Autowired
 	UserDAO dao;
 
-	@RequestMapping(path = "home.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/home.do", method = RequestMethod.GET)
 	public String homePage() {
 		return "home";
 	}
 
-	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/login.do", method = RequestMethod.GET)
 	public String loginPage() {
 		return "login";
 
 	}
 
-	@RequestMapping(path = "loggedIn.do")
-	public ModelAndView loggedIn() {
+	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
+	public ModelAndView loggingIn() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("logged-in");
+		try {
+			
+			mv.setViewName("logged-in");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return mv;
+		
+		
+	}
+	
+//	@RequestMapping(path = "/loggedIn.do", method = RequestMethod.GET)
+//	public ModelAndView loggedIn() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("logged-in");
+//		return mv;
+//
+//	}
+
+	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
+	public ModelAndView logout() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("log-out");
 		return mv;
 
+	}
+
+	@RequestMapping(path = "/updateUserInfo.do", method = RequestMethod.POST)
+	public ModelAndView updateUserInfo() {
+		ModelAndView mv = new ModelAndView();
+		try {
+			
+
+		} catch (IllegalArgumentException e) {
+			mv.setViewName("redirect:");
+		} catch (NullPointerException n) {
+			mv.setViewName("redirect:");
+		}
+
+		return mv;
+
+	}
+
+	@RequestMapping(path="/searchUser.do", method=RequestMethod.GET)
+	public ModelAndView searchUser() {
+		ModelAndView mv = new ModelAndView();
+		try {
+			
+
+		} catch (NullPointerException n) {
+			mv.setViewName("redirect:");
+		}
+
+		return mv;
+	}
+	
+	@RequestMapping(path="/puzzleDetails.do", method=RequestMethod.GET)
+	public ModelAndView displayPuzzleDetails() {
+		ModelAndView mv = new ModelAndView();
+		try {
+			
+			
+		} catch (NullPointerException n) {
+			mv.setViewName("redirect:");
+		}
+		
+		return mv;
+	}
+
+	@RequestMapping(path = "/*", method = RequestMethod.GET)
+	public String fallback() {
+		return "fallback";
 	}
 }
