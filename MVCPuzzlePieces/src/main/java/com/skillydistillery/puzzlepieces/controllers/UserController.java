@@ -15,12 +15,12 @@ public class UserController {
 
 	@RequestMapping(path = "home.do", method = RequestMethod.GET)
 	public String homePage() {
-		return "home.jsp";
+		return "home";
 	}
 
 	@RequestMapping(path = "login.do", method = RequestMethod.GET)
 	public String loginPage() {
-		return "login.jsp";
+		return "login";
 
 	}
 
