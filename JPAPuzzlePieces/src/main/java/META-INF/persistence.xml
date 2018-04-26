@@ -9,8 +9,16 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider
     </provider>
 	
-    <class>com.skilldistillery.jpasucculents.entities.Succulent</class>
-    <class>com.skilldistillery.jpasucculents.entities.Description</class>
+    <class>com.skilldistillery.puzzlepieces.entities.Borrow</class>
+    <class>com.skilldistillery.puzzlepieces.entities.Category</class>
+    <class>com.skilldistillery.puzzlepieces.entities.Condition</class>
+    <class>com.skilldistillery.puzzlepieces.entities.InventoryItem</class>
+    <class>com.skilldistillery.puzzlepieces.entities.Puzzle</class>
+    <class>com.skilldistillery.puzzlepieces.entities.PuzzleRating</class>
+    <class>com.skilldistillery.puzzlepieces.entities.Request</class>
+    <class>com.skilldistillery.puzzlepieces.entities.User</class>
+    <class>com.skilldistillery.puzzlepieces.entities.UserInformation</class>
+    <class>com.skilldistillery.puzzlepieces.entities.UserRating</class>
     <properties>
       <property name="javax.persistence.jdbc.url"
         value="jdbc:mysql://localhost:3306/puzzlepieces" />
