@@ -6,14 +6,15 @@ import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 
 public interface PuzzleDAO {
 
-	InventoryItem addPuzzle(InventoryItem p);
-
-	InventoryItem update(int id, InventoryItem updated);
-
-	InventoryItem retrieveById(int id);
+	public List<InventoryItem> searchInventoryByCategoryName(String name);
 
 	List<InventoryItem> retrieveAll();
 
 	boolean destroy(int id);
 
+	InventoryItem updateInventory(int id, InventoryItem updated);
+
+	InventoryItem addInventory(InventoryItem p);
+
+	
 }

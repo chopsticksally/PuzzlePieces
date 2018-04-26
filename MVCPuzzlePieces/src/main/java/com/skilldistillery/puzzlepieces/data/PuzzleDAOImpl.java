@@ -19,14 +19,14 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 	
 	
 	@Override
-	public InventoryItem addPuzzle(InventoryItem p) {
+	public InventoryItem addInventory(InventoryItem p) {
 		em.persist(p);
 		em.flush();
 		return p;
 	}
 	
 	@Override
-    public InventoryItem update(int id, InventoryItem updated) {
+    public InventoryItem updateInventory(int id, InventoryItem updated) {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
 		managedPuzzle.setCondtion(updated.getCondtion());
 		managedPuzzle.setPuzzleId(updated.getPuzzleId());
@@ -39,8 +39,12 @@ public class PuzzleDAOImpl implements PuzzleDAO{
     }
 	
 	@Override
-	public InventoryItem retrieveById(int id) {
-		return em.find(InventoryItem.class, id);
+	public List<InventoryItem> searchInventoryByCategoryName(String name) {
+	
+	String queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name ";
+    List<InventoryItem> search = em.createQuery(queryString, InventoryItem.class)
+            .setParameter("name", "%" + name + "%").getResultList();
+    return search;
 	}
 	
 	@Override
