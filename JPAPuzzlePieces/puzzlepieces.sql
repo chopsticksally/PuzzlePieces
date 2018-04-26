@@ -205,6 +205,41 @@ CREATE TABLE IF NOT EXISTS `user_rating` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `request`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `request` ;
+
+CREATE TABLE IF NOT EXISTS `request` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `requester_id` INT NOT NULL,
+  `requestee_id` INT NOT NULL,
+  `message` VARCHAR(1000) NULL,
+  `inventory_id` INT NOT NULL,
+  `accepted` TINYINT NOT NULL DEFAULT 0,
+  `active` TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  INDEX `fk_requester_id_to_user_idx` (`requester_id` ASC),
+  INDEX `fk_inventory_id_to_ii_idx` (`inventory_id` ASC),
+  INDEX `fk_requestee_id_to_user_idx` (`requestee_id` ASC),
+  CONSTRAINT `fk_requester_id_to_user`
+    FOREIGN KEY (`requester_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_requestee_id_to_user`
+    FOREIGN KEY (`requestee_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_inventory_id_to_ii`
+    FOREIGN KEY (`inventory_id`)
+    REFERENCES `inventory_item` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 GRANT USAGE ON *.* TO admin;
  DROP USER admin;
@@ -294,16 +329,20 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `puzzlepieces`;
-INSERT INTO `category` (`id`, `name`) VALUES (1, 'pets');
-INSERT INTO `category` (`id`, `name`) VALUES (2, 'ocean');
-INSERT INTO `category` (`id`, `name`) VALUES (3, 'under the sea');
-INSERT INTO `category` (`id`, `name`) VALUES (4, 'landscape');
-INSERT INTO `category` (`id`, `name`) VALUES (5, 'flowers');
-INSERT INTO `category` (`id`, `name`) VALUES (6, 'space');
-INSERT INTO `category` (`id`, `name`) VALUES (7, 'animals');
-INSERT INTO `category` (`id`, `name`) VALUES (8, 'jungle');
-INSERT INTO `category` (`id`, `name`) VALUES (9, 'futuristic');
-INSERT INTO `category` (`id`, `name`) VALUES (10, 'food');
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'Pets');
+INSERT INTO `category` (`id`, `name`) VALUES (2, 'Ocean');
+INSERT INTO `category` (`id`, `name`) VALUES (3, 'Under the sea');
+INSERT INTO `category` (`id`, `name`) VALUES (4, 'Landscape');
+INSERT INTO `category` (`id`, `name`) VALUES (5, 'Flowers');
+INSERT INTO `category` (`id`, `name`) VALUES (6, 'Space');
+INSERT INTO `category` (`id`, `name`) VALUES (7, 'Animals');
+INSERT INTO `category` (`id`, `name`) VALUES (8, 'Jungle');
+INSERT INTO `category` (`id`, `name`) VALUES (9, 'Futuristic');
+INSERT INTO `category` (`id`, `name`) VALUES (10, 'Food');
+INSERT INTO `category` (`id`, `name`) VALUES (11, 'Architechture');
+INSERT INTO `category` (`id`, `name`) VALUES (12, 'Superhero');
+INSERT INTO `category` (`id`, `name`) VALUES (13, 'Cartoon');
+INSERT INTO `category` (`id`, `name`) VALUES (14, 'Sports');
 
 COMMIT;
 
@@ -371,5 +410,24 @@ INSERT INTO `user_rating` (`id`, `rating`, `comment`, `rated_user_id`, `rater_us
 INSERT INTO `user_rating` (`id`, `rating`, `comment`, `rated_user_id`, `rater_user_id`) VALUES (3, 5, 'Best Ever!', 1, 3);
 INSERT INTO `user_rating` (`id`, `rating`, `comment`, `rated_user_id`, `rater_user_id`) VALUES (4, 1, 'Horrible!', 2, 4);
 INSERT INTO `user_rating` (`id`, `rating`, `comment`, `rated_user_id`, `rater_user_id`) VALUES (5, 5, 'favorite user!', 3, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `request`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `puzzlepieces`;
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (1, 2, 1, '\'Sure thing! Thanks for the request!\'', 1, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (2, 4, 2, '\'I like this one! Go for it!\'', 3, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (3, 3, 4, '\'Here ya go!\'', 9, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (4, 4, 1, '\'Yes, it\'s on the way!\'', 6, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (5, 3, 1, '\'Yep this is a fun one!\'', 2, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (6, 1, 2, '\'No I don\'t like you\'', 7, 0, 0);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (7, 1, 4, '\'Sorry I\'m holding on to this for a bit\'', 5, 0, 0);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (8, 2, 3, '\'Don\'t want to\'', 8, 0, 0);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (9, 3, 1, '\'Nuh-uh\'', 10, 0, 0);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (10, 2, 4, '\'Nope\'', 5, 0, 0);
 
 COMMIT;
