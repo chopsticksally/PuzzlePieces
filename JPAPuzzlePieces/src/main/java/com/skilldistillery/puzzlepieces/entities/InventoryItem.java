@@ -1,9 +1,7 @@
 package com.skilldistillery.puzzlepieces.entities;
 
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
