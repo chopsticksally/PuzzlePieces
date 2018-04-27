@@ -12,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="inventory_item")
 public class InventoryItem {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -130,6 +132,26 @@ public class InventoryItem {
 		request.setInventoryItem(null);
 		if (requests != null) {
 			requests.remove(request);
+		}
+	}
+	
+	public void addBorrow(Borrow borrow) {
+		if (borrows == null) {
+			borrows = new ArrayList<>();
+		}
+		if(!borrows.contains(borrow)) {
+			borrows.add(borrow);
+			if(borrow.getInventoryItem() != null) {
+				borrow.getInventoryItem().getBorrows().remove(borrow);
+			}
+		}
+		borrow.setInventoryItem(this);
+	}
+	
+	public void removeBorrow(Borrow borrow) {
+		borrow.setInventoryItem(null);
+		if (borrows != null) {
+			borrows.remove(borrow);
 		}
 	}
 
