@@ -120,7 +120,17 @@ public class Puzzle {
 		}
 		if(!puzzleRatings.contains(puzzleRating)) {
 			puzzleRatings.add(puzzleRating);
-			if
+			if(puzzleRating.getPuzzle() != null) {
+				puzzleRating.getPuzzle().getPuzzleRatings().remove(puzzleRating);
+			}
+		}
+		puzzleRating.setPuzzle(this);
+	}
+	
+	public void removePuzzleRating(PuzzleRating puzzleRating) {
+		puzzleRating.setPuzzle(null);
+		if (puzzleRatings != null) {
+			puzzleRatings.remove(puzzleRating);
 		}
 	}
 	
