@@ -25,7 +25,11 @@ public class Borrow {
 	
 	@ManyToOne()
 	@JoinColumn(name = "inventory_id")
-	InventoryItem inventoryItem;
+	private InventoryItem inventoryItem;
+	
+	@ManyToOne()
+	@JoinColumn(name = "loaner_id")
+	private User loaner;
 	
 	public Borrow(){
 		
@@ -64,6 +68,16 @@ public class Borrow {
 
 	public void setInventoryItem(InventoryItem inventoryItem) {
 		this.inventoryItem = inventoryItem;
+	}
+
+
+	public User getLoaner() {
+		return loaner;
+	}
+
+
+	public void setLoaner(User loaner) {
+		this.loaner = loaner;
 	}
 
 

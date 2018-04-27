@@ -9,6 +9,9 @@ import javax.persistence.Persistence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+
+//NOT IN USE
+
 class Test {
 	private EntityManagerFactory emf;
 	private EntityManager em;

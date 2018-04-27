@@ -39,6 +39,16 @@ public class Category {
 	}
 
 
+	public List<Puzzle> getPuzzles() {
+		return puzzles;
+	}
+
+
+	public void setPuzzles(List<Puzzle> puzzles) {
+		this.puzzles = puzzles;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + "]";

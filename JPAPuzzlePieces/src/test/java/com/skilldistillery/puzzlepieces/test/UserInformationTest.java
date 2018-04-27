@@ -1,6 +1,6 @@
 package com.skilldistillery.puzzlepieces.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
 
 class UserInformationTest {
@@ -36,6 +37,7 @@ class UserInformationTest {
 	@DisplayName("UI to User")
 	void test() {
 		assertEquals("alex", em.find(UserInformation.class, 1).getFirstName());
+		assertEquals("alex", em.find(User.class, 1).getUserInformation().getFirstName());
 	}
 
 }

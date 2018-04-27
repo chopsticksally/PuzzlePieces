@@ -17,6 +17,9 @@ public class PuzzleRating {
 	@ManyToOne
 	@JoinColumn(name="puzzle_id")
 	private Puzzle puzzle;
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	private int rating;
 	private String comment;
@@ -55,6 +58,16 @@ public class PuzzleRating {
 
 	public void setPuzzle(Puzzle puzzle) {
 		this.puzzle = puzzle;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 

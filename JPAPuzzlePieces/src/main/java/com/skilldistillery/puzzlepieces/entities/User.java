@@ -35,10 +35,13 @@ public class User {
 	List<UserRating>ratingsOfOtherUsers;
 	
 	@OneToMany(mappedBy = "loaner")
-	List<InventoryItem> loans;
+	List<Borrow> loans;
 	
 	@OneToMany(mappedBy = "owner")
 	List<InventoryItem> owns;
+	
+	@OneToMany(mappedBy = "")
+	List<PuzzleRating> puzzleRatings;
 	
 	
 	public User(){
@@ -114,12 +117,12 @@ public class User {
 	}
 
 
-	public List<InventoryItem> getLoans() {
+	public List<Borrow> getLoans() {
 		return loans;
 	}
 
 
-	public void setLoans(List<InventoryItem> loans) {
+	public void setLoans(List<Borrow> loans) {
 		this.loans = loans;
 	}
 
@@ -131,6 +134,16 @@ public class User {
 
 	public void setOwns(List<InventoryItem> owns) {
 		this.owns = owns;
+	}
+
+
+	public List<PuzzleRating> getPuzzleRatings() {
+		return puzzleRatings;
+	}
+
+
+	public void setPuzzleRatings(List<PuzzleRating> puzzleRatings) {
+		this.puzzleRatings = puzzleRatings;
 	}
 
 
