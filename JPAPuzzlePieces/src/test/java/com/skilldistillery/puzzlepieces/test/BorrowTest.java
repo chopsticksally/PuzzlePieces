@@ -34,14 +34,21 @@ class BorrowTest {
 	}
 
 	@Test
-	@DisplayName("Borrow to User")
+	@DisplayName("Borrow")
 	void test() {
-		assertEquals("alex", em.find(Borrow.class, 2).getLoaner().getUserName());
+		assertEquals("alex", em.find(Borrow.class, 2).getReturnDate());
+	}
+	@Test
+	@DisplayName("Borrow to User")
+	void test5() {		
+		String query = "select b from Borrow b join fetch b.loaner where b.id = :id";	
+		assertEquals("alex", em.createQuery(query, Borrow.class).setParameter("id", 2).getResultList().get(0).getLoaner().getUserName());
 	}
 	@Test
 	@DisplayName("Borrow to Inventory Item")
 	void test1() {
-		assertEquals(4, em.find(Borrow.class, 2).getInventoryItem().getId());
+		String query = "select b from Borrow b join fetch b.inventoryItem where id = 4";
+		assertEquals(4, em.find(Borrow.class, 4).getInventoryItem().getId());
 	}
 
 }
