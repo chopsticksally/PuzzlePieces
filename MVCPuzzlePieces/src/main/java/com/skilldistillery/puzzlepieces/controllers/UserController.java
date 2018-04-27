@@ -25,11 +25,11 @@ public class UserController {
 	@Autowired
 	private PuzzleDAO puzzleDao;
 
-
 	@RequestMapping(path = "/home.do", method = RequestMethod.GET)
 	public ModelAndView homePage() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("inventoryItems", puzzleDao.retrieveAll());
+		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		mv.addObject("inventoryItems", ii);
 		mv.setViewName("home");
 		return mv;
 	}
@@ -47,7 +47,7 @@ public class UserController {
 		User userLoggingIn = dao.userLoginByUserNameAndPassword(userName, password);
 		if (userLoggingIn == null) {
 			errors.rejectValue("userName", "Username or password is incorrect, please try again");
-			
+
 		}
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);
@@ -67,12 +67,12 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUserInfo(@RequestParam(name= "id")Integer userId, UserInformation updated) {
+	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, UserInformation updated) {
 		ModelAndView mv = new ModelAndView();
 		try {
-		UserInformation ui= dao.updateUser(userId, updated);
-		mv.addObject("updated", ui);
-		mv.setViewName("redirect:success");
+			UserInformation ui = dao.updateUser(userId, updated);
+			mv.addObject("updated", ui);
+			mv.setViewName("redirect:success");
 		} catch (IllegalArgumentException e) {
 			mv.setViewName("redirect:fail");
 		} catch (NullPointerException n) {
@@ -83,7 +83,7 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
-	public ModelAndView searchUserByUserName(@RequestParam(name= "userName")String userName) {
+	public ModelAndView searchUserByUserName(@RequestParam(name = "userName") String userName) {
 		ModelAndView mv = new ModelAndView();
 		List<User> users = dao.searchUserByUserName(userName);
 		mv.addObject("users", users);
