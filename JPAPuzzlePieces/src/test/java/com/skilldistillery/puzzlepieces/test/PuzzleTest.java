@@ -41,7 +41,7 @@ class PuzzleTest {
 	@Test
 	@DisplayName("Puzzle to Category")
 	void test1() {
-		assertEquals("alex", em.find(Puzzle.class, 2).getCategories().get(0).getName());
+		assertEquals("Jungle", em.find(Puzzle.class, 2).getCategories().get(0).getName());
 	}
 	@Test
 	@DisplayName("Puzzle to Puzzle Rating")
