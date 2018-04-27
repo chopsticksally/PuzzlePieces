@@ -1,14 +1,18 @@
 package com.skilldistillery.puzzlepieces.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.apache.lucene.search.Query;
+import org.apache.lucene.util.QueryBuilder;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 
@@ -18,6 +22,7 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 	
 	@PersistenceContext
 	private EntityManager em;
+	
 	
 	
 	@Override
@@ -31,9 +36,9 @@ public class PuzzleDAOImpl implements PuzzleDAO{
     public InventoryItem updateInventory(int id, InventoryItem updated) {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
 		managedPuzzle.setCondtion(updated.getCondtion());
-		managedPuzzle.setPuzzleId(updated.getPuzzleId());
-		managedPuzzle.setLoanerId(updated.getLoanerId());
-		managedPuzzle.setOwnerId(updated.getOwnerId());
+		managedPuzzle.setPuzzle(updated.getPuzzle());
+		managedPuzzle.setLoaner(updated.getLoaner());
+		managedPuzzle.setOwner(updated.getOwner());
         
         em.persist(managedPuzzle);
         em.flush();
@@ -59,26 +64,25 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 	// THE METHOD BELOW IS NOT DONE
 	@Override
 	public List<InventoryItem> searchPuzzle(String name, int size, Condition condition) {
-		String queryString = "SELECT i FROM Inventory i WHERE";
-		if(name != null) {
-			queryString = queryString +" i.category.name LIKE :name"; }
-		if(name != null && (size != 0 || condition != null)) {
-			queryString = queryString + " AND ";
-		}
-		if (size != 0) {
-			queryString = queryString + " i.puzzle.size = :size"; }
-		if(size != 0 && condition != null) {
-			queryString = queryString + " AND ";
-		}
-		if(condition != null) {
-			queryString = queryString + " i.condition = :condition";
+		FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
+		
+		try {
+			fullTextEntityManager.createIndexer().startAndWait();
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
 		}
 		
-		List<InventoryItem> puzzle = new ArrayList();
-				if(name != null)em.createQuery(queryString, InventoryItem.class)
-				
-				.setParameter("name", "%" + name + "%").getResultList();
-				return puzzle;
+//		FullTextEntityManager fullTextEm = Search.getFullTextEntityManager(em);
+//		QueryBuilder tweetQb = fullTextEm.getSearchFactory().buildQueryBuilder().forEntity(Tweet.class).get();
+//		Query fullTextQuery = tweetQb.keyword().onField(Tweet_.message.getName()).matching(“validate Hibernate”).createQuery();
+//		List results = fullTextEm.createFullTextQuery(fullTextQuery).getResultList();
+		FullTextEntityManager fullTextEm = Search.getFullTextEntityManager(em);
+		QueryBuilder puzzleQb = (QueryBuilder) fullTextEm.getSearchFactory().buildQueryBuilder().forEntity(Category.class).get();
+		Query fullTextQuery = ((org.hibernate.search.query.dsl.QueryBuilder) puzzleQb).keyword().onField(Category.class.getName()).matching("pets").createQuery();
+		List<InventoryItem> results = fullTextEm.createFullTextQuery(fullTextQuery, Category.class).getResultList();
+			
+		return results;
 	}
 	
 	@Override
