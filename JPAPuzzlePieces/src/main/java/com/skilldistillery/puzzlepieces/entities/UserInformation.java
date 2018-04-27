@@ -26,8 +26,13 @@ public class UserInformation {
 	private String lastName;
 	@Column(name="address_id")
 	private int addressId;
+	private String email;
 	
-	
+
+
+
+
+
 	@OneToOne(mappedBy="userInformation")
 	private Address address;
 	
@@ -41,6 +46,17 @@ public class UserInformation {
 	
 	
 	
+	public String getEmail() {
+		return email;
+	}
+	
+	
+	
+	
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public Address getAddress() {
 		return address;
 	}
