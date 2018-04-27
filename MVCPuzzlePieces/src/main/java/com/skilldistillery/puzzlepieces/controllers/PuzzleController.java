@@ -95,7 +95,7 @@ public class PuzzleController {
 	@RequestMapping(path = "request.do", method = RequestMethod.POST)
 	public ModelAndView request(@RequestParam(name = "id") Integer inventoryId) {
 		ModelAndView mv = new ModelAndView();
-		InventoryItem ii = dao.request(inventoryId);
+		InventoryItem ii = dao.requestUserForPuzzle(inventoryId);
 		mv.addObject(ii);
 		mv.setViewName("borrow");
 

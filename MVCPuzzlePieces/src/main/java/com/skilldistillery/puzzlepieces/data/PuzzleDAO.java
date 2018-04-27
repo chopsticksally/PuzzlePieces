@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.Request;
 
 public interface PuzzleDAO {
 
@@ -18,6 +19,8 @@ public interface PuzzleDAO {
 	InventoryItem addInventory(InventoryItem p);
 
 	List<InventoryItem> searchPuzzle(String name, int size, Condition condition);
+
+	Request requestUserForPuzzle(Request request);
 
 	
 }

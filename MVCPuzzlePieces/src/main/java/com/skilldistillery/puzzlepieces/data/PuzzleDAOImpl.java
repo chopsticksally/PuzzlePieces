@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 //import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.Request;
 
 @Transactional
 @Component
@@ -58,7 +59,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return puzzle;
 	}
 
-	// THE METHOD BELOW IS NOT DONE
+	
 	@Override
 	public List<InventoryItem> searchPuzzle(String name, int size, Condition condition) {
 		String queryString;
@@ -100,6 +101,16 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 
 		return search;
 	}
+	
+	@Override
+	public Request requestUserForPuzzle(Request request) {
+		em.persist(request);
+		em.flush();
+		return request;
+	}
+		
+	
+	
 	// FullTextEntityManager fullTextEntityManager =
 	// Search.getFullTextEntityManager(em);
 	//
