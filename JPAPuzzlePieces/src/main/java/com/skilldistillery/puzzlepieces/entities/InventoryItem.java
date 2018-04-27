@@ -132,6 +132,26 @@ public class InventoryItem {
 			requests.remove(request);
 		}
 	}
+	
+	public void addBorrow(Borrow borrow) {
+		if (borrows == null) {
+			borrows = new ArrayList<>();
+		}
+		if(!borrows.contains(borrow)) {
+			borrows.add(borrow);
+			if(borrow.getInventoryItem() != null) {
+				borrow.getInventoryItem().getBorrows().remove(borrow);
+			}
+		}
+		borrow.setInventoryItem(this);
+	}
+	
+	public void removeBorrow(Borrow borrow) {
+		borrow.setInventoryItem(null);
+		if (borrows != null) {
+			borrows.remove(borrow);
+		}
+	}
 
 	@Override
 	public String toString() {

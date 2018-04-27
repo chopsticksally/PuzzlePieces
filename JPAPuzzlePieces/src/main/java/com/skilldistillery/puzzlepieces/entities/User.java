@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -40,7 +41,7 @@ public class User {
 	@OneToMany(mappedBy = "owner")
 	List<InventoryItem> owns;
 	
-	@OneToMany(mappedBy = "")
+	@OneToMany(mappedBy = "user")
 	List<PuzzleRating> puzzleRatings;
 	
 	
@@ -146,6 +147,145 @@ public class User {
 		this.puzzleRatings = puzzleRatings;
 	}
 
+	public void addRequestRecieved(Request requestRecieved) {
+		if (requestsRecieved == null) {
+			requestsRecieved = new ArrayList<>();
+		}
+		if(!requestsRecieved.contains(requestRecieved)) {
+			requestsRecieved.add(requestRecieved);
+			if(requestRecieved.getRequestee() != null) {
+				requestRecieved.getRequestee().getRequestsRecieved().remove(requestRecieved);
+			}
+		}
+		requestRecieved.setRequestee(this);
+	}
+	
+	public void removeRequestRecieved(Request requestRecieved) {
+		requestRecieved.setRequestee(null);
+		if (requestsRecieved != null) {
+			requestsRecieved.remove(requestRecieved);
+		}
+	}
+	
+	public void addRequestSent(Request requestSent) {
+		if (requestsSent == null) {
+			requestsSent = new ArrayList<>();
+		}
+		if(!requestsSent.contains(requestSent)) {
+			requestsSent.add(requestSent);
+			if(requestSent.getRequester() != null) {
+				requestSent.getRequester().getRequestsSent().remove(requestSent);
+			}
+		}
+		requestSent.setRequester(this);
+	}
+	
+	public void removeRequestSent(Request requestSent) {
+		requestSent.setRequester(null);
+		if (requestsSent != null) {
+			requestsSent.remove(requestSent);
+		}
+	}
+	
+	public void addLoan(Borrow loan) {
+		if (loans == null) {
+			loans = new ArrayList<>();
+		}
+		if(!loans.contains(loan)) {
+			loans.add(loan);
+			if(loan.getInventoryItem() != null) {
+				loan.getInventoryItem().getBorrows().remove(loan);
+			}
+		}
+		loan.setLoaner(this);
+	}
+	
+	public void removeLoan(Borrow loan) {
+		loan.setInventoryItem(null);
+		if (loans != null) {
+			loans.remove(loan);
+		}
+	}
+	
+	public void addPuzzleRating(PuzzleRating puzzleRating) {
+		if (puzzleRatings == null) {
+			puzzleRatings = new ArrayList<>();
+		}
+		if(!puzzleRatings.contains(puzzleRating)) {
+			puzzleRatings.add(puzzleRating);
+			if(puzzleRating.getUser() != null) {
+				puzzleRating.getUser().getPuzzleRatings().remove(puzzleRating);
+			}
+		}
+		puzzleRating.setUser(this);
+	}
+	
+	public void removePuzzleRating(PuzzleRating puzzleRating) {
+		puzzleRating.setUser(null);
+		if (puzzleRatings != null) {
+			puzzleRatings.remove(puzzleRating);
+		}
+	}
+	
+	public void addOwn(InventoryItem own) {
+		if (owns == null) {
+			owns = new ArrayList<>();
+		}
+		if(!owns.contains(own)) {
+			owns.add(own);
+			if(own.getOwner() != null) {
+				own.getOwner().getOwns().remove(own);
+			}
+		}
+		own.setOwner(this);
+	}
+	
+	public void removeOwn(InventoryItem own) {
+		own.setOwner(null);
+		if (owns != null) {
+			owns.remove(own);
+		}
+	}
+	
+	public void addRatingOfUser(UserRating ratingOfUser) {
+		if (ratingsOfUser == null) {
+			ratingsOfUser = new ArrayList<>();
+		}
+		if(!ratingsOfUser.contains(ratingOfUser)) {
+			ratingsOfUser.add(ratingOfUser);
+			if(ratingOfUser.getRatedUser() != null) {
+				ratingOfUser.getRatedUser().getRatingsOfUser().remove(ratingOfUser);
+			}
+		}
+		ratingOfUser.setRatedUser(this);
+	}
+	
+	public void removeRatingOfUser(UserRating ratingOfUser) {
+		ratingOfUser.setRatedUser(null);
+		if (ratingsOfUser != null) {
+			ratingsOfUser.remove(ratingOfUser);
+		}
+	}
+	
+	public void addRatingOfOtherUser(UserRating ratingOfOtherUser) {
+		if (ratingsOfOtherUsers == null) {
+			ratingsOfOtherUsers = new ArrayList<>();
+		}
+		if(!ratingsOfOtherUsers.contains(ratingOfOtherUser)) {
+			ratingsOfOtherUsers.add(ratingOfOtherUser);
+			if(ratingOfOtherUser.getRaterUser() != null) {
+				ratingOfOtherUser.getRaterUser().getRatingsOfOtherUsers().remove(ratingOfOtherUser);
+			}
+		}
+		ratingOfOtherUser.setRaterUser(this);
+	}
+	
+	public void removeRatingOfOtherUser(UserRating ratingOfOtherUser) {
+		ratingOfOtherUser.setRaterUser(null);
+		if (ratingsOfOtherUsers != null) {
+			ratingsOfOtherUsers.remove(ratingOfOtherUser);
+		}
+	}
 
 	@Override
 	public String toString() {
