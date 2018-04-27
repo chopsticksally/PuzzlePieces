@@ -72,15 +72,34 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "searchPuzzle.do", method = RequestMethod.GET)
-	public ModelAndView searchPuzzle(@RequestParam(name = "category")String name,
-	@RequestParam(name = "size")Integer size,
-	@RequestParam(name = "condition")Condition condition) {
+	public ModelAndView searchPuzzle(@RequestParam(name = "category") String name,
+			@RequestParam(name = "size") Integer size, @RequestParam(name = "condition") Condition condition) {
 		ModelAndView mv = new ModelAndView();
-		List<InventoryItem> inventoryItems = dao.searchPuzzle(name);
-		mv.addObject("inventroyItems", inventoryItems);
-		mv.setViewName("showSearchedPuzzles");
+		List<InventoryItem> inventoryItems = dao.searchPuzzle(name, size, condition);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.setViewName("puzzleResults");
 		return mv;
-		
+
 	}
+
+	@RequestMapping(path = "updateRequest.do", method = RequestMethod.POST)
+	public ModelAndView updateRequest(@RequestParam(name = "id") Integer inventoryId) {
+		ModelAndView mv = new ModelAndView();
+		InventoryItem ii = dao.updateRequest(inventoryId);
+		mv.addObject(ii);
+
+		return mv;
+
+	}
+
+	@RequestMapping(path = "request.do", method = RequestMethod.POST)
+	public ModelAndView request(@RequestParam(name = "id") Integer inventoryId) {
+		ModelAndView mv = new ModelAndView();
+		InventoryItem ii = dao.request(inventoryId);
+		mv.addObject(ii);
+		mv.setViewName("borrow");
+		
+		return mv;
+	
 
 }

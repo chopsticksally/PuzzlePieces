@@ -1,5 +1,7 @@
 package com.skilldistillery.puzzlepieces.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +12,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.data.UserDAO;
+import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.User;
+import com.skilldistillery.puzzlepieces.entities.UserInformation;
 
 @Controller
 public class UserController {
 	@Autowired
 	UserDAO dao;
+	@Autowired
+	private PuzzleDAO puzzleDao;
+
 
 	@RequestMapping(path = "/home.do", method = RequestMethod.GET)
-	public String homePage() {
-		return "home";
+	public ModelAndView homePage() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("inventoryItems", puzzleDao.retrieveAll());
+		mv.setViewName("home");
+		return mv;
 	}
 
 	@RequestMapping(path = "/login.do", method = RequestMethod.GET)
@@ -55,30 +66,28 @@ public class UserController {
 
 	}
 
-	@RequestMapping(path = "/updateUserInfo.do", method = RequestMethod.POST)
-	public ModelAndView updateUserInfo() {
+	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
+	public ModelAndView updateUserInfo(@RequestParam(name= "id")Integer userId, UserInformation updated) {
 		ModelAndView mv = new ModelAndView();
 		try {
-
+		UserInformation ui= dao.updateUser(userId, updated);
+		mv.addObject("updated", ui);
+		mv.setViewName("redirect:success");
 		} catch (IllegalArgumentException e) {
-			mv.setViewName("redirect:");
+			mv.setViewName("redirect:fail");
 		} catch (NullPointerException n) {
-			mv.setViewName("redirect:");
+			mv.setViewName("redirect:fail");
 		}
-
 		return mv;
 
 	}
 
 	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
-	public ModelAndView searchUser() {
+	public ModelAndView searchUserByUserName(@RequestParam(name= "userName")String userName) {
 		ModelAndView mv = new ModelAndView();
-		try {
-
-		} catch (NullPointerException n) {
-			mv.setViewName("redirect:");
-		}
-
+		List<User> users = dao.searchUserByUserName(userName);
+		mv.addObject("users", users);
+		mv.setViewName("searchedUsers");
 		return mv;
 	}
 
