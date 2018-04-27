@@ -48,6 +48,13 @@ public class Category {
 		this.puzzles = puzzles;
 	}
 
+	public void addPuzzle(Puzzle puzzle) {
+		
+	}
+	
+	public void removePuzzle(Puzzle puzzle) {
+		
+	}
 
 	@Override
 	public String toString() {
