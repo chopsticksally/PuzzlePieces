@@ -1,4 +1,4 @@
-package com.skilldistillery.puzzlepeices.test;
+package com.skilldistillery.puzzlepieces.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,27 +10,27 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
-import com.skilldistillery.puzzlepieces.data.PuzzleDAOImpl;
+import com.skilldistillery.puzzlepieces.entities.Puzzle;
 
-class PuzzleTest {
+class AddressTest {
+	
 	private EntityManagerFactory emf;
 	private EntityManager em;
-	PuzzleDAO dao;
-
+	private Address address;
+	
 	@BeforeEach
-	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("VideoStore");
+	void setUp() throws Exception {
+		emf = Persistence.createEntityManagerFactory("MVCPuzzlePieces");
 		em = emf.createEntityManager();
-		dao = new PuzzleDAOImpl();
+		address = new Address();
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown() throws Exception {
 		em.close();
 		emf.close();
-		dao = null;
 	}
+
 
 	@Test
 	void test() {

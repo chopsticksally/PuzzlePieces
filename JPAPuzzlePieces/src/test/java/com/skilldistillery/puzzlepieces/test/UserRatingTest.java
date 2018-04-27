@@ -43,7 +43,7 @@ class UserRatingTest {
 	@Test
 	@DisplayName("User Rating to Rated")
 	void test1() {
-		assertEquals("alex", em.find(UserRating.class, 2).getRatedUser().getUserName());
+		assertEquals("julian", em.find(UserRating.class, 2).getRatedUser().getUserName());
 	}
 	
 }

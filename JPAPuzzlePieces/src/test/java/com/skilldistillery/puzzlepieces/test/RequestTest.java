@@ -36,7 +36,7 @@ class RequestTest {
 	@Test
 	@DisplayName("Request to Requester")
 	void test() {
-		assertEquals("alex", em.find(Request.class, 1).getRequester().getUserName());
+		assertEquals("julian", em.find(Request.class, 1).getRequester().getUserName());
 	}
 	@Test
 	@DisplayName("Request to Requester")
@@ -46,7 +46,7 @@ class RequestTest {
 	@Test
 	@DisplayName("Request to Inventory Item")
 	void test2() {
-		assertEquals("alex", em.find(Request.class, 1).getInventoryItem().getCondtion());
+		assertEquals(1, em.find(Request.class, 1).getInventoryItem().getId());
 	}
 
 }

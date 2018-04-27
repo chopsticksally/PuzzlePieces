@@ -11,12 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 @Indexed
 @Entity
+@Table(name="puzzle")
 public class Puzzle {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)

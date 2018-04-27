@@ -12,14 +12,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="inventory_item")
 public class InventoryItem {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	@Enumerated(EnumType.STRING)
-	private Condition condtion;
+	private Condition condition;
 	
 //	@Column(name= "puzzle_id")
 //	private int puzzleId;
@@ -29,9 +31,6 @@ public class InventoryItem {
 	
 //	@Column(name= "loaner_id")
 //	private int loanerId;
-	@ManyToOne
-	@JoinColumn(name="loaner_id")
-	private User loaner;
 
 //	@Column(name= "owner_id")
 //	private int ownerId;
@@ -58,10 +57,10 @@ public class InventoryItem {
 		this.id = id;
 	}
 	public Condition getCondtion() {
-		return condtion;
+		return condition;
 	}
-	public void setCondtion(Condition condtion) {
-		this.condtion = condtion;
+	public void setCondtion(Condition condition) {
+		this.condition = condition;
 	}
 
 	public Puzzle getPuzzle() {
@@ -94,14 +93,6 @@ public class InventoryItem {
 	}
 
 
-	public User getLoaner() {
-		return loaner;
-	}
-
-
-	public void setLoaner(User loaner) {
-		this.loaner = loaner;
-	}
 
 
 	public User getOwner() {
@@ -155,7 +146,7 @@ public class InventoryItem {
 
 	@Override
 	public String toString() {
-		return "InventoryItem [id=" + id + ", condtion=" + condtion;
+		return "InventoryItem [id=" + id + ", condtion=" + condition;
 	}
 	
 

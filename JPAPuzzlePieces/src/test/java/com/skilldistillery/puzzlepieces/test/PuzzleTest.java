@@ -34,9 +34,14 @@ class PuzzleTest {
 	}
 
 	@Test
+	@DisplayName("Puzzle")
+	void testb() {
+		assertEquals(2, em.find(Puzzle.class, 2).getId());
+	}
+	@Test
 	@DisplayName("Puzzle to Inventory Item")
 	void test() {
-		assertEquals("alex", em.find(Puzzle.class, 2).getInventoryItems().get(0).getCondtion());
+		assertEquals(3, em.find(Puzzle.class, 2).getInventoryItems().get(0).getId());
 	}
 	@Test
 	@DisplayName("Puzzle to Category")
@@ -46,6 +51,6 @@ class PuzzleTest {
 	@Test
 	@DisplayName("Puzzle to Puzzle Rating")
 	void test2() {
-		assertEquals("alex", em.find(Puzzle.class, 2).getPuzzleRatings().get(0).getComment());
+		assertEquals("bad puzzle", em.find(Puzzle.class, 2).getPuzzleRatings().get(0).getComment());
 	}
 }
