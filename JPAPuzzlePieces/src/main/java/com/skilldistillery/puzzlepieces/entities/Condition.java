@@ -6,6 +6,6 @@ import org.hibernate.search.annotations.Indexed;
 @Indexed
 public enum Condition {
 	@Field
-	New, Like_New, Used, Worn
+	NEW, LIKE_NEW, USED, WORN
 
 }

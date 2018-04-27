@@ -1,6 +1,7 @@
 package com.skilldistillery.puzzlepieces.entities;
 
 import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 @Entity
 public class Borrow {
 	@Id
@@ -22,17 +24,19 @@ public class Borrow {
 	@Column(name= "return_date")
 	private Date returnDate;
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "inventory_item_id")
 	private InventoryItem inventoryItem;
-	
-	@ManyToOne()
+
+
+	@ManyToOne
 	@JoinColumn(name = "loaner_id")
 	private User loaner;
 	
 	public Borrow(){
 		
 	}
+	
 	
 	
 	public int getId() {
@@ -47,6 +51,7 @@ public class Borrow {
 //	public void setInventoryId(int inventoryId) {
 //		this.inventoryId = inventoryId;
 //	}
+
 	public Date getBorrowDate() {
 		return borrowDate;
 	}

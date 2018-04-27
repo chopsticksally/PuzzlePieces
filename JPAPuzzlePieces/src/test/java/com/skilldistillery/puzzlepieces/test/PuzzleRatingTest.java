@@ -43,7 +43,7 @@ class PuzzleRatingTest {
 	@DisplayName("Puzzle Rating to Puzzle")
 	void test() {
 		String query = "select pr from PuzzleRating pr join fetch pr.puzzle where pr.id = 3";
-		assertEquals(4, em.createQuery(query, PuzzleRating.class).getResultList().get(0).getPuzzle().getName());
+		assertEquals(2, em.createQuery(query, PuzzleRating.class).getResultList().get(0).getPuzzle().getId());
 	}
 
 }

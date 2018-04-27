@@ -20,15 +20,63 @@ public class UserInformation {
 	@OneToOne
 	@JoinColumn(name= "user_id")
 	private User user;
-	private String address;
 	@Column(name= "first_name")
 	private String firstName;
 	@Column(name= "last_name")
 	private String lastName;
+	@Column(name="address_id")
+	private int addressId;
+	private String email;
+	
+
+
+
+
+
+	@OneToOne(mappedBy="userInformation")
+	private Address address;
+	
+	
 	
 	public UserInformation(){
 		
 	}
+	
+	
+	
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	
+	
+	
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public Address getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	public int getAddress_id() {
+		return addressId;
+	}
+
+
+	public void setAddress_id(int addressId) {
+		this.addressId = addressId;
+	}
+
+
 
 	
 	public int getId() {
@@ -38,12 +86,6 @@ public class UserInformation {
 		this.id = id;
 	}
 	
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -67,6 +109,22 @@ public class UserInformation {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+
+	public int getAddressId() {
+		return addressId;
+	}
+
+
+
+
+
+	public void setAddressId(int addressId) {
+		this.addressId = addressId;
+	}
+
+
+
 
 
 	@Override
