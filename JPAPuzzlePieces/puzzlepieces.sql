@@ -69,22 +69,44 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `address`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `address` ;
+
+CREATE TABLE IF NOT EXISTS `address` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `street` VARCHAR(100) NULL,
+  `street2` VARCHAR(100) NULL,
+  `city` VARCHAR(200) NULL,
+  `state` VARCHAR(200) NULL,
+  `postal_code` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `user_information`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user_information` ;
 
 CREATE TABLE IF NOT EXISTS `user_information` (
   `id` INT NOT NULL,
-  `address` VARCHAR(1000) NOT NULL,
   `email` VARCHAR(100) NULL,
   `first_name` VARCHAR(100) NULL,
   `last_name` VARCHAR(100) NULL,
   `user_id` INT NOT NULL,
+  `address_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_information_user1_idx` (`user_id` ASC),
+  INDEX `fk_user_information_address_idx` (`address_id` ASC),
   CONSTRAINT `fk_user_information_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_information_address`
+    FOREIGN KEY (`address_id`)
+    REFERENCES `address` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -312,14 +334,27 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `puzzlepieces`;
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (1, '123 Main Street', NULL, 'Tampa', 'FL', '33606');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (2, '456 Other Lane', 'Apt. 17', 'Kansas City', 'KS', '88888');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (3, '1414 Dewberry Lane', NULL, 'Houston', 'TX', '77005');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (4, '77 Spooky Ave', 'Apt. B', 'Washington, DC', NULL, '55465');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user_information`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `puzzlepieces`;
-INSERT INTO `user_information` (`id`, `address`, `email`, `first_name`, `last_name`, `user_id`) VALUES (1, '123 Main Street', 'alex@verizon.net', 'alex', 'wagner', 1);
-INSERT INTO `user_information` (`id`, `address`, `email`, `first_name`, `last_name`, `user_id`) VALUES (2, '456 Other Street', 'julian@aol.com', 'julian', 'goudy', 2);
-INSERT INTO `user_information` (`id`, `address`, `email`, `first_name`, `last_name`, `user_id`) VALUES (3, '789 Dowry Lane', 'miranda@rr.net', 'miranda', 'martin', 3);
-INSERT INTO `user_information` (`id`, `address`, `email`, `first_name`, `last_name`, `user_id`) VALUES (4, '1011 Newport Blvd', 'xian@google.com', 'xian', 'zheng', 4);
+INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (1, 'alex@verizon.net', 'alex', 'wagner', 1, 1);
+INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (2, 'julian@aol.com', 'julian', 'goudy', 2, 2);
+INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (3, 'miranda@rr.net', 'miranda', 'martin', 3, 3);
+INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (4, 'xian@google.com', 'xian', 'zheng', 4, 4);
 
 COMMIT;
 

@@ -27,7 +27,8 @@ public class Borrow {
 	@ManyToOne
 	@JoinColumn(name = "inventory_item_id")
 	private InventoryItem inventoryItem;
-	
+
+
 	@ManyToOne
 	@JoinColumn(name = "loaner_id")
 	private User loaner;
@@ -50,6 +51,7 @@ public class Borrow {
 //	public void setInventoryId(int inventoryId) {
 //		this.inventoryId = inventoryId;
 //	}
+
 	public Date getBorrowDate() {
 		return borrowDate;
 	}
