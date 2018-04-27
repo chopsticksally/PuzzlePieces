@@ -6,11 +6,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>User Login</title>
 </head>
 <body>
 	<jsp:include page="public-navbar.jsp" />
 
 	<jsp:include page="script.jsp" />
+	
+	<form action="login.do" method="GET">
+		<label for="userName"> Username:</label>
+		<input type="text" placeholder= min="1" max="100" name= "userName"><br>
+		<br>
+		<label for="password">Password:</label>
+		<input type="text" placeholder= min="1" max="100" name= "password"><br>
+		<br>
+		
+		<input type="submit" value="Login">
+		
+	</form>
+	
 </body>
 </html>
+
+
+
+
+
