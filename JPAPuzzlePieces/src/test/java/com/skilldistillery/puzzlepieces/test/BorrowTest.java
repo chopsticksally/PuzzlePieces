@@ -41,7 +41,7 @@ class BorrowTest {
 	@Test
 	@DisplayName("Borrow to Inventory Item")
 	void test1() {
-		assertEquals("alex", em.find(Borrow.class, 2).getLoaner().getUserName());
+		assertEquals(4, em.find(Borrow.class, 2).getInventoryItem().getId());
 	}
 
 }

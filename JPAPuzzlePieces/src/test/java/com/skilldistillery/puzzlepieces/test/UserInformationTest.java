@@ -36,7 +36,6 @@ class UserInformationTest {
 	@Test
 	@DisplayName("UI to User")
 	void test() {
-		assertEquals("alex", em.find(UserInformation.class, 1).getFirstName());
 		assertEquals("alex", em.find(User.class, 1).getUserInformation().getFirstName());
 	}
 

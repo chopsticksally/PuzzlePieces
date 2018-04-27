@@ -248,12 +248,12 @@ CREATE USER 'admin' IDENTIFIED BY 'admin';
 
 GRANT ALL ON * TO 'admin';
 SET SQL_MODE = '';
-GRANT USAGE ON *.* TO ppuser@localhost.com;
- DROP USER ppuser@localhost.com;
+GRANT USAGE ON *.* TO ppuser@localhost;
+ DROP USER ppuser@localhost;
 SET SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-CREATE USER 'ppuser'@'localhost.com' IDENTIFIED BY 'ppuser';
+CREATE USER 'ppuser'@'localhost' IDENTIFIED BY 'ppuser';
 
-GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'ppuser'@'localhost.com';
+GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'ppuser'@'localhost';
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -277,16 +277,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `puzzlepieces`;
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (1, 100, 'pig.url', 'piggies');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (2, 50, 'jungle.url', 'amazon');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (3, NULL, 'space.url', 'our solar system');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (4, 500, 'beach.url', 'beach');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (5, 1000, 'ocean.url', 'underwater adventure');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (6, 900, 'field.url', 'field of flowers');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (7, 1500, 'robot.url', 'killer robots');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (8, 1000, 'macaroni.url', 'macaroni factory');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (9, NULL, 'peach.url', 'peaches and cream');
-INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (10, 500, 'doggie.url', 'cute dog eating icecream');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (1, 100, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnHYZPTl3E1yqp4SUm0_JPBPJ1A_eUZzWJbnljG_VoyNACPH55', 'cool bear');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (2, 50, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP_Qn0HYsLIBwtWyKksfsYIyX1jg-QsIzV0Oo7Tmt075nOLD_d', 'monkey in the jungle');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (3, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJxJuDSrWEB6xsshbC9QKRayd77Lo7RxF5Xci_EVNxQtS5JZ0t', 'solar system');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (4, 500, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdZeYUVgj9dt4cmMLam08Pi4SsyvALdQMayynQ7inBRFLZNdDlsw', 'beach');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (5, 1000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8L6pR9Ybb1-bIJmSiDyJA952Bs4Ctp2U6H7HewhjtE8xH1tbZ', 'underwater adventure');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (6, 900, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbF6rPNYkPQLQFcu5CJBf8bbUMSn98QYN37xbNIdjUn6IhonNb', 'field of flowers');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (7, 1500, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPOfcELBAJ5__xHW2hfmt6ibKt8snmyEA8p6Fwdyc4wWkzxKE1', 'killer robots');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (8, 1000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXG0Uch9gFqcxIsaCIju51sBAT6U3oJKhOW3-iAG_ruvA2bRw9Tg', 'macaroni factory');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (9, NULL, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpiE84MyjErmDvgIpSQB4kh5uDNzr9h7ii7x3rl6BSsnuS1dy5oQ', 'food brands');
+INSERT INTO `puzzle` (`id`, `size`, `imageURL`, `name`) VALUES (10, 500, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh0MiTBo2s1g5E1rnrVatMB-RAcWaFwT-hKKLRggalNdXS9vctFg', 'doggo');
 
 COMMIT;
 
