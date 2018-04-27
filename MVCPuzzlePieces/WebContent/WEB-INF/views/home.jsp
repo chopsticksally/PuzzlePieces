@@ -12,11 +12,15 @@
 	<jsp:include page="public-navbar.jsp" />
 	<h1>Puzzle Pieces</h1>
 	<div class="container">
-		<c:if test="${not empty puzzle }">
+		<c:if test="${not empty inventoryItems }">
 			<c:forEach var="ii" items="${inventoryItems }"></c:forEach>
 			<p>${ii.puzzle.name }</p>
-			<a href="puzzleDetails.do"> <img
-				alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"></a>
+			
+			<c:if test="userLoggedIn">
+				<a href="puzzleDetails.do"> <img
+					alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"></a>
+			</c:if>
+
 		</c:if>
 		<c:if test="${empty inventoryItems }">No Puzzles Available for Exchange</c:if>
 	</div>

@@ -98,8 +98,8 @@ public class PuzzleController {
 		InventoryItem ii = dao.request(inventoryId);
 		mv.addObject(ii);
 		mv.setViewName("borrow");
-		
-		return mv;
-	
 
+		return mv;
+
+	}
 }

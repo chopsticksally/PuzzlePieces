@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+	pageEncoding="UTF-8"%>
+<div class="head">
+	<h1 class="logo">Puzzle Pieces</h1>
+	<ul class="nav justify-content-center">
+		<li class="active nav-item"><a class="nav-link" href="home.do">Home</a></li>
+		<li class="nav-item"><a class="nav-link" href="login.do">Login</a></li>
+		<li class="nav-item"><a class="nav-link" href="register.do">Register</a></li>
+		<form action="searchPuzzle.do" method="GET">
+			<input type="text" name="category, size, condition" /> 
+			<input type="submit" value="Find Puzzle" />
+		</form>
+	</ul>
+</div>
