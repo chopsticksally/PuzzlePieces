@@ -1,9 +1,8 @@
 package com.skilldistillery.puzzlepieces.entities;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -114,6 +113,25 @@ public class InventoryItem {
 		this.owner = owner;
 	}
 
+	public void addRequest(Request request) {
+		if (requests == null) {
+			requests = new ArrayList<>();
+		}
+		if(!requests.contains(request)) {
+			requests.add(request);
+			if(request.getInventoryItem() != null) {
+				request.getInventoryItem().getRequests().remove(request);
+			}
+		}
+		request.setInventoryItem(this);
+	}
+	
+	public void removeRequest(Request request) {
+		request.setInventoryItem(null);
+		if (requests != null) {
+			requests.remove(request);
+		}
+	}
 
 	@Override
 	public String toString() {

@@ -43,11 +43,13 @@ dependencies {
   compile "org.hibernate:hibernate-core:$hibernateVersion"
   compile "org.hibernate:hibernate-c3p0:$hibernateVersion"
   compile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
+  compile 'org.hibernate:hibernate-search-orm:5.6.0.Final'
   testCompile('org.apiguardian:apiguardian-api:1.0.0')
   testRuntime('org.junit.jupiter:junit-jupiter-engine:5.0.1',          
     'org.junit.vintage:junit-vintage-engine:4.12.1',
     'org.junit.platform:junit-platform-launcher:1.0.1',
     'org.junit.platform:junit-platform-runner:1.0.1')
+    
 }
 buildscript {
 	repositories {
