@@ -5,16 +5,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class UserRating {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@Column(name= "rated_user_id")
-	private int ratedUserId;
-	@Column(name= "rater_user_id")
-	private int raterUserId;
+//	@Column(name= "rated_user_id")
+//	private int ratedUserId;
+	@ManyToOne
+	@JoinColumn(name="rated_user_id")
+	private User ratedUser;
+	
+//	@Column(name= "rater_user_id")
+//	private int raterUserId;
+	@ManyToOne
+	@JoinColumn(name="rater_user_id")
+	private User raterUser;
+	
 	private int rating;
 	private String comment;
 	
@@ -29,18 +39,29 @@ public class UserRating {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getRatedUserId() {
-		return ratedUserId;
+
+	
+	
+	public User getRatedUser() {
+		return ratedUser;
 	}
-	public void setRatedUserId(int ratedUserId) {
-		this.ratedUserId = ratedUserId;
+
+
+	public void setRatedUser(User ratedUser) {
+		this.ratedUser = ratedUser;
 	}
-	public int getRaterUserId() {
-		return raterUserId;
+
+
+	public User getRaterUser() {
+		return raterUser;
 	}
-	public void setRaterUserId(int raterUserId) {
-		this.raterUserId = raterUserId;
+
+
+	public void setRaterUser(User raterUser) {
+		this.raterUser = raterUser;
 	}
+
+
 	public int getRating() {
 		return rating;
 	}
@@ -55,7 +76,7 @@ public class UserRating {
 	}
 	@Override
 	public String toString() {
-		return "UserRating [id=" + id + ", ratedUserId=" + ratedUserId + ", raterUserId=" + raterUserId + ", rating="
+		return "UserRating [id=" + id + ", rating="
 				+ rating + ", comment=" + comment + "]";
 	}
 	

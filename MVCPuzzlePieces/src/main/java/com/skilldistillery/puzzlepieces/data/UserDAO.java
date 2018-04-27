@@ -15,7 +15,7 @@ public interface UserDAO {
 
 	List<User> searchUserByUserName(String userName);
 
-	List<User> userLoginByUserNameAndPassword(String userName, String password);
+	User userLoginByUserNameAndPassword(String userName, String password);
 
 	boolean destroy(int id);
 
