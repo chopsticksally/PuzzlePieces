@@ -37,22 +37,22 @@ class BorrowTest {
 	@DisplayName("Borrow")
 	void test() {
 		borrow = em.find(Borrow.class, 2);
-		System.out.println("****************");
-		System.out.println("b");
-		System.out.println("****************");
-		assertEquals(0 , borrow.getBorrowDate());
+		assertEquals(null, borrow.getBorrowDate());
 	}
+
 	@Test
 	@DisplayName("Borrow to User")
-	void test5() {		
-		String query = "select b from Borrow b join fetch b.loaner where b.id = :id";	
-		assertEquals("alex", em.createQuery(query, Borrow.class).setParameter("id", 2).getResultList().get(0).getLoaner().getUserName());
+	void test5() {
+		String query = "select b from Borrow b join fetch b.loaner where b.id = :id";
+		assertEquals("xian", em.createQuery(query, Borrow.class).setParameter("id", 2).getResultList().get(0)
+				.getLoaner().getUserName());
 	}
+
 	@Test
 	@DisplayName("Borrow to Inventory Item")
 	void test1() {
 		String query = "select b from Borrow b join fetch b.inventoryItem where id = 4";
-		assertEquals(4, em.find(Borrow.class, 4).getInventoryItem().getId());
+		assertEquals(6, em.find(Borrow.class, 4).getInventoryItem().getId());
 	}
 
 }
