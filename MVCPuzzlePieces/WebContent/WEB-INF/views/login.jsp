@@ -13,12 +13,12 @@
 
 	<jsp:include page="script.jsp" />
 	
-	<form action="login.do" method="GET">
+	<form action="loggingIn.do" method="GET">
 		<label for="userName"> Username:</label>
-		<input type="text" placeholder= min="1" max="100" name= "userName"><br>
+		<input type="text" placeholder="username" min="1" max="100" name= "userName"><br>
 		<br>
 		<label for="password">Password:</label>
-		<input type="text" placeholder= min="1" max="100" name= "password"><br>
+		<input type="text" placeholder="password" min="1" max="100" name= "password"><br>
 		<br>
 		
 		<input type="submit" value="Login">

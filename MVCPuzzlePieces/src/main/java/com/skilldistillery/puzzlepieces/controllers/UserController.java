@@ -57,6 +57,12 @@ public class UserController {
 
 		return mv;
 	}
+	
+	@RequestMapping(path = "/register.do", method = RequestMethod.GET)
+	public String registrationPage() {
+		return "register";
+
+	}
 
 	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout() {
