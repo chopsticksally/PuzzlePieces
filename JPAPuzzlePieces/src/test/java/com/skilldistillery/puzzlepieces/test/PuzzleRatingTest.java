@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.puzzlepieces.entities.Category;
+import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 
 class PuzzleRatingTest {
@@ -34,9 +35,15 @@ class PuzzleRatingTest {
 	}
 
 	@Test
+	@DisplayName("Puzzle Rating")
+	void test3() {
+		assertEquals(4, em.find(PuzzleRating.class, 4).getId());
+	}
+	@Test
 	@DisplayName("Puzzle Rating to Puzzle")
 	void test() {
-		assertEquals("alex", em.find(PuzzleRating.class, 2).getPuzzle().getName());
+		String query = "select pr from PuzzleRating pr join fetch pr.puzzle where pr.id = 3";
+		assertEquals(4, em.createQuery(query, PuzzleRating.class).getResultList().get(0).getPuzzle().getName());
 	}
 
 }

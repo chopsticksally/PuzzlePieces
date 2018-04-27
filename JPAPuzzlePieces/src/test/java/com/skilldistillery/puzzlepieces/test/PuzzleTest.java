@@ -34,6 +34,11 @@ class PuzzleTest {
 	}
 
 	@Test
+	@DisplayName("Puzzle")
+	void testb() {
+		assertEquals("alex", em.find(Puzzle.class, 2).getId());
+	}
+	@Test
 	@DisplayName("Puzzle to Inventory Item")
 	void test() {
 		assertEquals("alex", em.find(Puzzle.class, 2).getInventoryItems().get(0).getCondtion());
