@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 
 @Transactional
@@ -40,7 +42,6 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 	
 	@Override
 	public List<InventoryItem> searchInventoryByCategoryName(String name) {
-	
 	String queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name ";
     List<InventoryItem> search = em.createQuery(queryString, InventoryItem.class)
             .setParameter("name", "%" + name + "%").getResultList();
@@ -50,8 +51,31 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 	@Override
 	public List<InventoryItem> retrieveAll() {
 		String query = "SELECT it From InventoryItem it";
-		List<InventoryItem> tshirt = em.createQuery(query, InventoryItem.class).getResultList();
-		return tshirt;	
+		List<InventoryItem> puzzle = em.createQuery(query, InventoryItem.class).getResultList();
+		return puzzle;	
+	}
+	
+	@Override
+	public List<InventoryItem> searchPuzzle(String name, int size, Condition condition) {
+		String queryString = "SELECT i FROM Inventory i WHERE";
+		if(name != null) {
+			queryString = queryString +" i.category.name LIKE :name"; }
+		if(name != null && (size != 0 || condition != null)) {
+			queryString = queryString + " AND ";
+		}
+		if (size != 0) {
+			queryString = queryString + " i.puzzle.size = :size"; }
+		if(size != 0 && condition != null) {
+			queryString = queryString + " AND ";
+		}
+		if(condition != null) {
+			queryString = queryString + " i.condition = :condition";
+		}
+		
+		List<InventoryItem> puzzle = new ArrayList();
+				if(name != null)em.createQuery(queryString, InventoryItem.class)
+				
+				.setParameter("name", "%" + name + "%").getResultList();
 	}
 	
 	@Override
