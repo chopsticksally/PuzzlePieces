@@ -43,13 +43,13 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return managedPuzzle;
 	}
 
-	@Override
-	public List<InventoryItem> searchInventoryByCategoryName(String name) {
-		String queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name ";
-		List<InventoryItem> search = em.createQuery(queryString, InventoryItem.class)
-				.setParameter("name", "%" + name + "%").getResultList();
-		return search;
-	}
+//	@Override
+//	public List<InventoryItem> searchInventoryByCategoryName(String name) {
+//		String queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name ";
+//		List<InventoryItem> search = em.createQuery(queryString, InventoryItem.class)
+//				.setParameter("name", "%" + name + "%").getResultList();
+//		return search;
+//	}
 
 	@Override
 	public List<InventoryItem> retrieveAll() {
