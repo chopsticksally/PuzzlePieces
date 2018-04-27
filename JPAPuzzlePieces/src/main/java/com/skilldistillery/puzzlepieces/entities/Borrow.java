@@ -23,7 +23,7 @@ public class Borrow {
 	private Date returnDate;
 	
 	@ManyToOne()
-	@JoinColumn(name = "inventory_id")
+	@JoinColumn(name = "inventory_item_id")
 	private InventoryItem inventoryItem;
 	
 	@ManyToOne()

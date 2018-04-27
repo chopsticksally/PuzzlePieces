@@ -34,6 +34,11 @@ class CategoryTest {
 	}
 
 	@Test
+	@DisplayName("Category")
+	void testb() {
+		assertEquals(2, em.find(Category.class, 2).getId());
+	}
+	@Test
 	@DisplayName("Category to Puzzle")
 	void test() {
 		assertEquals("beach", em.find(Category.class, 2).getPuzzles().get(0).getName());

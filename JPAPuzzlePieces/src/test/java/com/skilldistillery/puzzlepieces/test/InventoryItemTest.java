@@ -34,27 +34,36 @@ class InventoryItemTest {
 	}
 
 	@Test
+	@DisplayName("Inventory Item")
+	void testb() {
+		assertEquals(2, em.find(InventoryItem.class, 2).getId());
+	}
+	@Test
 	@DisplayName("Inventory Item to Request")
 	void test() {
-		assertEquals("alex", em.find(InventoryItem.class, 2).getRequests().get(0).getMessage());
+		String query = "select i from InventoryItem i join fetch i.requests where i.id = 3";
+		assertEquals(4, em.createQuery(query, InventoryItem.class).getResultList().get(0).getRequests().get(0).getMessage());
 	}
 	
 	@Test
 	@DisplayName("Inventory Item to User")
 	void test1() {
-		assertEquals("alex", em.find(InventoryItem.class, 2).getOwner().getUserName());
+		String query = "select i from InventoryItem i join fetch i.owner where i.id = 2";
+		assertEquals(4, em.createQuery(query, InventoryItem.class).getResultList().get(0).getOwner().getUserName());
 	}
 	
 	@Test
 	@DisplayName("Inventory Item to Borrow")
 	void test2() {
-		assertEquals("alex", em.find(InventoryItem.class, 2).getBorrows().get(0).getReturnDate());
+		String query = "select i from InventoryItem i join fetch i.owner where i.id = 2";
+		assertEquals(4, em.createQuery(query, InventoryItem.class).getResultList().get(0).getOwner().getUserName());
 	}
 	
 	@Test
 	@DisplayName("Inventory Item to Puzzle")
 	void test3() {
-		assertEquals("alex", em.find(InventoryItem.class, 2).getPuzzle().getName());
+		String query = "select i from InventoryItem i join fetch i.puzzle where i.id = 2";
+		assertEquals(4, em.createQuery(query, InventoryItem.class).getResultList().get(0).getPuzzle().getName());
 	}
 
 }
