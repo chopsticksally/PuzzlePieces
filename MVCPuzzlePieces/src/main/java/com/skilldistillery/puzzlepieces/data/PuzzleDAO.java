@@ -7,7 +7,7 @@ import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 
 public interface PuzzleDAO {
 
-	public List<InventoryItem> searchInventoryByCategoryName(String name);
+//	public List<InventoryItem> searchInventoryByCategoryName(String name);
 
 	List<InventoryItem> retrieveAll();
 
