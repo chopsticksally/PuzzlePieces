@@ -1,4 +1,4 @@
-package com.skillydistillery.puzzlepieces.controllers;
+package com.skilldistillery.puzzlepieces.controllers;
 
 import javax.servlet.http.HttpSession;
 

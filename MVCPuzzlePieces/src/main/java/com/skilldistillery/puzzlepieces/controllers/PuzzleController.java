@@ -1,4 +1,4 @@
-package com.skillydistillery.puzzlepieces.controllers;
+package com.skilldistillery.puzzlepieces.controllers;
 
 import java.util.List;
 

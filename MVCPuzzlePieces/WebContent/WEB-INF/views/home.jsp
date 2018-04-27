@@ -10,7 +10,8 @@
 </head>
 <body>
 	<jsp:include page="public-navbar.jsp" />
-	<div class="container">
+	<h1>Puzzle Pieces</h1>
+	<%-- <div class="container">
 		<c:if test="${not empty puzzle }">
 			<c:forEach var="p" items="${puzzle }"></c:forEach>
 			<p>${p.name }</p>
@@ -18,7 +19,7 @@
 				alt="${puzzle.name } Puzzle Photo" src="${p.imageUrl }"></a>
 		</c:if>
 		<c:if test="${empty puzzle }">No Puzzles Available for Exchange</c:if>
-	</div>
+	</div> --%>
 
 
 	<jsp:include page="script.jsp" />
