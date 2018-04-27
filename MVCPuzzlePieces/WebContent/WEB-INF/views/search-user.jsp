@@ -9,7 +9,6 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 
-	<jsp:include page="script.jsp" />
 	
 	<h1>Search for your *Requestie Bestie*</h1>
 	
@@ -23,5 +22,6 @@
 	
 	</form>
 
+	<jsp:include page="script.jsp" />
 </body>
 </html>

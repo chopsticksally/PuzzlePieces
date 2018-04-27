@@ -11,7 +11,6 @@
 <body>
 	<jsp:include page="public-navbar.jsp" />
 
-	<jsp:include page="script.jsp" />
 	
 	<form action="loggingIn.do" method="GET">
 		<label for="userName"> Username:</label>
@@ -25,6 +24,7 @@
 		
 	</form>
 	
+	<jsp:include page="script.jsp" />
 </body>
 </html>
 
