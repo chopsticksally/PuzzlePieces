@@ -36,8 +36,11 @@ class BorrowTest {
 	@Test
 	@DisplayName("Borrow")
 	void test() {
-		Borrow b = em.find(Borrow.class, 2);
-		assertEquals("alex", b.getReturnDate());
+		borrow = em.find(Borrow.class, 2);
+		System.out.println("****************");
+		System.out.println("b");
+		System.out.println("****************");
+		assertEquals(0 , borrow.getBorrowDate());
 	}
 	@Test
 	@DisplayName("Borrow to User")
