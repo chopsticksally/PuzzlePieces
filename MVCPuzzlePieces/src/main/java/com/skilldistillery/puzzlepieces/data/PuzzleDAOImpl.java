@@ -55,6 +55,8 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 		return puzzle;	
 	}
 	
+	
+	// THE METHOD BELOW IS NOT DONE
 	@Override
 	public List<InventoryItem> searchPuzzle(String name, int size, Condition condition) {
 		String queryString = "SELECT i FROM Inventory i WHERE";
@@ -76,6 +78,7 @@ public class PuzzleDAOImpl implements PuzzleDAO{
 				if(name != null)em.createQuery(queryString, InventoryItem.class)
 				
 				.setParameter("name", "%" + name + "%").getResultList();
+				return puzzle;
 	}
 	
 	@Override
