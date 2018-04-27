@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -11,11 +12,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
+@Indexed
 @Entity
 public class Puzzle {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
+	@Field
 	private int size;
 	private String imageUrl;
 	private String name;
@@ -91,7 +97,33 @@ public class Puzzle {
 		this.categories = categories;
 	}
 
-
+	public void addCategory(Category category) {
+		if(categories == null) {
+			categories = new ArrayList<>();
+		}
+		if(!categories.contains(category)) {
+			categories.add(category);
+			category.addPuzzle(this);
+		}
+	}
+	
+	public void removeCategory(Category category) {
+		if(categories != null && categories.contains(category)) {
+			categories.remove(category);
+			category.removePuzzle(this);
+		}
+	}
+	
+	public void addPuzzleRating(PuzzleRating puzzleRating) {
+		if (puzzleRatings == null) {
+			puzzleRatings = new ArrayList<>();
+		}
+		if(!puzzleRatings.contains(puzzleRating)) {
+			puzzleRatings.add(puzzleRating);
+			if
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "Puzzle [id=" + id + ", size=" + size + ", imageUrl=" + imageUrl + ", name=" + name + "]";
