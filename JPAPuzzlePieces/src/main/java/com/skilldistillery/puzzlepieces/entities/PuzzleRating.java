@@ -1,18 +1,23 @@
 package com.skilldistillery.puzzlepieces.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PuzzleRating {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
-	@Column(name= "puzzle_id")
-	private int puzzleId;
+//	@Column(name= "puzzle_id")
+//	private int puzzleId;
+	@ManyToOne
+	@JoinColumn(name="puzzle_id")
+	private Puzzle puzzle;
+	
 	private int rating;
 	private String comment;
 
@@ -28,12 +33,7 @@ public class PuzzleRating {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getPuzzleId() {
-		return puzzleId;
-	}
-	public void setPuzzleId(int puzzleId) {
-		this.puzzleId = puzzleId;
-	}
+
 	public int getRating() {
 		return rating;
 	}
@@ -48,9 +48,19 @@ public class PuzzleRating {
 	}
 
 
+	public Puzzle getPuzzle() {
+		return puzzle;
+	}
+
+
+	public void setPuzzle(Puzzle puzzle) {
+		this.puzzle = puzzle;
+	}
+
+
 	@Override
 	public String toString() {
-		return "PuzzleRating [id=" + id + ", puzzleId=" + puzzleId + ", rating=" + rating + ", comment=" + comment
+		return "PuzzleRating [id=" + id + ", rating=" + rating + ", comment=" + comment
 				+ "]";
 	}
 	

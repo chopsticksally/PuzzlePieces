@@ -5,18 +5,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Request {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
-	@Column(name= "inventory_id")
-	private int inventoryId;
-	@Column(name= "requester_id")
-	private int requesterId;
-	@Column(name= "requestie_id")
-	private int requestieId;
+	
+//	@Column(name= "inventory_id")
+//	private int inventoryId;
+	@ManyToOne
+	@JoinColumn(name="inventory_id")
+	private InventoryItem inventoryItem;
+	
+//	@Column(name= "requester_id")
+//	private int requesterId;
+	@ManyToOne
+	@JoinColumn(name = "requestee_id")
+	private User requestee;
+	
+//	@Column(name= "requestie_id")
+//	private int requestieId;
+	@ManyToOne
+	@JoinColumn(name = "requester_id")
+	private User requester;
+	
+	
 	private String message;
 	private boolean active;
 	private boolean accepted;
@@ -33,24 +49,27 @@ public class Request {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getInventoryId() {
-		return inventoryId;
+
+	public User getRequestee() {
+		return requestee;
 	}
-	public void setInventoryId(int inventoryId) {
-		this.inventoryId = inventoryId;
+
+
+	public void setRequestee(User requestee) {
+		this.requestee = requestee;
 	}
-	public int getRequesterId() {
-		return requesterId;
+
+
+	public User getRequester() {
+		return requester;
 	}
-	public void setRequesterId(int requesterId) {
-		this.requesterId = requesterId;
+
+
+	public void setRequester(User requester) {
+		this.requester = requester;
 	}
-	public int getRequestieId() {
-		return requestieId;
-	}
-	public void setRequestieId(int requestieId) {
-		this.requestieId = requestieId;
-	}
+
+
 	public String getMessage() {
 		return message;
 	}
@@ -69,10 +88,21 @@ public class Request {
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
 	}
+	public InventoryItem getInventoryItem() {
+		return inventoryItem;
+	}
+
+
+	public void setInventoryItem(InventoryItem inventoryItem) {
+		this.inventoryItem = inventoryItem;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Request [id=" + id + ", inventoryId=" + inventoryId + ", requesterId=" + requesterId + ", requestieId="
-				+ requestieId + ", message=" + message + ", active=" + active + ", accepted=" + accepted + "]";
+		return "Request [id=" + id + ", inventoryId=" + " requestieId="
+				
+				+", message=" + message + ", active=" + active + ", accepted=" + accepted + "]";
 	}
 
 	

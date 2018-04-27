@@ -5,14 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserInformation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@Column(name= "user_id")
-	private int userId;
+//	@Column(name= "user_id")
+//	private int userId;
+	@OneToOne
+	@JoinColumn(name= "user_id")
+	private User user;
 	private String address;
 	@Column(name= "first_name")
 	private String firstName;
@@ -31,12 +36,6 @@ public class UserInformation {
 		this.id = id;
 	}
 	
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -58,9 +57,19 @@ public class UserInformation {
 	
 	
 	
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userId=" + userId + ", address=" + address + ", firstName=" + firstName
+		return "User [id=" + id + ", userId=" + ", address=" + address + ", firstName=" + firstName
 				+ ", lastName=" + lastName + "]";
 	}
 	
