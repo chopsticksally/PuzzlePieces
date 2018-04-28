@@ -4,13 +4,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Puzzle Pieces</title>
-</head>
+<jsp:include page="header.jsp" />
+
 <body>
 	<jsp:include page="public-navbar.jsp" />
-	<h1>Puzzle Pieces</h1>
+	<h1 class="header">Welcome!</h1>
 	<div class="container">
 		<c:if test="${not empty inventoryItems }">
 			<c:forEach var="ii" items="${inventoryItems }"></c:forEach>

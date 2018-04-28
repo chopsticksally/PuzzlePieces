@@ -4,13 +4,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 	<jsp:include page="public-navbar.jsp" />
-
+	<h1 class="header">Update your profile</h1>
 	
 	<form action "updateUser.do" method= "POST">
 	
