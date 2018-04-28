@@ -129,6 +129,23 @@ public class UserController {
 		return mv;
 
 	}
+	@RequestMapping(path = "/registerUserInformation.do", method = RequestMethod.POST)
+	public ModelAndView registerUserInformation(@RequestParam(name = "id") Integer userId, UserInformation ui,
+			HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			UserInformation updatedUi = dao.updateUserInformation(userId, ui);
+			// mv.addObject("ui", updatedUi );
+			User user = (User) session.getAttribute("userLoggedIn");
+			user.setUserInformation(updatedUi);
+			session.setAttribute("userLoggedIn", user);
+			mv.setViewName("register-user-address");
+		} catch (Exception e) {
+			mv.setViewName("register-user-info");
+		}
+		return mv;
+		
+	}
 
 	@RequestMapping(path = "/updateAddress.do", method = RequestMethod.POST)
 	public ModelAndView updateAddress(@RequestParam(name = "id") Integer userId, Address address, HttpSession session) {
@@ -146,6 +163,23 @@ public class UserController {
 		}
 		return mv;
 
+	}
+	@RequestMapping(path = "/registerAddress.do", method = RequestMethod.POST)
+	public ModelAndView registerAddress(@RequestParam(name = "id") Integer userId, Address address, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			Address updatedAddress = dao.updateAddress(userId, address);
+			// mv.addObject("address",updatedAddress );
+			User user = (User) session.getAttribute("userLoggedIn");
+			user.getUserInformation().setAddress(updatedAddress);
+			session.setAttribute("userLoggedIn", user);
+			mv.setViewName("logged-in");
+		} catch (Exception e) {
+			mv.setViewName("register-user-address");
+			
+		}
+		return mv;
+		
 	}
 
 	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
