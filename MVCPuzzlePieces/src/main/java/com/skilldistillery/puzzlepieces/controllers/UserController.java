@@ -45,13 +45,13 @@ public class UserController {
 
 	}
 
+	//@Validated
 	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
-	public ModelAndView loggingIn(@Validated User user, Errors errors, HttpSession session) {
+	public ModelAndView loggingIn(User user, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User userLoggingIn = new User();
-		if (user != null) {
-			userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
-		}
+
+		User userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
+
 		if (userLoggingIn == null) {
 			errors.rejectValue("userName", "Username or password is incorrect, please try again");
 			mv.setViewName("login");
