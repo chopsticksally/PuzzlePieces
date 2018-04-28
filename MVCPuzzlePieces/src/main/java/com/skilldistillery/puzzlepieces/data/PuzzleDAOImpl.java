@@ -106,6 +106,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	public Request requestUserForPuzzle(InventoryItem id,  User loggedInUser) {
 		Request request = new Request();
 		request.setRequester(loggedInUser);
+		request.setInventoryItem(em.find(InventoryItem.class, id));
 		em.persist(request);
 		em.flush();
 		return request;
@@ -153,6 +154,13 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	@Override
+	public InventoryItem updateRequest(Integer inventoryId) {
+		Request request = em.find(Request.class, inventoryId);
+		
+		return null;
 	}
 
 }

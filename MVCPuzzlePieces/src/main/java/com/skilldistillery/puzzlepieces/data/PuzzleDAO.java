@@ -24,5 +24,7 @@ public interface PuzzleDAO {
 
 	Request requestUserForPuzzle(InventoryItem id, User loggedInUser);
 
+	InventoryItem updateRequest(Integer inventoryId);
+
 	
 }
