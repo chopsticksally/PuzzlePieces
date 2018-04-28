@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class UserInformation {
 //	private int addressId;
 	private String email;
 
-	@OneToOne
+	@OneToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name = "address_id")
 	private Address address;
 

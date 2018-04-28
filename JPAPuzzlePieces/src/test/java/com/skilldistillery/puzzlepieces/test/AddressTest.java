@@ -1,6 +1,6 @@
 package com.skilldistillery.puzzlepieces.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.puzzlepieces.entities.Address;
@@ -33,8 +34,9 @@ class AddressTest {
 
 
 	@Test
+	@DisplayName("Address to UserInformation")
 	void test() {
-		fail("Not yet implemented");
+		assertEquals("Tampa", em.find(Address.class, 1).getUserInformation().getAddress().getCity());
 	}
 
 }

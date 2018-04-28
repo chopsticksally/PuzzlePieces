@@ -3,6 +3,7 @@ package com.skilldistillery.puzzlepieces.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class User {
 	private String userName;
 	private String password;
 	
-	@OneToOne(mappedBy="user")
+	@OneToOne(mappedBy="user", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
 	private UserInformation userInformation;
 	
 	@OneToMany(mappedBy = "requestee")

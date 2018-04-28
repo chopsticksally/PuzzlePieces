@@ -10,7 +10,7 @@
 	<h1 class ="header">Register</h1>
 	
 	<form action= "registering.do" method= "POST">
-	
+	<input type="hidden" name="id" value="0">
 		<label for="userName"> New Username:</label>
 	    <input type="text" placeholder=" "min="1" max="100" name="userName"> <br>
 <br>

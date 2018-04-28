@@ -22,15 +22,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public User createUser(User user) {
-		Address address = new Address();
-		em.persist(address);
-		em.flush();
 		UserInformation ui = new UserInformation();
+		Address address = new Address();
+		em.persist(user);
+		ui.setUser(user);
 		ui.setAddress(address);
 		em.persist(ui);
-		em.flush();
-		user.setUserInformation(ui);
-		em.persist(user);
 		em.flush();
 		return user;
 	}

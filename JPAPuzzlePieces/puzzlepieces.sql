@@ -90,7 +90,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user_information` ;
 
 CREATE TABLE IF NOT EXISTS `user_information` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(100) NULL,
   `first_name` VARCHAR(100) NULL,
   `last_name` VARCHAR(100) NULL,
@@ -466,3 +466,4 @@ INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `invento
 INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (10, 2, 4, '\'Nope\'', 5, 0, 0);
 
 COMMIT;
+
