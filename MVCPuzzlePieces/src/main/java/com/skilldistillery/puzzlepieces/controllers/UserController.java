@@ -156,7 +156,14 @@ public class UserController {
 		mv.setViewName("searchedUsers");
 		return mv;
 	}
-
+	@RequestMapping(path= "editProfile.do", method = RequestMethod.GET)
+	public ModelAndView editProfile() {
+	ModelAndView mv = new ModelAndView();
+	mv.setViewName("edit-profile");
+	return mv;
+	}
+	
+	
 	@RequestMapping(path = "/*", method = RequestMethod.GET)
 	public String fallback() {
 		return "fallback";

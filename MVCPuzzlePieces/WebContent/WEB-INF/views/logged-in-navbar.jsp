@@ -5,7 +5,7 @@
 	<ul class="nav justify-content-center">
 		<li class="active nav-item"><a class="nav-link" href="home.do">Home</a></li>
 		<li class="nav-item"><a class="nav-link" href="loggingIn.do">Profile</a></li>
-		<li class="nav-item"><a class="nav-link" href="updateUser.do">Edit
+		<li class="nav-item"><a class="nav-link" href="editProfile.do">Edit
 				Profile</a></li>
 		<li class="nav-item"><a class="nav-link" href="borrowed.do">Borrowed</a></li>
 		<form action="searchPuzzle.do" method="GET">
