@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Request;
+import com.skilldistillery.puzzlepieces.entities.User;
 
 @Transactional
 @Component
@@ -36,7 +37,6 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
 		managedPuzzle.setCondtion(updated.getCondtion());
 		managedPuzzle.setPuzzle(updated.getPuzzle());
-		managedPuzzle.setLoaner(updated.getLoaner());
 		managedPuzzle.setOwner(updated.getOwner());
 
 		em.persist(managedPuzzle);
@@ -103,7 +103,9 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	}
 	
 	@Override
-	public Request requestUserForPuzzle(Request request) {
+	public Request requestUserForPuzzle(InventoryItem id,  User loggedInUser) {
+		Request request = new Request();
+		request.setRequester(loggedInUser);
 		em.persist(request);
 		em.flush();
 		return request;

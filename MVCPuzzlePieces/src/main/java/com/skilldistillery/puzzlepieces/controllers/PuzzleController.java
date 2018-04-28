@@ -2,8 +2,11 @@ package com.skilldistillery.puzzlepieces.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.User;
 
 @Controller
 public class PuzzleController {
@@ -93,10 +97,10 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "request.do", method = RequestMethod.POST)
-	public ModelAndView request(@RequestParam(name = "id") Integer inventoryId) {
+	public ModelAndView request(@RequestParam(name = "id") InventoryItem id, HttpSession session, Errors errors) {
 		ModelAndView mv = new ModelAndView();
-		InventoryItem ii = dao.requestUserForPuzzle(inventoryId);
-		mv.addObject(ii);
+		User loggedInUser = (User) session.getAttribute("userLoggedIn");
+		dao.requestUserForPuzzle(id, loggedInUser);
 		mv.setViewName("borrow");
 
 		return mv;
