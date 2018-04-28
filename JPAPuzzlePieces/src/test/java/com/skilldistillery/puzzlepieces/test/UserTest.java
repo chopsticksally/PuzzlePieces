@@ -67,13 +67,13 @@ class UserTest {
 	@Test
 	@DisplayName("User to Borrow")
 	void test4() {
-		assertEquals("alex", em.find(User.class, 1).getLoans().get(0).getLoaner());
+		assertEquals(2, em.find(User.class, 2).getLoans().get(0).getLoaner().getId());
 	}
 
 	@Test
 	@DisplayName("User to Inventory Item")
 	void test5() {
-		assertEquals("alex", em.find(User.class, 1).getOwns().get(0).getOwner());
+		assertEquals("alex", em.find(User.class, 1).getOwns().get(0).getOwner().getUserName());
 	}
 
 	@Test

@@ -9,7 +9,6 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 
-	<jsp:include page="script.jsp" />
 	
 	<h1>Enter Search criteria</h1>
 
@@ -55,6 +54,7 @@
 
 	</form>
 
+	<jsp:include page="script.jsp" />
 </body>
 </html>
 

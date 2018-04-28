@@ -24,7 +24,7 @@ public class Puzzle {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	@Field
-	private int size;
+	private Integer size;
 	private String imageUrl;
 	private String name;
 	
@@ -52,10 +52,10 @@ public class Puzzle {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getSize() {
+	public Integer getSize() {
 		return size;
 	}
-	public void setSize(int size) {
+	public void setSize(Integer size) {
 		this.size = size;
 	}
 	public String getImageUrl() {

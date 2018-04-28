@@ -1,6 +1,6 @@
 package com.skilldistillery.puzzlepieces.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.puzzlepieces.entities.Puzzle;
+import com.skilldistillery.puzzlepieces.entities.Address;
 
 class AddressTest {
 	

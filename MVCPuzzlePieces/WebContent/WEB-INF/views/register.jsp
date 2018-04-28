@@ -11,7 +11,6 @@
 <body>
 	<jsp:include page="public-navbar.jsp" />
 
-	<jsp:include page="script.jsp" />
 	
 	<form action "updateUser.do" method= "POST">
 	
@@ -47,5 +46,6 @@
 	</form>
 	
 	
+	<jsp:include page="script.jsp" />
 </body>
 </html>
