@@ -11,10 +11,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.data.UserDAO;
+import com.skilldistillery.puzzlepieces.entities.Address;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
@@ -31,6 +33,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		List<InventoryItem> ii = puzzleDao.retrieveAll();
 		mv.addObject("inventoryItems", ii);
+		// TEST
+		System.out.println(ii.size());
 		mv.setViewName("home");
 		return mv;
 	}
@@ -45,8 +49,8 @@ public class UserController {
 	public ModelAndView loggingIn(@Validated User user, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User userLoggingIn = new User();
-		if(user != null) {
-		userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
+		if (user != null) {
+			userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
 		}
 		if (userLoggingIn == null) {
 			errors.rejectValue("userName", "Username or password is incorrect, please try again");
@@ -60,32 +64,85 @@ public class UserController {
 
 		return mv;
 	}
-	
+
 	@RequestMapping(path = "/register.do", method = RequestMethod.GET)
 	public String registrationPage() {
 		return "register";
 
 	}
 
-	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout() {
+	@RequestMapping(path = "registering.do", method = RequestMethod.POST)
+	public ModelAndView registering(User user, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("log-out");
+		boolean userCheck = dao.isUserNameTaken(user.getUserName());
+		if (userCheck == true) {
+			errors.rejectValue("userName", "Username is taken, please enter a new Username");
+			mv.setViewName("register");
+		} else {
+			dao.createUser(user);
+			session.setAttribute("userLoggedIn", user);
+			mv.setViewName("logged-in");
+		}
+		return mv;
+	}
+
+	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
+	public ModelAndView logout(SessionStatus logout) {
+		ModelAndView mv = new ModelAndView();
+		logout.setComplete();
+		mv.setViewName("home");
 		return mv;
 
 	}
 
 	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, UserInformation updated) {
+	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		try {
-			UserInformation ui = dao.updateUser(userId, updated);
-			mv.addObject("updated", ui);
+
+			user = dao.updateUser(userId, user);
+			// mv.addObject("updated", user);
+			session.setAttribute("userLoggedIn", user);
 			mv.setViewName("redirect:success");
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			mv.setViewName("redirect:fail");
-		} catch (NullPointerException n) {
+
+		}
+		return mv;
+
+	}
+
+	@RequestMapping(path = "/updateUserInformation.do", method = RequestMethod.POST)
+	public ModelAndView updateUserInformation(@RequestParam(name = "id") Integer userId, UserInformation ui,
+			HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			UserInformation updatedUi = dao.updateUserInformation(userId, ui);
+			// mv.addObject("ui", updatedUi );
+			User user = (User) session.getAttribute("userLoggedIn");
+			user.setUserInformation(updatedUi);
+			session.setAttribute("userLoggedIn", user);
+			mv.setViewName("redirect:success");
+		} catch (Exception e) {
+
+		}
+		return mv;
+
+	}
+
+	@RequestMapping(path = "/updateAddress.do", method = RequestMethod.POST)
+	public ModelAndView updateAddress(@RequestParam(name = "id") Integer userId, Address address, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			Address updatedAddress = dao.updateAddress(userId, address);
+			// mv.addObject("address",updatedAddress );
+			User user = (User) session.getAttribute("userLoggedIn");
+			user.getUserInformation().setAddress(updatedAddress);
+			session.setAttribute("userLoggedIn", user);
+			mv.setViewName("redirect:success");
+		} catch (Exception e) {
 			mv.setViewName("redirect:fail");
+
 		}
 		return mv;
 
@@ -97,18 +154,6 @@ public class UserController {
 		List<User> users = dao.searchUserByUserName(userName);
 		mv.addObject("users", users);
 		mv.setViewName("searchedUsers");
-		return mv;
-	}
-
-	@RequestMapping(path = "/puzzleDetails.do", method = RequestMethod.GET)
-	public ModelAndView displayPuzzleDetails() {
-		ModelAndView mv = new ModelAndView();
-		try {
-
-		} catch (NullPointerException n) {
-			mv.setViewName("redirect:");
-		}
-
 		return mv;
 	}
 
