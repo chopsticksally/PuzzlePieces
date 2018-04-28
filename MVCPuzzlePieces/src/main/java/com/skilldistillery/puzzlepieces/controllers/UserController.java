@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,13 +42,15 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
-	public ModelAndView loggingIn(@RequestParam("userName") String userName,
-			@RequestParam(name = "password") String password, HttpSession session, Errors errors) {
+	public ModelAndView loggingIn(@Validated User user, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User userLoggingIn = dao.userLoginByUserNameAndPassword(userName, password);
+		User userLoggingIn = new User();
+		if(user != null) {
+		userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
+		}
 		if (userLoggingIn == null) {
 			errors.rejectValue("userName", "Username or password is incorrect, please try again");
-
+			mv.setViewName("login");
 		}
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);

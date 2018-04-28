@@ -17,7 +17,7 @@
 		<input type="text" placeholder="username" min="1" max="100" name= "userName"><br>
 		<br>
 		<label for="password">Password:</label>
-		<input type="text" placeholder="password" min="1" max="100" name= "password"><br>
+		<input type="password" placeholder="password" min="1" max="100" name= "password"><br>
 		<br>
 		
 		<input type="submit" value="Login">

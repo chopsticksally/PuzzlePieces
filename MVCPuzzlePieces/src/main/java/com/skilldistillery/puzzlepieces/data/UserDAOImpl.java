@@ -61,8 +61,13 @@ public class UserDAOImpl implements UserDAO{
 	 String queryString = "SELECT u FROM User u WHERE u.userName = :name and u.password = :password";
      List<User> search = em.createQuery(queryString, User.class)
              .setParameter("name",  userName).setParameter("password", password).getResultList();
+     if(search.size() != 0 ) {
      User user = search.get(0);
      return user;
+     }
+     else {
+    	 return null;
+     }
 	}
 	
 	@Override
