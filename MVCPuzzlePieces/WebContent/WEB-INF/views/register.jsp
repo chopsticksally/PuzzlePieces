@@ -5,7 +5,7 @@
 <jsp:include page="header.jsp" />
 
 <body>
-	<jsp:include page="logged-in-navbar.jsp" />
+	<jsp:include page="public-navbar.jsp" />
 
 	<h1 class ="header">Register</h1>
 	
