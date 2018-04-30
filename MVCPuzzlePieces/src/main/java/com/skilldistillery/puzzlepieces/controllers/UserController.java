@@ -17,9 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.data.UserDAO;
 import com.skilldistillery.puzzlepieces.entities.Address;
+import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
+import com.skilldistillery.puzzlepieces.entities.UserRating;
 
 @Controller
 public class UserController {
@@ -56,15 +59,16 @@ public class UserController {
 
 	// @Validated
 	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
-	public ModelAndView loggingIn(@Valid User user, Errors errors, HttpSession session) {
+	public ModelAndView loggingIn(@Valid User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		User userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
-
 		if (userLoggingIn == null) {
-			errors.rejectValue("userName", "error.userName", "Username or password is incorrect, please try again");
+			mv.addObject("errorMessage", "Invalid login information");
 			mv.setViewName("login");
+			return mv;
 		}
+
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
@@ -202,8 +206,24 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/userProfile.do", method = RequestMethod.GET)
-	public String userProfilePage() {
-		return "user-profile";
+	public ModelAndView userProfilePage(@RequestParam(name="userId") Integer userId) {
+		ModelAndView mv = new ModelAndView();
+		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings =puzzleDao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests= puzzleDao.getReceivedByUserId(userId);
+		List<Request> sentRequests= puzzleDao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
+		mv.setViewName("user-profile");
+		return mv;
 	}
 
 	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
