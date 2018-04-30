@@ -75,21 +75,36 @@ public class PuzzleController {
 
 	}
 
-	@RequestMapping(path = "/searchPuzzlePage.do", method = RequestMethod.GET)
+	@RequestMapping(path = "searchPuzzlePage.do", method = RequestMethod.GET)
 	public String searchPuzzlePage() {
 		return "search-puzzles";
 	}
 
 	@RequestMapping(path = "searchPuzzle.do", method = RequestMethod.GET)
 	public ModelAndView searchPuzzle(@RequestParam(name = "category") String name,
-			@RequestParam(name = "size") Integer size, @RequestParam(name = "condition") Condition condition) {
+			@RequestParam(name = "size") Integer size, @RequestParam(name = "condition") Integer condition) {
 		ModelAndView mv = new ModelAndView();
-		List<InventoryItem> inventoryItems = dao.searchPuzzle(name, size, condition);
-		mv.addObject("inventoryItems", inventoryItems);
-		mv.setViewName("puzzleResults");
+		Condition con = null;
+		if(condition==1) {
+		con = Condition.NEW;
+		}
+		if(condition==2) {
+			con = Condition.LIKE_NEW;
+		}
+		if(condition==3) {
+			con = Condition.USED;
+		}
+		if(condition==4) {
+			con = Condition.WORN;
+		}
+		List<InventoryItem> inventoryItems = dao.searchPuzzle(name, size, con);
+		
+		mv.addObject("puzzle", inventoryItems);
+		mv.setViewName("search-puzzle-results");
 		return mv;
 
 	}
+	
 
 	@RequestMapping(path = "updateRequest.do", method = RequestMethod.POST)
 	public ModelAndView updateRequest(@RequestParam(name = "id") Integer inventoryId) {

@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.puzzlepieces.entities.Category;
 //import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
@@ -64,14 +65,16 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	public List<InventoryItem> searchPuzzle(String name, int size, Condition condition) {
 		String queryString;
 		List<InventoryItem> search = null;
+		
+		
 
 		if (name != "" && size != 0 && condition != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name AND i.puzzle.size = :size AND i.condition = :condition";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
+			queryString = "SELECT i FROM InventoryItem i  WHERE :cat MEMBER OF i.puzzle.categories AND i.puzzle.size = :size AND i.condition = :condition";
+			search = em.createQuery(queryString, InventoryItem.class).setParameter("cat",getCategoryByName(name) )
 					.setParameter("size", size).setParameter("condition", condition).getResultList();
 
 		} else if (size != 0 && condition != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name";
+			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.categories.name LIKE :name";
 			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
 					.getResultList();
 		} else if (name != null && condition != null) {
@@ -83,11 +86,11 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 					.getResultList();
 
 		} else if (condition != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name AND i.puzzle.size = :size";
+			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.categories.name LIKE :name AND i.puzzle.size = :size";
 			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
 					.setParameter("size", size).getResultList();
 		} else if (size != 0) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.category.name LIKE :name AND i.condition = :condition";
+			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.categories.name LIKE :name AND i.condition = :condition";
 			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
 					.setParameter("condition", condition).getResultList();
 		} else if (name != null) {
@@ -110,6 +113,12 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		em.persist(request);
 		em.flush();
 		return request;
+	}
+	public Category getCategoryByName(String catName) {
+		String queryString= "select c from Category c where c.name = :name";
+		 List<Category> results = em.createQuery(queryString, Category.class).setParameter("name", catName)
+		.getResultList();
+		return results.get(0);
 	}
 		
 	
