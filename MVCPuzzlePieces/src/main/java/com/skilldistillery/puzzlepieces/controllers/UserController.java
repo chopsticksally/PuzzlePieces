@@ -72,7 +72,7 @@ public class UserController {
 			mv.addObject("user", userLoggingIn);
 			mv.setViewName("logged-in-home");
 		}
-
+		mv.addObject("user", userLoggingIn);
 		return mv;
 	}
 

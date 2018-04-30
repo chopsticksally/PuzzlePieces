@@ -6,7 +6,10 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 
+
 	<jsp:include page="script.jsp" />
+
+<h3></h3>
 
 </body>
 </html>
