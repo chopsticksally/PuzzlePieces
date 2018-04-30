@@ -309,14 +309,14 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 
 	@Override
 	public List<Request> getSentRequestsByUserId(int userId) {
-		String query = "Select r from Request r where r.requester.id = :id";
+		String query = "Select r from Request r join fetch r.requester where r.requester.id = :id";
 		List<Request> request = em.createQuery(query, Request.class).setParameter("id", userId).getResultList();
 		return request;
 	}
 
 	@Override
 	public List<Request> getReceivedByUserId(int userId) {
-		String query = "Select r from Request r where r.requestee.id = :id";
+		String query = "Select r from Request r join fetch r.requestee where r.requestee.id = :id";
 		List<Request> request = em.createQuery(query, Request.class).setParameter("id", userId).getResultList();
 		return request;
 	}
