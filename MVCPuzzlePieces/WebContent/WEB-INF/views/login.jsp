@@ -24,6 +24,9 @@
 			<button type="submit" class="btn btn-primary">Login</button>
 
 		</form>
+	<%-- 	<c:if test="${not empty errorMessage }"> --%>
+			<h4 class="loginError">${errorMessage}</h4>
+		</c:if><!--  -->
 	</div>
 
 	<jsp:include page="script.jsp" />
