@@ -1,5 +1,8 @@
 package com.skilldistillery.puzzlepieces.data;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.Category;
 //import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
@@ -172,4 +176,86 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return null;
 	}
 
+	@Override
+	public boolean notAcceptRequest(Request requestUpdate) {
+	  try {
+	    int requestId = requestUpdate.getId();
+	    Request request = em.find(Request.class, requestId);
+	    if (request != null) {
+	      request.setAccepted(false);
+	      request.setActive(true);
+	      request.setInventoryItem(requestUpdate.getInventoryItem());
+	      request.setMessage(requestUpdate.getMessage());
+	      em.persist(request);
+	      em.flush();
+	      return true;
+	    } else {
+	      return false;
+	    }
+	  } catch (Exception e) {
+	    return false;
+	  }
+	}
+
+	@Override
+	public boolean acceptRequestToBorrow(Request requestUpdate) {
+	  try {
+	    int requestId = requestUpdate.getId();
+	    Request request = em.find(Request.class, requestId);
+	    if (request != null) {
+	      request.setAccepted(true);
+	      request.setActive(true);
+	      request.setInventoryItem(requestUpdate.getInventoryItem());
+	      request.setMessage(requestUpdate.getMessage());
+	      em.persist(request);
+	      em.flush();
+	      
+	      Borrow borrow = new Borrow();
+	      LocalDate date = LocalDate.now();
+	      LocalDate returnDate = date.plusMonths(2);
+	      Date convertedStartDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	      Date convertedReturnDate = Date.from(returnDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	      borrow.setBorrowDate(convertedStartDate);
+	      borrow.setReturnDate(convertedReturnDate);
+	      borrow.setLoaner(requestUpdate.getRequester());
+	      borrow.setInventoryItem(requestUpdate.getInventoryItem());
+	      em.persist(borrow);
+	      em.flush();
+	      return true;
+	    }
+	    return false;
+	  } catch (Exception e) {
+	    return false;
+	  }
+	}
+
+	@Override
+	public boolean acceptRequestToOwn(Request requestUpdate) {
+	  Request request = em.find(Request.class, requestUpdate.getId());
+	  try {
+	    if(request != null) {
+	      request.setAccepted(true);
+	      request.setActive(true);
+	      request.setInventoryItem(request.getInventoryItem());
+	      request.setMessage(requestUpdate.getMessage());
+	      em.persist(request);
+	      em.flush();
+	      Borrow borrow = new Borrow();
+	      borrow.setBorrowDate(new Date());
+	      borrow.setReturnDate(null);
+	      borrow.setInventoryItem(requestUpdate.getInventoryItem());
+	      em.persist(borrow);
+	      em.flush();
+	      //Add the InventoryItem to the User, add the User to the InventoryItem
+	      InventoryItem ii = requestUpdate.getInventoryItem();
+	      ii.setOwner(requestUpdate.getRequester());
+	      em.persist(ii);
+	      em.flush();
+	      return true;
+	    }
+	    return false;
+	  } catch (Exception e) {
+	    return false;
+	  }
+	}
 }
