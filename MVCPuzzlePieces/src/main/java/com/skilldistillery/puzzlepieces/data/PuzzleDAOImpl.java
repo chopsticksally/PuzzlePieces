@@ -105,7 +105,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			queryString = "SELECT i FROM InventoryItem i";
 			search = em.createQuery(queryString, InventoryItem.class).getResultList();
 		}
-
+		System.out.println(search.size());
 		return search;
 	}
 	
