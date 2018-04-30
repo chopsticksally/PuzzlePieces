@@ -40,7 +40,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	@Override
 	public InventoryItem updateInventory(int id, InventoryItem updated) {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
-		managedPuzzle.setCondtion(updated.getCondtion());
+		managedPuzzle.setCondition(updated.getCondition());
 		managedPuzzle.setPuzzle(updated.getPuzzle());
 		managedPuzzle.setOwner(updated.getOwner());
 

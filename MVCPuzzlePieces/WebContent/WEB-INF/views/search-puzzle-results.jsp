@@ -28,7 +28,7 @@
 					</tr>
 					<tr>
 						<td>Condition:</td>
-						<td>${ii.condtion}</td>
+						<td>${ii.condition}</td>
 					</tr>
 					</td>
 			</table>				

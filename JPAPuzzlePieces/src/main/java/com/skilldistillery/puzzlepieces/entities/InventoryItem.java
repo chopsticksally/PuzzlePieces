@@ -56,10 +56,10 @@ public class InventoryItem {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Condition getCondtion() {
+	public Condition getCondition() {
 		return condition;
 	}
-	public void setCondtion(Condition condition) {
+	public void setCondition(Condition condition) {
 		this.condition = condition;
 	}
 
