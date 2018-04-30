@@ -8,39 +8,75 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 
-	<h3>User: ${userLoggedIn.userName}</h3>
-	<div>
-	<c:if test="${not empty userInfo }">
-	${userInfo.address.city }
-	</c:if>
+	<h3 class="header">User: ${userLoggedIn.userName}</h3>
+	<div class="container">
+		<h4 class="header">Current Location</h4>
+		<c:if test="${not empty userInfo }">
+			<p>${userInfo.address.city }</p>
+		</c:if>
 	</div>
 	<div>
+		<h4 class="header">Current Inventory</h4>
 		<c:forEach var="items" items="${inventoryItems}">
     ${items.puzzle.name }
     ${items.id}
     ${items.condition}
     <img alt="stuuff" src="${items.puzzle.imageUrl }">
-    </c:forEach>
+		</c:forEach>
 	</div>
 	<div>
-	<c:forEach var="req" items="${userRequests }">
+		<h4 class="header">Requests Sent</h4>
+		<c:forEach var="req" items="${userRequests }">
 	${req.message }
 	${req.requester.userName }
 	
 	</c:forEach>
 	</div>
 	<div>
-	<c:forEach var="sentReq" items="${sentRequests }">
+		<c:forEach var="sentReq" items="${sentRequests }">
 	${sentReq.message }
 	${sentReq.active }
 	${sentReq.accepted }
 	</c:forEach>
 	</div>
-	
+
 	<div>
-	
+		<h4 class="header">Puzzles Borrowed</h4>
+		<c:if test="${not empty borrows }">
+			<c:forEach var="borrows" items="${borrows }">
+				<p>${borrows.inventoryItem.puzzle.name }</p>
+				<img src="${borrows.inventoryItem.puzzle.imageUrl }"
+					alt="${borrows.inventoryItem.puzzle.name } Puzzle">
+				<p>${borrows.borrowDate }</p>
+				<p>${borrows.returnDate }</p>
+			</c:forEach>
+		</c:if>
 	</div>
-	
+
+	<div>
+		<h4 class="header">User Ratings</h4>
+		<c:if test="${not empty userRatings}">
+			<c:forEach var="ratings" items="${userRatings }">
+				<p>${ratings.rater}</p>
+				<p>${ratings.rating}</p>
+				<p>${ratings.comment}</p>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty userRatings}">No ratings available</c:if>
+	</div>
+
+	<div>
+		<h4 class="header">User Submitted Ratings</h4>
+		<c:if test="${not empty userSubmittedRatings}">
+			<c:forEach var="submittedRatings" items="${userSubmittedRatings }">
+				<p>${submittedRatings.ratedUser.userName}</p>
+				<p>${submittedRatings.rating}</p>
+				<p>${submittedRatings.comment}</p>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty userSubmittedRatings}">No submitted ratings</c:if>
+	</div>
+
 	<jsp:include page="script.jsp" />
 
 </body>
