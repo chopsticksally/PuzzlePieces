@@ -12,6 +12,7 @@
 	
 		<label for="category">Category:</label>
 			<select name="category">
+				
 				<option value="Pets">Pets</option>
 				<option value="Ocean">Ocean</option>
 				<option value="Under the sea">Under the sea</option>
@@ -31,6 +32,7 @@
 <br>
 		<label for="size">Size:</label>
 			<select name="size">
+			
 			<option value="350">350</option>
 			<option value="500">500</option>
 			<option value="1000">1000</option>
@@ -40,6 +42,7 @@
 <br>
 		<label for="condition">Condition:</label>
 			<select name="condition">
+			
 			<option value="1">New</option>
 			<option value="2">Like new</option>
 			<option value="3">Used</option>
