@@ -8,7 +8,7 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 
-	<h3 class="header">User: ${userLoggedIn.userName}</h3>
+	<h3 class="header">User: ${userInfo.user.userName}</h3>
 	<div class="container">
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
