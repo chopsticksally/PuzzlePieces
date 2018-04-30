@@ -5,10 +5,6 @@
 	<ul class="nav justify-content-center">
 		<li class="active nav-item"><a class="nav-link" href="home.do">Home</a></li>
 		<li class="nav-item"><a class="nav-link" href="login.do">Login</a></li>
-		<li class="nav-item"><a class="nav-link" href="register.do">Register</a></li>
-		<form action="searchPuzzle.do" method="GET">
-			<input type="text" name="category, size, condition" /> 
-			<input type="submit" value="Find Puzzle" />
-		</form>
+		<li class="nav-item"><a class="nav-link" href="register.do">Register</a></li> 
 	</ul>
 </div>

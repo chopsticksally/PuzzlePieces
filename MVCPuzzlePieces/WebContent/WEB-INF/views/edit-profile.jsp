@@ -6,7 +6,7 @@
 <html>
 <jsp:include page="header.jsp" />
 <body>
-	<jsp:include page="public-navbar.jsp" />
+	<jsp:include page="logged-in-navbar.jsp" />
 	<h1 class="header">Update your profile</h1>
 	
 	<form action "updateUser.do" method= "POST">

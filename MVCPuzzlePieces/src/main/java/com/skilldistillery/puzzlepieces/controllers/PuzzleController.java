@@ -75,6 +75,11 @@ public class PuzzleController {
 
 	}
 
+	@RequestMapping(path = "/searchPuzzlePage.do", method = RequestMethod.GET)
+	public String searchPuzzlePage() {
+		return "search-puzzles";
+	}
+
 	@RequestMapping(path = "searchPuzzle.do", method = RequestMethod.GET)
 	public ModelAndView searchPuzzle(@RequestParam(name = "category") String name,
 			@RequestParam(name = "size") Integer size, @RequestParam(name = "condition") Condition condition) {
@@ -106,16 +111,17 @@ public class PuzzleController {
 		return mv;
 
 	}
-	//update the name of RequestParam with jsp input name
-		@RequestMapping(path = "/puzzleDetails.do", method = RequestMethod.GET)
-		public ModelAndView displayPuzzleDetails(@RequestParam(name ="puzzle")Integer inventoryId) {
-			ModelAndView mv = new ModelAndView();
-			try {
 
-			} catch (NullPointerException n) {
-				mv.setViewName("redirect:");
-			}
+	// update the name of RequestParam with jsp input name
+	@RequestMapping(path = "/puzzleDetails.do", method = RequestMethod.GET)
+	public ModelAndView displayPuzzleDetails(@RequestParam(name = "puzzle") Integer inventoryId) {
+		ModelAndView mv = new ModelAndView();
+		try {
 
-			return mv;
+		} catch (NullPointerException n) {
+			mv.setViewName("redirect:");
 		}
+
+		return mv;
+	}
 }

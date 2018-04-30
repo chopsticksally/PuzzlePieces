@@ -39,13 +39,18 @@ public class UserController {
 		return mv;
 	}
 
+	@RequestMapping(path = "/logged-in-home.do", method = RequestMethod.GET)
+	public String loggedInHomePage() {
+		return "logged-in-home";
+	}
+
 	@RequestMapping(path = "/login.do", method = RequestMethod.GET)
 	public String loginPage() {
 		return "login";
 
 	}
 
-	//@Validated
+	// @Validated
 	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
 	public ModelAndView loggingIn(User user, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -81,7 +86,7 @@ public class UserController {
 		} else {
 			dao.createUser(user);
 			session.setAttribute("userLoggedIn", user);
-			mv.setViewName("logged-in");
+			mv.setViewName("logged-in-home");
 		}
 		return mv;
 	}
@@ -129,6 +134,7 @@ public class UserController {
 		return mv;
 
 	}
+
 	@RequestMapping(path = "/registerUserInformation.do", method = RequestMethod.POST)
 	public ModelAndView registerUserInformation(@RequestParam(name = "id") Integer userId, UserInformation ui,
 			HttpSession session) {
@@ -144,7 +150,7 @@ public class UserController {
 			mv.setViewName("register-user-info");
 		}
 		return mv;
-		
+
 	}
 
 	@RequestMapping(path = "/updateAddress.do", method = RequestMethod.POST)
@@ -164,8 +170,10 @@ public class UserController {
 		return mv;
 
 	}
+
 	@RequestMapping(path = "/registerAddress.do", method = RequestMethod.POST)
-	public ModelAndView registerAddress(@RequestParam(name = "id") Integer userId, Address address, HttpSession session) {
+	public ModelAndView registerAddress(@RequestParam(name = "id") Integer userId, Address address,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		try {
 			Address updatedAddress = dao.updateAddress(userId, address);
@@ -176,10 +184,20 @@ public class UserController {
 			mv.setViewName("logged-in");
 		} catch (Exception e) {
 			mv.setViewName("register-user-address");
-			
+
 		}
 		return mv;
-		
+
+	}
+
+	@RequestMapping(path = "/searchUserPage.do", method = RequestMethod.GET)
+	public String searchUserPage() {
+		return "search-user";
+	}
+	
+	@RequestMapping(path = "/userProfile.do", method = RequestMethod.GET)
+	public String userProfilePage() {
+		return "user-profile";
 	}
 
 	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
@@ -190,14 +208,14 @@ public class UserController {
 		mv.setViewName("searchedUsers");
 		return mv;
 	}
-	@RequestMapping(path= "editProfile.do", method = RequestMethod.GET)
+
+	@RequestMapping(path = "editProfile.do", method = RequestMethod.GET)
 	public ModelAndView editProfile() {
-	ModelAndView mv = new ModelAndView();
-	mv.setViewName("edit-profile");
-	return mv;
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("edit-profile");
+		return mv;
 	}
-	
-	
+
 	@RequestMapping(path = "/*", method = RequestMethod.GET)
 	public String fallback() {
 		return "fallback";
