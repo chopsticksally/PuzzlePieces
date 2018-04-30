@@ -281,7 +281,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 
 	@Override
 	public List<InventoryItem> getInventoryItemsByUserId(int userId) {
-		String query = "Select i from InventoryItem i where i.user.id = :id";
+		String query = "Select i from InventoryItem i where i.owner.id = :id";
 		List<InventoryItem> items = em.createQuery(query, InventoryItem.class).setParameter("id", userId).getResultList();
 		return items;
 	}
