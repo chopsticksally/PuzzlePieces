@@ -26,31 +26,26 @@ public class RequestController {
 		Request request = puzdao.sendOrCreateRequest(invId, user, message);
 		user.addRequestSent(request);
 		session.setAttribute("loggedInUser", user);
-		mv.setViewName("USER PROFILE JSP HERE");
+		mv.setViewName("user-profile");
 		return mv;
 	}
 
 	@RequestMapping(path = "acceptingOrRejectingRequest.do", method = RequestMethod.POST)
 	public ModelAndView acceptingOrRejectingARequest(Request request, @RequestParam(name = "choice") int choice, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		
+		//MIGHT HAVE TO TRY TO ADD THE REQUEST BACK TO THE USER IN SESSION
 		if (choice == 1) {
-			if(puzdao.notAcceptRequest(request)) {
-//				User user = (User) session.getAttribute("loggedInUser");
-//				session.setAttribute("loggedInUser", request);
-			}
+			puzdao.notAcceptRequest(request);
 		}
 		if (choice == 2) {
-			if(puzdao.acceptRequestToBorrow(request)) {
-//				session.setAttribute("loggedInUser", request);
-			}
+			puzdao.acceptRequestToBorrow(request);
 		}
 		if (choice == 3) {
-			if(puzdao.acceptRequestToOwn(request)) {
-//				session.setAttribute("loggedInUser", value);
-			}
+			puzdao.acceptRequestToOwn(request);
 		}
 
-		mv.setViewName("USER PROFILE JSP HERE");
+		mv.setViewName("user-profile");
 		return mv;
 	}
 

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter;
 //import org.apache.lucene.search.Query;
 //import org.apache.lucene.util.QueryBuilder;
 //import org.hibernate.search.jpa.FullTextEntityManager;
@@ -22,6 +23,8 @@ import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
+import com.skilldistillery.puzzlepieces.entities.UserInformation;
+import com.skilldistillery.puzzlepieces.entities.UserRating;
 
 @Transactional
 @Component
@@ -274,5 +277,49 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	  } catch (Exception e) {
 	    return false;
 	  }
+	}
+
+	@Override
+	public List<InventoryItem> getInventoryItemsByUserId(int userId) {
+		String query = "Select i from InventoryItem i where i.user.id = :id";
+		List<InventoryItem> items = em.createQuery(query, InventoryItem.class).setParameter("id", userId).getResultList();
+		return items;
+	}
+
+	@Override
+	public List<Borrow> getBorrowsByLoanerId(int userId) {
+		String query = "Select b from Borrow b where i.user.id = :id";
+		List<InventoryItem> items = em.createQuery(query, InventoryItem.class).setParameter("id", userId).getResultList();
+		return null;
+	}
+
+	@Override
+	public List<UserRating> getSubmittedRatingsByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserRating> getRatingOfUserByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Request> getSentRequestsByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Request> getReceivedByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserInformation getUserInformationByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
