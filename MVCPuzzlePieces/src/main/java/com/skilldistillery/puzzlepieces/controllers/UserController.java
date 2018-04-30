@@ -230,6 +230,21 @@ public class UserController {
 		mv.setViewName("edit-profile");
 		return mv;
 	}
+	
+	@RequestMapping(path="otherUserProfile.do", method=RequestMethod.GET)
+	public ModelAndView otherUserProfile(@RequestParam(name="userId")int userId) {
+		ModelAndView mv = new ModelAndView();
+		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userInfo", userInfo);
+		mv.setViewName("other-user-profile");
+		return mv;
+	}
 
 	@RequestMapping(path = "/*", method = RequestMethod.GET)
 	public String fallback() {
