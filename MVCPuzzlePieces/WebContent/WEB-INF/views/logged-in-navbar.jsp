@@ -5,7 +5,7 @@
 	<ul class="nav justify-content-center">
 		<li class="active nav-item"><a class="nav-link"
 			href="logged-in-home.do">Home</a></li>
-		<li class="nav-item"><a class="nav-link" href="userProfile.do?userId=${userLoggedIn }">Profile</a></li>
+		<li class="nav-item"><a class="nav-link" href="userProfile.do?userId=${userLoggedIn.id }">Profile</a></li>
 		<li class="nav-item"><a class="nav-link" href="editProfile.do">Edit
 				Profile</a></li>
 		<li class="nav-item"><a class="nav-link" href="searchPuzzlePage.do">Search
