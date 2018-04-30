@@ -8,7 +8,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter;
 //import org.apache.lucene.search.Query;
 //import org.apache.lucene.util.QueryBuilder;
 //import org.hibernate.search.jpa.FullTextEntityManager;
@@ -16,6 +15,7 @@ import org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapt
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skilldistillery.puzzlepieces.entities.Address;
 import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.Category;
 //import com.skilldistillery.puzzlepieces.entities.Category;
@@ -288,38 +288,44 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 
 	@Override
 	public List<Borrow> getBorrowsByLoanerId(int userId) {
-		String query = "Select b from Borrow b where i.user.id = :id";
-		List<InventoryItem> items = em.createQuery(query, InventoryItem.class).setParameter("id", userId).getResultList();
-		return null;
+		String query = "Select b from Borrow b where b.loaner.id = :id";
+		List<Borrow> borrows = em.createQuery(query, Borrow.class).setParameter("id", userId).getResultList();
+		return borrows;
 	}
 
 	@Override
 	public List<UserRating> getSubmittedRatingsByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select ur from UserRating ur where ur.raterUser.id = :id";
+		List<UserRating> ratings = em.createQuery(query, UserRating.class).setParameter("id", userId).getResultList();
+		return ratings;
 	}
 
 	@Override
 	public List<UserRating> getRatingOfUserByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select ur from UserRating ur where ur.ratedUser.id = :id";
+		List<UserRating> ratings = em.createQuery(query, UserRating.class).setParameter("id", userId).getResultList();
+		return ratings;
 	}
 
 	@Override
 	public List<Request> getSentRequestsByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Request r where r.requester.id = :id";
+		List<Request> request = em.createQuery(query, Request.class).setParameter("id", userId).getResultList();
+		return request;
 	}
 
 	@Override
 	public List<Request> getReceivedByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select r from Request r where r.requestee.id = :id";
+		List<Request> request = em.createQuery(query, Request.class).setParameter("id", userId).getResultList();
+		return request;
 	}
 
 	@Override
 	public UserInformation getUserInformationByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "Select ui from UserInformation ui where ui.user.id = :id";
+		UserInformation ui = em.createQuery(query, UserInformation.class).setParameter("id", userId).getResultList().get(0);
+		return ui;
 	}
+
 }
