@@ -18,10 +18,12 @@
 				</td>
 				<td>
 					<p><h2>About this puzzle:</h2></p>
+					<table>
 					<tr>
 						<td>Puzzle Category:</td>
-	<%-- 					<td>${ii.puzzle.category}</td>
-	 --%>			</tr>
+						<td><c:forEach items="${puzzle.categories}"></c:forEach></td>
+						<%-- <td>${puzzle.categories}</td> --%>
+	 			</tr>
 					<tr>
 						<td>Puzzle size:</td>
 						<td>${ii.puzzle.size}</td>
@@ -30,6 +32,7 @@
 						<td>Condition:</td>
 						<td>${ii.condition}</td>
 					</tr>
+					</table>
 					</td>
 			</table>				
 				<br>
@@ -38,8 +41,5 @@
 	<jsp:include page="script.jsp" />
 </body>
 </html>
-
-
-
 
 
