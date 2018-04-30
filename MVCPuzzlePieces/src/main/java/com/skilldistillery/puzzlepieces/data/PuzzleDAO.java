@@ -6,6 +6,7 @@ import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
@@ -40,6 +41,10 @@ public interface PuzzleDAO {
 
 	Request sendOrCreateRequest(int inventoryId, User user, String message);
 
+	UserRating rateAUser(int userId, UserRating rating);
+	
+	UserRating rateAPuzzle(int userId, PuzzleRating rating);
+	
 	List<InventoryItem> getInventoryItemsByUserId(int userId);
 	List<Borrow> getBorrowsByLoanerId(int userId);
 	List<UserRating> getSubmittedRatingsByUserId(int userId);

@@ -99,52 +99,6 @@ public class UserController {
 		return mv;
 	}
 
-	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(SessionStatus logout) {
-		ModelAndView mv = new ModelAndView();
-		List<InventoryItem> ii = puzzleDao.retrieveAll();
-		mv.addObject("inventoryItems", ii);
-		logout.setComplete();
-		mv.setViewName("home");
-		return mv;
-
-	}
-
-	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, User user, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		try {
-
-			user = dao.updateUser(userId, user);
-			// mv.addObject("updated", user);
-			session.setAttribute("userLoggedIn", user);
-			mv.setViewName("redirect:success");
-		} catch (Exception e) {
-			mv.setViewName("redirect:fail");
-
-		}
-		return mv;
-
-	}
-
-	@RequestMapping(path = "/updateUserInformation.do", method = RequestMethod.POST)
-	public ModelAndView updateUserInformation(@RequestParam(name = "id") Integer userId, UserInformation ui,
-			HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			UserInformation updatedUi = dao.updateUserInformation(userId, ui);
-			// mv.addObject("ui", updatedUi );
-			User user = (User) session.getAttribute("userLoggedIn");
-			user.setUserInformation(updatedUi);
-			session.setAttribute("userLoggedIn", user);
-			mv.setViewName("redirect:success");
-		} catch (Exception e) {
-
-		}
-		return mv;
-
-	}
-
 	@RequestMapping(path = "/registerUserInformation.do", method = RequestMethod.POST)
 	public ModelAndView registerUserInformation(@RequestParam(name = "id") Integer userId, UserInformation ui,
 			HttpSession session) {
@@ -163,20 +117,54 @@ public class UserController {
 
 	}
 
+	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
+	public ModelAndView logout(SessionStatus logout) {
+		ModelAndView mv = new ModelAndView();
+		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		mv.addObject("inventoryItems", ii);
+		logout.setComplete();
+		mv.setViewName("home");
+		return mv;
+
+	}
+
+	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
+	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, User user, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+
+		user = dao.updateUser(userId, user);
+
+		session.setAttribute("userLoggedIn", user);
+		mv.setViewName("user-profile");
+
+		return mv;
+
+	}
+
+	@RequestMapping(path = "/updateUserInformation.do", method = RequestMethod.POST)
+	public ModelAndView updateUserInformation(@RequestParam(name = "id") Integer userId, UserInformation ui,
+			HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		UserInformation updatedUi = dao.updateUserInformation(userId, ui);
+		User user = (User) session.getAttribute("userLoggedIn");
+		user.setUserInformation(updatedUi);
+		session.setAttribute("userLoggedIn", user);
+		mv.setViewName("user-profile");
+
+		return mv;
+
+	}
+
 	@RequestMapping(path = "/updateAddress.do", method = RequestMethod.POST)
 	public ModelAndView updateAddress(@RequestParam(name = "id") Integer userId, Address address, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		try {
-			Address updatedAddress = dao.updateAddress(userId, address);
-			// mv.addObject("address",updatedAddress );
-			User user = (User) session.getAttribute("userLoggedIn");
-			user.getUserInformation().setAddress(updatedAddress);
-			session.setAttribute("userLoggedIn", user);
-			mv.setViewName("redirect:success");
-		} catch (Exception e) {
-			mv.setViewName("redirect:fail");
 
-		}
+		Address updatedAddress = dao.updateAddress(userId, address);
+		User user = (User) session.getAttribute("userLoggedIn");
+		user.getUserInformation().setAddress(updatedAddress);
+		session.setAttribute("userLoggedIn", user);
+		mv.setViewName("user-profile");
+
 		return mv;
 
 	}
@@ -206,13 +194,13 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/userProfile.do", method = RequestMethod.GET)
-	public ModelAndView userProfilePage(@RequestParam(name="userId") Integer userId) {
+	public ModelAndView userProfilePage(@RequestParam(name = "userId") Integer userId) {
 		ModelAndView mv = new ModelAndView();
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
-		List<UserRating> userRatings =puzzleDao.getRatingOfUserByUserId(userId);
-		List<Request> userRequests= puzzleDao.getReceivedByUserId(userId);
-		List<Request> sentRequests= puzzleDao.getSentRequestsByUserId(userId);
+		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
+		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
 		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
 		mv.addObject("borrows", borrows);
