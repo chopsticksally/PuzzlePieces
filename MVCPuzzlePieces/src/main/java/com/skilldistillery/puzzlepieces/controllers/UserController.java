@@ -60,11 +60,16 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 
 		User userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
-
 		if (userLoggingIn == null) {
+			errors.rejectValue("userName", "Invalid");
+		}
+
+		if (errors.getErrorCount() != 0) {
 			errors.rejectValue("userName", "error.userName", "Username or password is incorrect, please try again");
 			mv.setViewName("login");
+			return mv;
 		}
+
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
@@ -202,8 +207,10 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/userProfile.do", method = RequestMethod.GET)
-	public String userProfilePage() {
-		return "user-profile";
+	public ModelAndView userProfilePage() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user-profile");
+		return mv;
 	}
 
 	@RequestMapping(path = "/searchUser.do", method = RequestMethod.GET)
