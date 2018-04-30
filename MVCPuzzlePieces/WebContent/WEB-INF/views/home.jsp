@@ -11,18 +11,13 @@
 	<h1 class="header">Welcome!</h1>
 	<div class="container">
 		<c:if test="${not empty inventoryItems }">
-			<c:forEach var="ii" items="${inventoryItems }"></c:forEach>
-			<p>${ii.puzzle.name }</p>
-			
-			<c:if test="userLoggedIn">
-				<a href="puzzleDetails.do"> <img
-					alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"></a>
-			</c:if>
-
+			<c:forEach var="ii" items="${inventoryItems }">
+				<p>${ii.puzzle.name }</p>
+				<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }">
+		</c:forEach>
 		</c:if>
 		<c:if test="${empty inventoryItems }">No Puzzles Available for Exchange</c:if>
 	</div>
-
 
 	<jsp:include page="script.jsp" />
 </body>

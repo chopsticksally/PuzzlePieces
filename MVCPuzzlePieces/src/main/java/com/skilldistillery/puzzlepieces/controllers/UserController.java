@@ -40,8 +40,12 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/logged-in-home.do", method = RequestMethod.GET)
-	public String loggedInHomePage() {
-		return "logged-in-home";
+	public ModelAndView loggedInHomePage() {
+		ModelAndView mv = new ModelAndView();
+		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		mv.addObject("inventoryItems", ii);
+		mv.setViewName("logged-in-home");
+		return mv;
 	}
 
 	@RequestMapping(path = "/login.do", method = RequestMethod.GET)
@@ -63,6 +67,8 @@ public class UserController {
 		}
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);
+			List<InventoryItem> ii = puzzleDao.retrieveAll();
+			mv.addObject("inventoryItems", ii);
 			mv.addObject("user", userLoggingIn);
 			mv.setViewName("logged-in-home");
 		}
@@ -94,6 +100,8 @@ public class UserController {
 	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(SessionStatus logout) {
 		ModelAndView mv = new ModelAndView();
+		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		mv.addObject("inventoryItems", ii);
 		logout.setComplete();
 		mv.setViewName("home");
 		return mv;
@@ -194,7 +202,7 @@ public class UserController {
 	public String searchUserPage() {
 		return "search-user";
 	}
-	
+
 	@RequestMapping(path = "/userProfile.do", method = RequestMethod.GET)
 	public String userProfilePage() {
 		return "user-profile";
