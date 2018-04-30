@@ -2,6 +2,7 @@ package com.skilldistillery.puzzlepieces.data;
 
 import java.util.List;
 
+import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Request;
@@ -25,6 +26,8 @@ public interface PuzzleDAO {
 	Request requestUserForPuzzle(InventoryItem id, User loggedInUser);
 
 	InventoryItem updateRequest(Integer inventoryId);
+	
+	Category getCategoryByName(String catName);
 
 	
 }
