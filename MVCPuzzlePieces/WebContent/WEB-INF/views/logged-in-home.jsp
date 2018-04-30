@@ -14,7 +14,9 @@
 					<a href="puzzle-details.do?puzzle=${ii.id }"> ${ii.puzzle.name }</a>
 				</p>
 				<p>
-					<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }">
+					<a href="puzzle-details.do?puzzle=${ii.id }"> <img
+						alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }">
+					</a>
 				</p>
 			</c:forEach>
 		</c:if>
