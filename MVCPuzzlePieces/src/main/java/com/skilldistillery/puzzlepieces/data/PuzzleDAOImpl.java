@@ -21,6 +21,7 @@ import com.skilldistillery.puzzlepieces.entities.Category;
 //import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
@@ -326,6 +327,18 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		String query = "Select ui from UserInformation ui where ui.user.id = :id";
 		UserInformation ui = em.createQuery(query, UserInformation.class).setParameter("id", userId).getResultList().get(0);
 		return ui;
+	}
+
+	@Override
+	public UserRating rateAUser(int userRaterId, UserRating rating) {
+		em.persist(rating);
+		return null;
+	}
+
+	@Override
+	public UserRating rateAPuzzle(int userId, PuzzleRating rating) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
