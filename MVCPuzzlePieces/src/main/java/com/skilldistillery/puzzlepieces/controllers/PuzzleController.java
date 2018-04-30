@@ -127,15 +127,13 @@ public class PuzzleController {
 
 	}
 
-	// update the name of RequestParam with jsp input name
+
 	@RequestMapping(path = "/puzzleDetails.do", method = RequestMethod.GET)
 	public ModelAndView displayPuzzleDetails(@RequestParam(name = "puzzle") Integer inventoryId) {
 		ModelAndView mv = new ModelAndView();
-		try {
-
-		} catch (NullPointerException n) {
-			mv.setViewName("redirect:");
-		}
+		
+			mv.setViewName("puzzle-details");
+	
 
 		return mv;
 	}
