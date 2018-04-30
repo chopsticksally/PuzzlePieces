@@ -7,18 +7,41 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-            
-    <h3>User: ${userLoggedIn.userName}</h3>
- 	<c:forEach var="user" items= "${userLoggedIn.requestsRecieved}">
-    ${user.requester.userName}
-    ${user.requestee.userName}
-    ${user.inventoryItem.id}
-    </c:forEach> 
-    <hr>
 
+	<h3>User: ${userLoggedIn.userName}</h3>
+	<div>
+	<c:if test="${not empty userInfo }">
+	${userInfo.address.city }
+	</c:if>
+	</div>
+	<div>
+		<c:forEach var="items" items="${inventoryItems}">
+    ${items.puzzle.name }
+    ${items.id}
+    ${items.condition}
+    <img alt="stuuff" src="${items.puzzle.imageUrl }">
+    </c:forEach>
+	</div>
+	<div>
+	<c:forEach var="req" items="${userRequests }">
+	${req.message }
+	${req.requester.userName }
+	
+	</c:forEach>
+	</div>
+	<div>
+	<c:forEach var="sentReq" items="${sentRequests }">
+	${sentReq.message }
+	${sentReq.active }
+	${sentReq.accepted }
+	</c:forEach>
+	</div>
+	
+	<div>
+	
+	</div>
+	
 	<jsp:include page="script.jsp" />
-
-<h3></h3>
 
 </body>
 </html>
