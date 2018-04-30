@@ -17,9 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.data.UserDAO;
 import com.skilldistillery.puzzlepieces.entities.Address;
+import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
+import com.skilldistillery.puzzlepieces.entities.UserRating;
 
 @Controller
 public class UserController {
@@ -203,8 +206,22 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/userProfile.do", method = RequestMethod.GET)
-	public ModelAndView userProfilePage() {
+	public ModelAndView userProfilePage(@RequestParam(name="userId") Integer userId) {
 		ModelAndView mv = new ModelAndView();
+		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings =puzzleDao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests= puzzleDao.getReceivedByUserId(userId);
+		List<Request> sentRequests= puzzleDao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
 		mv.setViewName("user-profile");
 		return mv;
 	}
