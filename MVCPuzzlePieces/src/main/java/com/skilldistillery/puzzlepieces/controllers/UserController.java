@@ -164,7 +164,7 @@ public class UserController {
 		User user = (User) session.getAttribute("userLoggedIn");
 		user.getUserInformation().setAddress(updatedAddress);
 		session.setAttribute("userLoggedIn", user);
-		mv.setViewName("user-profile");
+		mv.setViewName("userProfile.do");
 
 		return mv;
 
@@ -220,7 +220,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		List<User> users = dao.searchUserByUserName(userName);
 		mv.addObject("users", users);
-		mv.setViewName("searchedUsers");
+		mv.setViewName("search-user-results");
 		return mv;
 	}
 
