@@ -3,7 +3,7 @@
 <div class="head">
 	<h1 class="logo">Puzzle Pieces</h1>
 	<ul class="nav justify-content-center">
-		<li class="active nav-item"><a class="nav-link" href="home.do">Home</a></li>
+		<li class="active nav-item"><a class="nav-link" href="logged-in-home.do">Home</a></li>
 		<li class="nav-item"><a class="nav-link" href="loggingIn.do">Profile</a></li>
 		<li class="nav-item"><a class="nav-link" href="editProfile.do">Edit
 				Profile</a></li>

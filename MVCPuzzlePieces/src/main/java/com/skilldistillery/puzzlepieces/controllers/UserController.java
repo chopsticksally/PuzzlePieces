@@ -59,7 +59,7 @@ public class UserController {
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);
 			mv.addObject("user", userLoggingIn);
-			mv.setViewName("logged-in");
+			mv.setViewName("logged-in-home");
 		}
 
 		return mv;
