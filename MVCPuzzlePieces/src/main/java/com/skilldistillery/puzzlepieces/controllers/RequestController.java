@@ -11,25 +11,27 @@ import org.springframework.web.servlet.ModelAndView;
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Request;
+import com.skilldistillery.puzzlepieces.entities.User;
 
 @Controller
 public class RequestController {
 
 	@Autowired
-	private PuzzleDAO dao;
+	private PuzzleDAO puzdao;
 	
 	
 	
 	
 	
 	@RequestMapping(path="sendRequest.do", method=RequestMethod.POST)
-	public ModelAndView sendingARequest(HttpSession session, InventoryItem invItem){
+	public ModelAndView sendingARequest(String message, int invId, HttpSession session){
 		ModelAndView mv = new ModelAndView();
-		
+		User user = (User) session.getAttribute("loggedInUser");
+		puzdao.sendOrCreateRequest(invId, user, message);
 		return mv;
 	}
 	
-	@RequestMapping(path="updateRequest.do", method=RequestMethod.POST)
+	@RequestMapping(path="acceptingOrRejectingRequest.do", method=RequestMethod.POST)
 	public ModelAndView acceptingOrRejectingARequest(Request request) {
 		ModelAndView mv = new ModelAndView();
 		

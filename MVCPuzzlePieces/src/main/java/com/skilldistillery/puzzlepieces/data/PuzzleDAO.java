@@ -35,5 +35,7 @@ public interface PuzzleDAO {
 
 	boolean acceptRequestToOwn(Request requestUpdate);
 
+	Request sendOrCreateRequest(int inventoryId, User user, String message);
+
 	
 }

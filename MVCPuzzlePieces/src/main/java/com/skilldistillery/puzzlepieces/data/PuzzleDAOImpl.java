@@ -175,6 +175,21 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		
 		return null;
 	}
+	
+	@Override
+	public Request sendOrCreateRequest(int inventoryId, User user, String message) {
+		InventoryItem itemRequested = em.find(InventoryItem.class, inventoryId);
+		Request request = new Request();
+		request.setActive(true);
+		request.setAccepted(false);
+		request.setInventoryItem(itemRequested);
+		request.setRequester(user);
+		request.setRequestee(itemRequested.getOwner());
+		request.setMessage(message);
+		em.persist(request);
+		em.flush();
+		return request;
+	}
 
 	@Override
 	public boolean notAcceptRequest(Request requestUpdate) {
