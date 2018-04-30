@@ -69,10 +69,8 @@ public class UserController {
 			session.setAttribute("userLoggedIn", userLoggingIn);
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
 			mv.addObject("inventoryItems", ii);
-			mv.addObject("user", userLoggingIn);
 			mv.setViewName("logged-in-home");
 		}
-
 		return mv;
 	}
 

@@ -12,7 +12,7 @@
 	<div class="container">
 		<form action="loggingIn.do" method="GET">
 			<div class="form-group">
-				<label for="userName"> Username:</label> <input type="text"
+				<label for="userName">Username:</label> <input type="text"
 					placeholder="username" class="form-control" min="1" max="100"
 					name="userName">
 			</div>
@@ -21,7 +21,7 @@
 					placeholder="password" class="form-control" min="1" max="100"
 					name="password">
 			</div>
-			<button type="submit" class="btn">Login</button>
+			<button type="submit" class="btn btn-primary">Login</button>
 
 		</form>
 	</div>
