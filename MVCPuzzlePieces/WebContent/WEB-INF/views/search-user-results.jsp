@@ -7,8 +7,13 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<h1 class="header">Users according to your search results</h1>
-	<c:forEach var="user" items="users">
-		<p>${user.userName }</p>
-	</c:forEach>
+	<div class="container">
+		<c:if test="${not empty users }">
+			<c:forEach var="user" items="${users }">
+				<a href="otherUserProfile.do?userId=${user.id }"><h3>${user.userName }</h3></a>
+			</c:forEach>
+		</c:if>
+		<c:if test="${empty users }">No Users with this Username</c:if>
+	</div>
 </body>
 </html>
