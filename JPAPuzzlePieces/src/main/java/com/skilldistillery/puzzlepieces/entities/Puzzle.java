@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class Puzzle {
 	@OneToMany(mappedBy = "puzzle")
 	private List<PuzzleRating>puzzleRatings;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="category_puzzle", 
 	joinColumns=@JoinColumn(name="puzzle_id"),
 	inverseJoinColumns=@JoinColumn(name="category_id"))

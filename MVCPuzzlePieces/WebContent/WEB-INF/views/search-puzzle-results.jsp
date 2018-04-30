@@ -39,8 +39,8 @@
 										
 										
 											<td>Puzzle Category:</td>
-											<td><c:forEach var ="cat" items="${puzzle.categories}">
-											${cat.name}
+											<td><c:forEach var ="cat" items="${ii.puzzle.categories}">
+											${cat.name }
 											</c:forEach></td>
 											<%-- <td>${puzzle.categories}</td> --%>
 										</tr>
