@@ -89,7 +89,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		boolean userCheck = dao.isUserNameTaken(user.getUserName());
 		if (userCheck == true) {
-			errors.rejectValue("userName", "Username is taken, please enter a new Username");
+//			errors.rejectValue("userName", "Username is taken, please enter a new Username");
+			mv.addObject("errorMessage", "Username is taken, please enter another username.");
 			mv.setViewName("register");
 		} else {
 			dao.createUser(user);

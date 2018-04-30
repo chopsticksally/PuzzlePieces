@@ -51,13 +51,14 @@
 				<p>${borrows.returnDate }</p>
 			</c:forEach>
 		</c:if>
+		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
 	</div>
 
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
 			<c:forEach var="ratings" items="${userRatings }">
-				<p>${ratings.rater}</p>
+				<p>${ratings.raterUser.userName}</p>
 				<p>${ratings.rating}</p>
 				<p>${ratings.comment}</p>
 			</c:forEach>
