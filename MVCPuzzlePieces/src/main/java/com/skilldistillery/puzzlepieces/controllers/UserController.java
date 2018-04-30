@@ -3,6 +3,7 @@ package com.skilldistillery.puzzlepieces.controllers;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,13 +57,13 @@ public class UserController {
 
 	// @Validated
 	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
-	public ModelAndView loggingIn(User user, Errors errors, HttpSession session) {
+	public ModelAndView loggingIn(@Valid User user, Errors errors, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
 		User userLoggingIn = dao.userLoginByUserNameAndPassword(user.getUserName(), user.getPassword());
 
 		if (userLoggingIn == null) {
-			errors.rejectValue("userName", "Username or password is incorrect, please try again");
+			errors.rejectValue("userName", "error.userName", "Username or password is incorrect, please try again");
 			mv.setViewName("login");
 		}
 		if (userLoggingIn != null) {

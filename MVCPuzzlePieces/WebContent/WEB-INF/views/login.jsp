@@ -9,18 +9,23 @@
 	<jsp:include page="public-navbar.jsp" />
 
 	<h1 class="header">User Login</h1>
-	<form action="loggingIn.do" method="GET">
-		<label for="userName"> Username:</label>
-		<input type="text" placeholder="username" min="1" max="100" name= "userName"><br>
-		<br>
-		<label for="password">Password:</label>
-		<input type="password" placeholder="password" min="1" max="100" name= "password"><br>
-		<br>
-		
-		<input type="submit" value="Login">
-		
-	</form>
-	
+	<div class="container">
+		<form action="loggingIn.do" method="GET">
+			<div class="form-group">
+				<label for="userName"> Username:</label> <input type="text"
+					placeholder="username" class="form-control" min="1" max="100"
+					name="userName">
+			</div>
+			<div class="form-group">
+				<label for="password">Password:</label> <input type="password"
+					placeholder="password" class="form-control" min="1" max="100"
+					name="password">
+			</div>
+			<button type="submit" class="btn">Login</button>
+
+		</form>
+	</div>
+
 	<jsp:include page="script.jsp" />
 </body>
 </html>

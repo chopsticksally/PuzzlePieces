@@ -11,7 +11,7 @@
 		<c:if test="${not empty inventoryItems }">
 			<c:forEach var="ii" items="${inventoryItems }">
 				<p>
-					<a href="puzzle-details.do"> ${ii.puzzle.name }</a>
+					<a href="puzzle-details.do?puzzle=${ii.id }"> ${ii.puzzle.name }</a>
 				</p>
 				<p>
 					<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }">
