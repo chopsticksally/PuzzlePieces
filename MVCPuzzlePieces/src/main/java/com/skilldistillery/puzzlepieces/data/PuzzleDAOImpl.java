@@ -77,34 +77,36 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			search = em.createQuery(queryString, InventoryItem.class).setParameter("cat",getCategoryByName(name) )
 					.setParameter("size", size).setParameter("condition", condition).getResultList();
 
-		} else if (size != 0 && condition != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.categories.name LIKE :name";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
-					.getResultList();
-		} else if (name != null && condition != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.size = :size";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("size", size).getResultList();
-		} else if (name != null && size != 0) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.condition = :condition";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("condition", condition)
-					.getResultList();
-
-		} else if (condition != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.categories.name LIKE :name AND i.puzzle.size = :size";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
-					.setParameter("size", size).getResultList();
-		} else if (size != 0) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.categories.name LIKE :name AND i.condition = :condition";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
-					.setParameter("condition", condition).getResultList();
-		} else if (name != null) {
-			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.size = :size AND i.condition = :condition";
-			search = em.createQuery(queryString, InventoryItem.class).setParameter("size", size)
-					.setParameter("condition", condition).getResultList();
-		} else {
-			queryString = "SELECT i FROM InventoryItem i";
-			search = em.createQuery(queryString, InventoryItem.class).getResultList();
-		}
+		} 
+//		else if (size != 0 && condition != null) {
+//			queryString = "SELECT i FROM InventoryItem i  WHERE :cat member of i.puzzle.categories.name LIKE :name";
+//			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
+//					.getResultList();
+//		} else if (name != null && condition != null) {
+//			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.size = :size";
+//			search = em.createQuery(queryString, InventoryItem.class).setParameter("size", size).getResultList();
+//		} else if (name != null && size != 0) {
+//			queryString = "SELECT i FROM InventoryItem i  WHERE i.condition = :condition";
+//			search = em.createQuery(queryString, InventoryItem.class).setParameter("condition", condition)
+//					.getResultList();
+//
+//		} else if (condition != null) {
+//			queryString = "SELECT i FROM InventoryItem i  WHERE  :cat MEMBER OF i.puzzle.categories.name LIKE :name AND i.puzzle.size = :size";
+//			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
+//					.setParameter("size", size).getResultList();
+//		} else if (size != 0) {
+//			queryString = "SELECT i FROM InventoryItem i  WHERE  :cat MEMBER OF i.puzzle.categories.name LIKE :name AND i.condition = :condition";
+//			search = em.createQuery(queryString, InventoryItem.class).setParameter("name", "%" + name + "%")
+//					.setParameter("condition", condition).getResultList();
+//		} else if (name != null) {
+//			queryString = "SELECT i FROM InventoryItem i  WHERE i.puzzle.size = :size AND i.condition = :condition";
+//			search = em.createQuery(queryString, InventoryItem.class).setParameter("size", size)
+//					.setParameter("condition", condition).getResultList();
+//		} else {
+//			queryString = "SELECT i FROM InventoryItem i";
+//			search = em.createQuery(queryString, InventoryItem.class).getResultList();
+//		}
+		
 		System.out.println(search.size());
 		return search;
 	}

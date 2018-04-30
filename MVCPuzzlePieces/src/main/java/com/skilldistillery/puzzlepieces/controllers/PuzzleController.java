@@ -99,7 +99,7 @@ public class PuzzleController {
 		}
 		List<InventoryItem> inventoryItems = dao.searchPuzzle(name, size, con);
 		
-		mv.addObject("puzzle", inventoryItems);
+		mv.addObject("puzzles", inventoryItems);
 		mv.setViewName("search-puzzle-results");
 		return mv;
 
