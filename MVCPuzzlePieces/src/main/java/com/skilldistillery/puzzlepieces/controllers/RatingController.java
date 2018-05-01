@@ -32,7 +32,14 @@ public class RatingController {
 	public ModelAndView puzzleRatingPage(@RequestParam(name = "id") int inventoryId) {
 		ModelAndView mv = new ModelAndView();
 		InventoryItem ii = pdao.getInventoryItemById(inventoryId);
-		mv.addObject("inventoryItem", ii);
+		User user = userdao.getUserById(ii.getOwner().getId());
+		List<PuzzleRating> puzRatings = pdao.getPuzzleRatingsByPuzzleId(ii.getPuzzle().getId());
+		Double d = agrigatePuzzleRating(puzRatings);
+		mv.addObject("ii", ii);
+		mv.addObject("user", user);
+		mv.addObject("rating", d);
+		mv.addObject("puzzle",ii.getPuzzle());
+
 		mv.setViewName("puzzle-rating");
 
 		return mv;
@@ -74,7 +81,7 @@ public class RatingController {
 
 	@RequestMapping(path = "ratePuzzle.do", method = RequestMethod.POST)
 	public ModelAndView ratePuzzle(PuzzleRating puzzleRating, @RequestParam(name = "id") int puzzleId,
-			@RequestParam(name = "inventoryid") int inventoryId, HttpSession session) {
+			@RequestParam(name = "inventoryId") int inventoryId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		userdao.createPuzzleRating(puzzleId, puzzleRating, session);
 		InventoryItem ii = pdao.getInventoryItemById(inventoryId);

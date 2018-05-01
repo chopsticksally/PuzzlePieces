@@ -332,17 +332,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return ui;
 	}
 
-	@Override
-	public UserRating rateAUser(int userRaterId, UserRating rating) {
-		em.persist(rating);
-		return null;
-	}
-
-	@Override
-	public UserRating rateAPuzzle(int userId, PuzzleRating rating) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public InventoryItem getInventoryItemById(int itemId) {

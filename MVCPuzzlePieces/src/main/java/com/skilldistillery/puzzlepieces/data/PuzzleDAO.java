@@ -42,9 +42,6 @@ public interface PuzzleDAO {
 
 	Request sendOrCreateRequest(int inventoryId, User user, String message);
 
-	UserRating rateAUser(int userId, UserRating rating);
-	
-	UserRating rateAPuzzle(int userId, PuzzleRating rating);
 	
 	List<InventoryItem> getInventoryItemsByUserId(int userId);
 	List<Borrow> getBorrowsByLoanerId(int userId);
