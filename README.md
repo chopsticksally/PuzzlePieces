@@ -6,7 +6,7 @@
 
 Do you love puzzles? Is your closet overflowing with puzzles you've already completed, but don't feel like taking out and doing again? Do you want to connect with other puzzle lovers just like yourself? Let Puzzle Pieces help! Puzzle Pieces provides a platform for puzzle lovers to exchange or loan puzzles collecting dust in their closet.
 
-### How it works
+### How it Works
 
 To use the Puzzle Pieces app, you must create a user account and log in using that user's credentials. If a user does not log in, a list of available puzzles will display, but no additional information about the puzzles will display. If a user logs in with a valid username/password combination, then the full site functionality is unlocked. Logged in users will be able to select the displayed puzzles on the page to see their details.
 
@@ -28,9 +28,15 @@ A Request table contains all of the requests that are created. When a user creat
 
 An Inventory Items table holds all the data about the actual, physical puzzle items. Each inventory item contains data about its user owner as well as the condition of the physical item. A Puzzle table is made to describe the "game essence" of the actual puzzle, like the puzzle's rating, name, and number of puzzle pieces. This allows for the possibility that one person has several copies of the same puzzle - each copy would have a separate Inventory Item entry but the same Puzzle entry. Each Puzzle also has its own Puzzle Rating, as well as one or more Category.
 
-### Lessons learned
+### Lessons Learned
 
 From the outset, I think each member of the team had versions of what they imagined the app would look like, and we were excited to start actually shaping and coding the project. However, in out excitement we didn't put together a great roadmap in terms of how certain functionalities should be implemented and how certain elements should and shouldn't display on the page. Once our fingers outpaced our very basic wireframe, we flailed for a bit trying to figure out the next steps. We had to take part of the weekend to put the brakes on coding and come up with a more detailed plan moving forward. Next time, I think it would be valuable to spend more time upfront coming up with more detailed user stories and goals for the project - this would have saved us some grief down the road.
 
+When we started coding the project, we decided to split the controller up into a User controller, which would handle mappings related to user login and accounts, and a Puzzle controller, which handled essentially everything else. Having the controllers split into two made it easier to work in each controller - someone could do work in the User controller while someone else did work in the Puzzle controller. In hindsight, it may have been better to split out the controllers and DAOs even further - it may have resulted in more files, but it may have made it easier for multiple people to work on more functionalities at once.
+
+At times we as a team had some trouble effectively communicating and working together. We each have different styles of working that we are comfortable with, and I think due to an initial lack of organization we fell into our own work styles that were best for us as individuals but not necessarily best for the group. We eventually did come together, and I think as a group we worked best when we each were willing to compromise a bit and approach a problem in a way in which we would not necessarily approach it as individuals.
 
 ### Technologies used
+
+-Spring MVC
+-JPA
