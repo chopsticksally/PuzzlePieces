@@ -194,7 +194,6 @@ public class PuzzleController {
         User user = uDao.getUserById(ii.getOwner().getId());
         List<PuzzleRating> puzRatings = dao.getPuzzleRatingsByPuzzleId(puzzleId);
         Double d = agrigatePuzzleRating(puzRatings);
-        mv.addObject(puzzleRating);
         mv.addObject("ii", ii);
         mv.addObject("user", user);
         mv.addObject("rating", d);
@@ -202,5 +201,17 @@ public class PuzzleController {
 		mv.setViewName("puzzle-details");
 
 		return mv;
+	}
+	public Double agrigatePuzzleRating(List<PuzzleRating> puzRatings) {
+		int rating = 0;
+		double puzzleAverage = 0;
+		for (PuzzleRating puzzleRating : puzRatings) {
+			rating = rating + puzzleRating.getRating();
+		}
+		if (puzRatings.size() != 0) {
+			puzzleAverage = rating / puzRatings.size();
+		}
+		return puzzleAverage;
+
 	}
 }

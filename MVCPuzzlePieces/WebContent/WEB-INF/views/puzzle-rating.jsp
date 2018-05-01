@@ -13,6 +13,7 @@
 	<h3>Rate this puzzle!</h3>
 
 	<form action="ratePuzzle.do" method="post">
+	<input type= "hidden" name ="id" value= "${ii.id }">
 		<select name="rating">
 
 			<option value="1">1-frustrating</option>

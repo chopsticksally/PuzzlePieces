@@ -47,14 +47,14 @@
 				<div class="Request">
 					<form action="makeRequest.do" method="get">
 						<input type="hidden" value="${ii.id }"
-							name="inventoryId"> <input type="submit"
+							name="id"> <input type="submit"
 							value="Request This Puzzle!">
 					</form>
 				</div>
 				<div class="Rate Puzzle">
 					<form action="puzzleRatingPage.do" method="get">
 						<input type="hidden" value="${ii.id }"
-							name="inventoryId"> <input type="submit" value="Rate">
+							name="id"> <input type="submit" value="Rate">
 					</form>
 				</div>
 				<div class="See Owner Profile">

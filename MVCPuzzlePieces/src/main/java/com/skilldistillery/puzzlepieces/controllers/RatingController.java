@@ -81,7 +81,6 @@ public class RatingController {
 		User user = userdao.getUserById(ii.getOwner().getId());
 		List<PuzzleRating> puzRatings = pdao.getPuzzleRatingsByPuzzleId(puzzleId);
 		Double d = agrigatePuzzleRating(puzRatings);
-		mv.addObject(puzzleRating);
 		mv.addObject("ii", ii);
 		mv.addObject("user", user);
 		mv.addObject("rating", d);
