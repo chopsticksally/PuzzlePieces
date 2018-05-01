@@ -12,12 +12,12 @@
 		<p>Condition: ${item.condition}</p>
 		<p>Puzzle Size: ${item.puzzle.size}</p>
 		<p>Category: ${item.puzzle.categories[0].name}</p>
-		<form action="updateInventoryPage.do?itemId=${item.id }" method="get">
-			<input type="hidden" value="${item.id }" name="itemId"> 
+		<form action="updateInventoryPage.do" method="get">
+			<input type="hidden" value="${item.id }" name="itemId">
 			<button type="submit" class="btn btn-outline-info"
-				 value="Edit this puzzle!">Edit this puzzle!</button>
+				value="Edit this puzzle!">Edit this puzzle!</button>
 		</form>
-		<form action="delete.do">
+		<form action="deleteInventory.do" method="post">
 			<input type="hidden" name="itemId" value="${item.id }" />
 			<button type="submit" class="btn btn-outline-danger"
 				onclick=" return confirm('Are you sure you want to delete this puzzle?')">Delete</button>

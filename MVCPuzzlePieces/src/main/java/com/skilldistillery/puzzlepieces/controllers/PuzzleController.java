@@ -24,7 +24,7 @@ public class PuzzleController {
 	private PuzzleDAO dao;
 
 	@RequestMapping(path = "deleteInventory.do", method = RequestMethod.POST)
-	public ModelAndView destroy(@RequestParam(name = "id") Integer inventoryId) {
+	public ModelAndView destroy(@RequestParam(name = "itemId") Integer inventoryId) {
 		ModelAndView mv = new ModelAndView();
 		boolean deleted = dao.destroy(inventoryId);
 		if (deleted) {
@@ -90,8 +90,21 @@ public class PuzzleController {
 	// return mv;
 	// }
 	@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
-	public ModelAndView addInventory(Puzzle puzzle) {
+	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition) {
 		ModelAndView mv = new ModelAndView();
+		Condition con = null;
+		if (condition == 1) {
+			con = Condition.NEW;
+		}
+		if (condition == 2) {
+			con = Condition.LIKE_NEW;
+		}
+		if (condition == 3) {
+			con = Condition.USED;
+		}
+		if (condition == 4) {
+			con = Condition.WORN;
+		}
 		try {
 			Puzzle added = dao.addInventory(puzzle);
 			mv.addObject("added", added);

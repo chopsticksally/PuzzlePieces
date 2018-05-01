@@ -9,10 +9,10 @@
 		<h1 class="header">Add Inventory</h1>
 		<form action="addInventory.do">
 			<div class="form-group">
-				<label>Puzzle Name</label> <input type="text" class="form-control">
+				<label>Puzzle Name</label> <input type="text" class="form-control" name="name">
 			</div>
 			<div class="form-group">
-				<label>Image Url</label> <input type="text" class="form-control">
+				<label>Image Url</label> <input type="text" class="form-control" name="imageUrl">
 			</div>
 			<div class="form-group">
 				<label for="category">Category:</label> <select name="category" class="form-control">
