@@ -13,15 +13,14 @@
 		<p>Puzzle Size: ${item.puzzle.size}</p>
 		<p>Category: ${item.puzzle.categories[0].name}</p>
 		<form action="updateInventoryPage.do?itemId=${item.id }" method="get">
-			<input type="hidden" value="${item.id }" name="id"> <input
-				type="submit" value="Edit this puzzle!">
+			<input type="hidden" value="${item.id }" name="itemId"> 
+			<button type="submit" class="btn btn-outline-info"
+				 value="Edit this puzzle!">Edit this puzzle!</button>
 		</form>
 		<form action="delete.do">
-			<!-- <label>Input the ID of the restaurant you would like to
-					delete</label> -->
-			<input type="hidden" name="id" value="${item.id }" />
+			<input type="hidden" name="itemId" value="${item.id }" />
 			<button type="submit" class="btn btn-outline-danger"
-				onclick=" return confirm('Are you sure you want to delete thisrestaurant?')">Delete</button>
+				onclick=" return confirm('Are you sure you want to delete this puzzle?')">Delete</button>
 		</form>
 	</div>
 	<jsp:include page="script.jsp" />

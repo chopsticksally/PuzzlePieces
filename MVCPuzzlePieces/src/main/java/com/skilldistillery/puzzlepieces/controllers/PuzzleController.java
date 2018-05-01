@@ -37,7 +37,7 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "userInventoryDetails.do", method = RequestMethod.GET)
-	public ModelAndView userInventoryDetailsPage(@RequestParam(name = "itemId") int itemId) {
+	public ModelAndView userInventoryDetailsPage(@RequestParam(name = "itemId") Integer itemId) {
 		ModelAndView mv = new ModelAndView();
 		InventoryItem ii = dao.getInventoryItemById(itemId);
 		mv.addObject("item", ii);
@@ -46,10 +46,11 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "updateInventoryPage.do", method = RequestMethod.GET)
-	public ModelAndView updateInventoryPage(@RequestParam(name = "itemId") int itemId) {
+	public ModelAndView updateInventoryPage(@RequestParam(name = "itemId") Integer itemId) {
 		ModelAndView mv = new ModelAndView();
 		InventoryItem ii = dao.getInventoryItemById(itemId);
 		mv.addObject("item", ii);
+		mv.setViewName("edit-inventory");
 		return mv;
 	}
 
