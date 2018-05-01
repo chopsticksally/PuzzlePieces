@@ -1,5 +1,7 @@
 package com.skilldistillery.puzzlepieces.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
+import com.skilldistillery.puzzlepieces.entities.Borrow;
+import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
+import com.skilldistillery.puzzlepieces.entities.UserInformation;
+import com.skilldistillery.puzzlepieces.entities.UserRating;
 
 @Controller
 public class RequestController {
@@ -20,12 +26,25 @@ public class RequestController {
 	private PuzzleDAO puzdao;
 
 	@RequestMapping(path = "sendRequest.do", method = RequestMethod.POST)
-	public ModelAndView sendingARequest(String message, int invId, HttpSession session) {
+	public ModelAndView sendingARequest(@RequestParam (name= "message")String message,@RequestParam(name= "id") int invId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		User user = (User) session.getAttribute("loggedInUser");
+		User user = (User) session.getAttribute("userLoggedIn");
+		int userId = user.getId(); 	
 		Request request = puzdao.sendOrCreateRequest(invId, user, message);
-		user.addRequestSent(request);
-		session.setAttribute("loggedInUser", user);
+		List<Borrow> borrows = puzdao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzdao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings = puzdao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests = puzdao.getReceivedByUserId(userId);
+		List<Request> sentRequests = puzdao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzdao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzdao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
 		mv.setViewName("user-profile");
 		return mv;
 	}
@@ -33,6 +52,9 @@ public class RequestController {
 	@RequestMapping(path = "acceptingOrRejectingRequest.do", method = RequestMethod.POST)
 	public ModelAndView acceptingOrRejectingARequest(Request request, @RequestParam(name = "choice") int choice, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		User user = (User) session.getAttribute("userLoggedIn");
+		int userId = user.getId(); 	
+		
 		
 		//MIGHT HAVE TO TRY TO ADD THE REQUEST BACK TO THE USER IN SESSION
 		if (choice == 1) {
@@ -44,7 +66,20 @@ public class RequestController {
 		if (choice == 3) {
 			puzdao.acceptRequestToOwn(request);
 		}
-
+		List<Borrow> borrows = puzdao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzdao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings = puzdao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests = puzdao.getReceivedByUserId(userId);
+		List<Request> sentRequests = puzdao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzdao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzdao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
 		mv.setViewName("user-profile");
 		return mv;
 	}

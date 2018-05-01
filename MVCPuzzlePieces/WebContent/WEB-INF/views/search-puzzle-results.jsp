@@ -59,7 +59,7 @@
     											<input type="hidden" value="${items.id }" name="id">
     											<input type="submit" value="Request This Puzzle!">
     											</form>
-												<button class="seatButton">Request</button>
+												
 												<!-- <input class="toggle-btn" type="checkbox" value="Request"> -->
 										</td>
 									</table>

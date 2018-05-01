@@ -8,8 +8,9 @@
 	<h1 class="header"></h1>
 
 <form action="sendRequest.do" method="post">
-<input type="text" placeholder="Enter a message here!" name="">
-
+<input type= "hidden" value= "${inventoryId}" name="id">
+<input type="text" placeholder="Enter a message here!" name="message">
+<input type="submit" value="Send">
 </form>
 
 
