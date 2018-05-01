@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `inventory_item` ;
 
 CREATE TABLE IF NOT EXISTS `inventory_item` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `condition` ENUM('USED', 'NEW', 'WORN', 'LIKE_NEW') NULL,
+  `puzzle_condition` ENUM('USED', 'NEW', 'WORN', 'LIKE_NEW') NULL,
   `puzzle_id` INT NOT NULL,
   `owner_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -318,17 +318,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `puzzlepieces`;
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (1, 'LIKE_NEW', 1, 1);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (2, 'USED', 1, 1);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (3, 'NEW', 2, 2);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (4, 'NEW', 3, 3);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (5, 'LIKE_NEW', 4, 4);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (6, 'WORN', 5, 1);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (7, 'NEW', 6, 2);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (8, 'NEW', 7, 3);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (9, 'WORN', 8, 4);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (10, 'USED', 9, 1);
-INSERT INTO `inventory_item` (`id`, `condition`, `puzzle_id`, `owner_id`) VALUES (11, 'NEW', 10, 2);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (1, 'LIKE_NEW', 1, 1);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (2, 'USED', 1, 1);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (3, 'NEW', 2, 2);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (4, 'NEW', 3, 3);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (5, 'LIKE_NEW', 4, 4);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (6, 'WORN', 5, 1);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (7, 'NEW', 6, 2);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (8, 'NEW', 7, 3);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (9, 'WORN', 8, 4);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (10, 'USED', 9, 1);
+INSERT INTO `inventory_item` (`id`, `puzzle_condition`, `puzzle_id`, `owner_id`) VALUES (11, 'NEW', 10, 2);
 
 COMMIT;
 
