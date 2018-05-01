@@ -185,7 +185,6 @@ public class UserController {
 	@RequestMapping(path = "/updateAddress.do", method = RequestMethod.POST)
 	public ModelAndView updateAddress(@RequestParam(name = "id") Integer userId, Address address, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-
 		Address updatedAddress = dao.updateAddress(userId, address);
 		User user = (User) session.getAttribute("userLoggedIn");
 		user.getUserInformation().setAddress(updatedAddress);
