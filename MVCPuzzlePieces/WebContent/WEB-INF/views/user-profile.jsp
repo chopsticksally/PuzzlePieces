@@ -18,31 +18,34 @@
 	<div>
 		<h4 class="header">Current Inventory</h4>
 		<c:forEach var="items" items="${inventoryItems}">
-    ${items.puzzle.name }
-    ${items.id}
-    ${items.condition}
-    <img alt="${items.puzzle.name } Puzzle Photo"
-				src="${items.puzzle.imageUrl }">
-			<form action="makeRequest.do" method="get">
-				<input type="hidden" value="${items.id }" name="id"> <input
-					type="submit" value="Request This Puzzle!">
-			</form>
+			<p>${items.puzzle.name }</p>
+			<a href="userInventoryDetails.do?itemId=${items.id }"><img
+				alt="${items.puzzle.name } Puzzle Photo"
+				src="${items.puzzle.imageUrl }"></a>
+			<a href="userInventoryDetails.do?itemId=${items.id }"><button
+					class="btn">View Puzzle Details</button></a>
+
+
 		</c:forEach>
+		<div>
+			<a href="addInventoryPage.do"><button class="btn">Add
+					Inventory</button></a>
+		</div>
 	</div>
 	<div>
 		<h4 class="header">Requests Sent</h4>
 		<c:forEach var="req" items="${userRequests }">
-	${req.message }
-	${req.requester.userName }
-	
-	</c:forEach>
+			<p>${req.message }</p>
+			<p>${req.requester.userName }</p>
+
+		</c:forEach>
 	</div>
 	<div>
 		<c:forEach var="sentReq" items="${sentRequests }">
-	${sentReq.message }
-	${sentReq.active }
-	${sentReq.accepted }
-	</c:forEach>
+			<p>${sentReq.message }</p>
+			<p>${sentReq.active }</p>
+			<p>${sentReq.accepted }</p>
+		</c:forEach>
 	</div>
 
 	<div>

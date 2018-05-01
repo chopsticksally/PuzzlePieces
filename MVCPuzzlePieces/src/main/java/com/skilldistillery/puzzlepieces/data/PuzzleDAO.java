@@ -53,4 +53,6 @@ public interface PuzzleDAO {
 	List<Request> getReceivedByUserId(int userId);
 	UserInformation getUserInformationByUserId(int userId);
 	
+	InventoryItem getInventoryItemById(int itemId);
+	
 }
