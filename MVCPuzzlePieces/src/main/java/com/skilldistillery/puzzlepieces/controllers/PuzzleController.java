@@ -62,12 +62,13 @@ public class PuzzleController {
 	@RequestMapping(path = "updateInventory.do", method = RequestMethod.POST)
 	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, InventoryItem updated) {
 		ModelAndView mv = new ModelAndView();
+		InventoryItem old = dao.getInventoryItemById(inventoryId);
 		InventoryItem ii = dao.updateInventory(inventoryId, updated);
-		if (ii != null) {
+		if (ii != old) {
 			mv.addObject("updated", ii);
 			mv.setViewName("success");
 		}
-		if (ii == null) {
+		if (ii == old) {
 			mv.setViewName("edit-inventory");
 			mv.addObject("errorMessage", "You failed to edit to your inventory. Please try again");
 		}
