@@ -8,7 +8,7 @@
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container">
 		<h1 class="header">Edit ${item.puzzle.name }</h1>
-		<form action="updateInventory.do" method = "POST">
+		<form action="updateInventory.do" method="POST">
 			<div class="form-group">
 				<label>Puzzle Name</label> <input type="text" class="form-control"
 					value="${item.puzzle.name }" name="name">
@@ -19,6 +19,23 @@
 			</div>
 			<div class="form-group">
 				<label for="category">Category:</label> <select name="category" class="form-control">
+				<c:if test="${empty item.puzzle.categories[0].name }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
 				<c:if test="${item.puzzle.categories[0].name == 'Pets' }">
 					<option value="Pets" selected>Pets</option>
 					<option value="Ocean">Ocean</option>
@@ -345,8 +362,8 @@
 					</c:if>
 				</select>
 			</div>
-			<input type= "hidden" value ="${item.id}">
-			<button type="submit" class="btn btn-outline-info"> Edit</button>
+			<input type="hidden" name="id" value="${item.id }" />
+			<button type="submit" class="btn btn-outline-info">Submit Edit</button>
 		</form>
 		<div>
 			<c:if test="${not empty errorMessage}">${errorMessage}</c:if>

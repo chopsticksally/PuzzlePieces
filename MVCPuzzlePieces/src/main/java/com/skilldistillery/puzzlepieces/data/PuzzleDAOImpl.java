@@ -51,7 +51,6 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
 		managedPuzzle.setCondition(updated.getCondition());
 		managedPuzzle.setPuzzle(updated.getPuzzle());
-		managedPuzzle.setOwner(updated.getOwner());
 
 		em.persist(managedPuzzle);
 		em.flush();
