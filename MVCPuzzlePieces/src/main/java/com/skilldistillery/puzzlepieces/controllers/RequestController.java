@@ -48,6 +48,15 @@ public class RequestController {
 		mv.setViewName("user-profile");
 		return mv;
 	}
+	
+	@RequestMapping(path="makeRequest.do", method=RequestMethod.GET)
+	public ModelAndView makingARequestPage(@RequestParam(name="id")int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("request");
+		mv.addObject("inventoryId", id);
+		return mv;
+	}
+	
 
 	// @RequestMapping(path="acceptRequestToBorrow.do", method=RequestMethod.POST)
 	// public ModelAndView acceptingARequestToBorrow(HttpSession session, Request
