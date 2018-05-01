@@ -4,13 +4,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.puzzlepieces.entities.Address;
+import com.skilldistillery.puzzlepieces.entities.Puzzle;
+import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
+import com.skilldistillery.puzzlepieces.entities.UserRating;
 
 @Transactional
 @Component
@@ -118,5 +122,33 @@ public class UserDAOImpl implements UserDAO {
 			return true;
 		}
 
+	}
+
+	@Override
+	public User getUserById(int userId) {
+		User user = em.find(User.class, userId);
+		return user;
+	}
+
+	@Override
+	public UserRating createUserRating(int userId, UserRating userRating, HttpSession session) {
+		User user = em.find(User.class, userId);
+		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
+		userRating.setRatedUser(user);
+		userRating.setRaterUser(userLoggedIn);
+		em.persist(userRating);
+		em.flush();
+		return userRating;
+	}
+
+	@Override
+	public PuzzleRating createPuzzleRating(int puzzleId, PuzzleRating puzzleRating, HttpSession session) {
+		Puzzle puzzle = em.find(Puzzle.class, puzzleId);
+		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
+		puzzleRating.setPuzzle(puzzle);
+		puzzleRating.setUser(userLoggedIn);
+		em.persist(puzzleRating);
+		em.flush();
+		return puzzleRating;
 	}
 }
