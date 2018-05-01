@@ -171,14 +171,15 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 
 	@Override
 	public boolean destroy(int id) {
+		boolean d = false;
 		try {
-			boolean d = false;
 			InventoryItem it = em.find(InventoryItem.class, id);
 			em.remove(it);
 			em.flush();
-			return true;
+			d = true;
+			return d;
 		} catch (Exception e) {
-			return false;
+			return d;
 		}
 	}
 
