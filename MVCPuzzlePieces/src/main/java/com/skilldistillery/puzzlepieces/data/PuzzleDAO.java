@@ -6,6 +6,7 @@ import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.Puzzle;
 import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
@@ -22,7 +23,7 @@ public interface PuzzleDAO {
 
 	InventoryItem updateInventory(int id, InventoryItem updated);
 
-	InventoryItem addInventory(InventoryItem p);
+	InventoryItem addInventory(Puzzle p, Condition condition, User u);
 
 	List<InventoryItem> searchPuzzle(String name, int size, Condition condition);
 

@@ -90,7 +90,7 @@ public class PuzzleController {
 	// return mv;
 	// }
 	@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
-	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition) {
+	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Condition con = null;
 		if (condition == 1) {
@@ -105,15 +105,19 @@ public class PuzzleController {
 		if (condition == 4) {
 			con = Condition.WORN;
 		}
-		try {
-			Puzzle added = dao.addInventory(puzzle);
+
+		InventoryItem added = dao.addInventory(puzzle, con, (User) session.getAttribute("userLoggedIn"));
+		if (added != null) {
+			System.out.println("************************* IN NOT NULL *****");
 			mv.addObject("added", added);
-			mv.setViewName("redirect:success");
-		} catch (IllegalArgumentException e) {
-			mv.setViewName("redirect:fail");
-		} catch (NullPointerException n) {
-			mv.setViewName("redirect:fail");
+			mv.setViewName("user-profile");
 		}
+		if (added == null) {
+			System.out.println("************************* IN NULL *****");
+			mv.setViewName("add-inventory");
+			mv.addObject("errorMessage", "You failed to add to your inventory. Please try again");
+		}
+
 		return mv;
 	}
 

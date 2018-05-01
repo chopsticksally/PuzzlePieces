@@ -14,17 +14,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-
-@Indexed
 @Entity
 @Table(name="puzzle")
 public class Puzzle {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
-	@Field
+	
 	private Integer size;
 	private String imageUrl;
 	private String name;

@@ -11,17 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-
-@Indexed
 @Entity
 @Table(name="category")
 public class Category {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
-	@Field
+
 	private String name;
 
 	@ManyToMany(mappedBy="categories", fetch=FetchType.LAZY)

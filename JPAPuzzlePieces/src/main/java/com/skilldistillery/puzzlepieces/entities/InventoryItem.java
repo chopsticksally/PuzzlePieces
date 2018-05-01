@@ -3,6 +3,7 @@ package com.skilldistillery.puzzlepieces.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,7 +26,7 @@ public class InventoryItem {
 	
 //	@Column(name= "puzzle_id")
 //	private int puzzleId;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="puzzle_id")
 	private Puzzle puzzle;
 	
@@ -39,10 +40,10 @@ public class InventoryItem {
 	private User owner;
 	
 	@OneToMany(mappedBy = "inventoryItem")
-	List<Request> requests;
+	private List<Request> requests;
 	
 	@OneToMany(mappedBy = "inventoryItem")
-	List<Borrow> borrows;
+	private List<Borrow> borrows;
 	
 	
 	public InventoryItem(){

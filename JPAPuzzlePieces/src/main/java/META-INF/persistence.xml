@@ -19,6 +19,7 @@
 		<class>com.skilldistillery.puzzlepieces.entities.User</class>
 		<class>com.skilldistillery.puzzlepieces.entities.UserInformation</class>
 		<class>com.skilldistillery.puzzlepieces.entities.UserRating</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/puzzlepieces" />
@@ -45,10 +46,6 @@
 			<property name="hibernate.connection.zeroDateTimeBehavior"
 				value="convertToNull" />
 
-			<property name="hibernate.search.default.directory_provider"
-				value="filesystem" />
-			<property name="hibernate.search.default.indexBase"
-				value="./lucene/indexes" />
 		</properties>
 	</persistence-unit>
 </persistence>

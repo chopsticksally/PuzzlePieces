@@ -15,12 +15,12 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skilldistillery.puzzlepieces.entities.Address;
 import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.Category;
 //import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.Puzzle;
 import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
@@ -35,10 +35,24 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	private EntityManager em;
 
 	@Override
-	public InventoryItem addInventory(InventoryItem p) {
-		em.persist(p);
-		em.flush();
-		return p;
+	public InventoryItem addInventory(Puzzle p, Condition c, User u) {
+		InventoryItem item = new InventoryItem();
+//		System.out.println("*******************");
+//		System.out.println(p);
+//		System.out.println(c);
+//		System.out.println(u);
+//		System.out.println("*******************");
+//		item.setPuzzle(p);
+//		item.setCondition(c);
+//		item.setOwner(em.find(User.class, u.getId()));
+//		em.persist(p);
+//		em.flush();
+		
+		Puzzle puzz = new Puzzle();
+		puzz.setImageUrl("test");
+		puzz.setName("Andrew Test");
+		em.persist(puzz);
+		return item;
 	}
 
 	@Override
