@@ -21,8 +21,12 @@
     ${items.puzzle.name }
     ${items.id}
     ${items.condition}
-    <img alt="${items.puzzle.name } Puzzle Photo" src="${items.puzzle.imageUrl }">
-  
+    <img alt="${items.puzzle.name } Puzzle Photo"
+				src="${items.puzzle.imageUrl }">
+			<form action="makeRequest.do" method="get">
+				<input type="hidden" value="${items.id }" name="id"> <input
+					type="submit" value="Request This Puzzle!">
+			</form>
 		</c:forEach>
 	</div>
 	<div>

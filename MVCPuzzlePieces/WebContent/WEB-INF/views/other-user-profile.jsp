@@ -25,7 +25,7 @@
 			<form action="makeRequest.do" method="get">
 				<input type="hidden" value="${items.id }" name="id"> <input
 					type="submit" value="Request This Puzzle!">
-					</form>
+			</form>
 		</c:forEach>
 	</div>
 
