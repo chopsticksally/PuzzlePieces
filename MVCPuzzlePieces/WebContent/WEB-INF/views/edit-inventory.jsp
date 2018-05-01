@@ -18,10 +18,9 @@
 					value="${item.puzzle.imageUrl }" name="imageUrl">
 			</div>
 			<div class="form-group">
-				<label for="category">Category:</label> <select name="category"
-					value="${item.puzzle.categories[0].name }" class="form-control">
-
-					<option value="Pets">Pets</option>
+				<label for="category">Category:</label> <select name="category" class="form-control">
+				<c:if test="${item.puzzle.categories[0].name == 'Pets' }">
+					<option value="Pets" selected>Pets</option>
 					<option value="Ocean">Ocean</option>
 					<option value="Under the sea">Under the sea</option>
 					<option value="Landscape">Landscape</option>
@@ -36,17 +35,285 @@
 					<option value="Cartoon">Cartoon</option>
 					<option value="Sports">Sports</option>
 					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Ocean' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean" selected>Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Under the sea' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea" selected>Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Landscape' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape" selected>Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Flowers' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers" selected>Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Space' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space" selected>Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Animals' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals" selected>Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Jungle' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle" selected>Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Futuristic' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic" selected>Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Food' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food" selected>Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Architecture' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture" selected>Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Superhero' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero" selected>Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Cartoon' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon" selected>Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Sports' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports" selected>Sports</option>
+					<option value="Miscellaneous">Miscellaneous</option>
+					</c:if>
+				<c:if test="${item.puzzle.categories[0].name == 'Miscellaneous' }">
+					<option value="Pets">Pets</option>
+					<option value="Ocean">Ocean</option>
+					<option value="Under the sea">Under the sea</option>
+					<option value="Landscape">Landscape</option>
+					<option value="Flowers">Flowers</option>
+					<option value="Space">Space</option>
+					<option value="Animals">Animals</option>
+					<option value="Jungle">Jungle</option>
+					<option value="Futuristic">Futuristic</option>
+					<option value="Food">Food</option>
+					<option value="Architecture">Architecture</option>
+					<option value="Superhero">Superhero</option>
+					<option value="Cartoon">Cartoon</option>
+					<option value="Sports">Sports</option>
+					<option value="Miscellaneous" selected>Miscellaneous</option>
+					</c:if>
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="size">Size:</label> <select value="${item.puzzle.size }"
-					name="size" class="form-control">
-
-					<option value="350">350</option>
+				<label for="size">Size:</label> <select name="size" class="form-control">
+				<c:if test="${item.puzzle.size == 350 }">
+					<option value="350" selected>350</option>
 					<option value="500">500</option>
 					<option value="1000">1000</option>
 					<option value="1500">1500</option>
 					<option value="3000">3000</option>
+					</c:if>
+				<c:if test="${item.puzzle.size == 500 }">
+					<option value="350" >350</option>
+					<option value="500" selected>500</option>
+					<option value="1000">1000</option>
+					<option value="1500">1500</option>
+					<option value="3000">3000</option>
+					</c:if>
+				<c:if test="${item.puzzle.size == 1000 }">
+					<option value="350" >350</option>
+					<option value="500">500</option>
+					<option value="1000" selected>1000</option>
+					<option value="1500">1500</option>
+					<option value="3000">3000</option>
+					</c:if>
+				<c:if test="${item.puzzle.size == 1500 }">
+					<option value="350" >350</option>
+					<option value="500">500</option>
+					<option value="1000">1000</option>
+					<option value="1500" selected>1500</option>
+					<option value="3000">3000</option>
+					</c:if>
+				<c:if test="${item.puzzle.size == 3000 }">
+					<option value="350" >350</option>
+					<option value="500">500</option>
+					<option value="1000">1000</option>
+					<option value="1500">1500</option>
+					<option value="3000" selected>3000</option>
+					</c:if>
+				
 				</select>
 			</div>
 			<div class="form-group">
