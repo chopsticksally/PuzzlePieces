@@ -164,7 +164,7 @@ public class UserController {
 		User user = (User) session.getAttribute("userLoggedIn");
 		user.getUserInformation().setAddress(updatedAddress);
 		session.setAttribute("userLoggedIn", user);
-		mv.setViewName("userProfile.do");
+		mv.setViewName("user-profile");
 
 		return mv;
 
