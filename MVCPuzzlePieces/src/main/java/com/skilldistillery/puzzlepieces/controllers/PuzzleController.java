@@ -28,10 +28,10 @@ public class PuzzleController {
 		ModelAndView mv = new ModelAndView();
 		boolean deleted = dao.destroy(inventoryId);
 		if (deleted) {
-			mv.setViewName("redirect:success");
+			mv.setViewName("success");
 		}
 		if (!deleted) {
-			mv.setViewName("redirect:fail");
+			mv.setViewName("fail");
 		}
 		return mv;
 	}
@@ -108,12 +108,10 @@ public class PuzzleController {
 
 		InventoryItem added = dao.addInventory(puzzle, con, (User) session.getAttribute("userLoggedIn"));
 		if (added != null) {
-			System.out.println("************************* IN NOT NULL *****");
 			mv.addObject("added", added);
-			mv.setViewName("user-profile");
+			mv.setViewName("success");
 		}
 		if (added == null) {
-			System.out.println("************************* IN NULL *****");
 			mv.setViewName("add-inventory");
 			mv.addObject("errorMessage", "You failed to add to your inventory. Please try again");
 		}
