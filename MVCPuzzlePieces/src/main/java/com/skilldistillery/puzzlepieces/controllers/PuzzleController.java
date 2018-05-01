@@ -60,10 +60,23 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "updateInventory.do", method = RequestMethod.POST)
-	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, InventoryItem updated) {
+	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, Puzzle updated, @RequestParam(name = "condition") Integer condition) {
 		ModelAndView mv = new ModelAndView();
+		Condition con = null;
+		if (condition == 1) {
+			con = Condition.NEW;
+		}
+		if (condition == 2) {
+			con = Condition.LIKE_NEW;
+		}
+		if (condition == 3) {
+			con = Condition.USED;
+		}
+		if (condition == 4) {
+			con = Condition.WORN;
+		}
 		InventoryItem old = dao.getInventoryItemById(inventoryId);
-		InventoryItem ii = dao.updateInventory(inventoryId, updated);
+		InventoryItem ii = dao.updateInventory(inventoryId, updated, condition);
 		if (ii != old) {
 			mv.addObject("updated", ii);
 			mv.setViewName("success");
@@ -81,21 +94,6 @@ public class PuzzleController {
 		return "add-inventory";
 	}
 
-	// @RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
-	// public ModelAndView addInventory(@RequestParam(name = "id") InventoryItem p)
-	// {
-	// ModelAndView mv = new ModelAndView();
-	// try {
-	// InventoryItem ii = dao.addInventory(p);
-	// mv.addObject("added", ii);
-	// mv.setViewName("redirect:success");
-	// } catch (IllegalArgumentException e) {
-	// mv.setViewName("redirect:fail");
-	// } catch (NullPointerException n) {
-	// mv.setViewName("redirect:fail");
-	// }
-	// return mv;
-	// }
 	@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
 	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
