@@ -10,7 +10,7 @@
 
 	<h1 class="header">User Login</h1>
 	<div class="container">
-		<form action="loggingIn.do" method="GET">
+		<form action="loggingIn.do" method="post">
 			<div class="form-group">
 				<label for="userName">Username:</label> <input type="text"
 					placeholder="username" class="form-control" min="1" max="100"

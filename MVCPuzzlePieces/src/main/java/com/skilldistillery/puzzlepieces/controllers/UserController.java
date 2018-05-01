@@ -58,7 +58,7 @@ public class UserController {
 	}
 
 	// @Validated
-	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.GET)
+	@RequestMapping(path = "/loggingIn.do", method = RequestMethod.POST)
 	public ModelAndView loggingIn(@Valid User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 
