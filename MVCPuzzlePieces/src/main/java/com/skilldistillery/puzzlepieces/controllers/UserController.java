@@ -132,10 +132,22 @@ public class UserController {
 	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
 	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-
 		user = dao.updateUser(userId, user);
-
 		session.setAttribute("userLoggedIn", user);
+		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
+		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
 		mv.setViewName("user-profile");
 
 		return mv;
@@ -150,6 +162,20 @@ public class UserController {
 		User user = (User) session.getAttribute("userLoggedIn");
 		user.setUserInformation(updatedUi);
 		session.setAttribute("userLoggedIn", user);
+		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
+		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
 		mv.setViewName("user-profile");
 
 		return mv;
@@ -164,7 +190,21 @@ public class UserController {
 		User user = (User) session.getAttribute("userLoggedIn");
 		user.getUserInformation().setAddress(updatedAddress);
 		session.setAttribute("userLoggedIn", user);
-		mv.setViewName("userProfile.do");
+		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
+		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
+		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
+		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+		mv.addObject("borrows", borrows);
+		mv.addObject("inventoryItems", inventoryItems);
+		mv.addObject("userRatings", userRatings);
+		mv.addObject("userRequests", userRequests);
+		mv.addObject("sentRequests", sentRequests);
+		mv.addObject("userSubmittedRatings", userSubmittedRatings);
+		mv.addObject("userInfo", userInfo);
+		mv.setViewName("user-profile");
 
 		return mv;
 
