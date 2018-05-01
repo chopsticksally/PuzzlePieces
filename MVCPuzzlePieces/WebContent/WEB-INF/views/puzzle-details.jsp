@@ -40,20 +40,20 @@
 					</tr>
 					<tr>
 						<td>Puzzle Rating:</td>
-						<td>${rating.puzzleRating}</td>
+						<td>${rating}</td>
 					</tr>
 
 				</table>
 				<div class="Request">
 					<form action="makeRequest.do" method="get">
-						<input type="hidden" value="${inventoryItem.id }"
+						<input type="hidden" value="${ii.id }"
 							name="inventoryId"> <input type="submit"
 							value="Request This Puzzle!">
 					</form>
 				</div>
 				<div class="Rate Puzzle">
 					<form action="puzzleRatingPage.do" method="get">
-						<input type="hidden" value="${inventoryItem.id }"
+						<input type="hidden" value="${ii.id }"
 							name="inventoryId"> <input type="submit" value="Rate">
 					</form>
 				</div>

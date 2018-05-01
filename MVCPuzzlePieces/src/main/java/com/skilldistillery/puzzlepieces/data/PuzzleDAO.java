@@ -58,4 +58,5 @@ public interface PuzzleDAO {
 	
 	Request findRequestById(int id);
 	
+	List<PuzzleRating> getPuzzleRatingsByPuzzleId(int puzzleId);
 }

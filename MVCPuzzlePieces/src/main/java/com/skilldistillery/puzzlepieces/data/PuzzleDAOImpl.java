@@ -356,4 +356,12 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return request;
 	}
 
+	@Override
+	public List<PuzzleRating> getPuzzleRatingsByPuzzleId(int puzzleId) {
+		String query = "Select p from PuzzleRating p where p.puzzle.id = :id";
+		List<PuzzleRating> pr = em.createQuery(query, PuzzleRating.class).setParameter("id", puzzleId).getResultList();
+				
+		return pr;
+	}
+
 }
