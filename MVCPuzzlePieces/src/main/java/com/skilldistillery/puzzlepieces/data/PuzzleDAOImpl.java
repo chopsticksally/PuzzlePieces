@@ -37,21 +37,17 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	@Override
 	public InventoryItem addInventory(Puzzle p, Condition c, User u) {
 		InventoryItem item = new InventoryItem();
-//		System.out.println("*******************");
-//		System.out.println(p);
-//		System.out.println(c);
-//		System.out.println(u);
-//		System.out.println("*******************");
-//		item.setPuzzle(p);
-//		item.setCondition(c);
-//		item.setOwner(em.find(User.class, u.getId()));
-//		em.persist(p);
-//		em.flush();
+		System.out.println("*******************");
+		System.out.println(p);
+		System.out.println(c);
+		System.out.println(u);
+		System.out.println("*******************");
+		item.setPuzzle(p);
+		item.setCondition(Condition.NEW);
+		item.setOwner(em.find(User.class, u.getId()));
+		em.persist(item);
+		em.flush();
 		
-		Puzzle puzz = new Puzzle();
-		puzz.setImageUrl("test");
-		puzz.setName("Andrew Test");
-		em.persist(puzz);
 		return item;
 	}
 

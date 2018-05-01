@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +23,8 @@ public class InventoryItem {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	@Enumerated(EnumType.STRING)
+	
+	@Column(name="puzzle_condition")
 	private Condition condition;
 	
 //	@Column(name= "puzzle_id")
