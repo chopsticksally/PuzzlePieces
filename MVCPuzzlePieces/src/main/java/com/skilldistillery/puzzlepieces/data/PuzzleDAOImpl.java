@@ -356,4 +356,10 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return item;
 	}
 
+	@Override
+	public Request findRequestById(int id) {
+		Request request = em.find(Request.class, id);
+		return request;
+	}
+
 }

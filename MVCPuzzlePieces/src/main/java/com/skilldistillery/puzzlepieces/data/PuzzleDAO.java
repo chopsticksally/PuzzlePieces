@@ -55,4 +55,6 @@ public interface PuzzleDAO {
 	
 	InventoryItem getInventoryItemById(int itemId);
 	
+	Request findRequestById(int id);
+	
 }

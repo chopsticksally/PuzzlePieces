@@ -9,7 +9,9 @@
 
 <form action="sendRequest.do" method="post">
 <input type= "hidden" value= "${inventoryId}" name="id">
-<input type="text" placeholder="Enter a message here!" name="message">
+<textarea name="message" rows="10" cols="30" placeholder="Write your message here..."></textarea>
+  <br>
+ 
 <input type="submit" value="Send">
 </form>
 

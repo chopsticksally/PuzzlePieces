@@ -33,18 +33,25 @@
 		</div>
 	</div>
 	<div>
-		<h4 class="header">Requests Sent</h4>
 		<c:forEach var="req" items="${userRequests }">
+		<h4 class="header">Requests Recieved</h4>
+			<p>${req.requestee.userName}</p>
 			<p>${req.message }</p>
 			<p>${req.requester.userName }</p>
-
+			<form action="replyToRequest.do" method="get">
+    											<input type="hidden" value="${req.id}" name="id">
+    											<input type="submit" value="Reply">
+    											</form>
+			<br>
 		</c:forEach>
 	</div>
 	<div>
+		<h4 class="header">Requests Sent</h4>
 		<c:forEach var="sentReq" items="${sentRequests }">
 			<p>${sentReq.message }</p>
 			<p>${sentReq.active }</p>
 			<p>${sentReq.accepted }</p>
+			<br>
 		</c:forEach>
 	</div>
 

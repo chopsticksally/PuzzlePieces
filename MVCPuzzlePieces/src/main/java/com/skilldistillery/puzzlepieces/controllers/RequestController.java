@@ -87,38 +87,19 @@ public class RequestController {
 	@RequestMapping(path="makeRequest.do", method=RequestMethod.GET)
 	public ModelAndView makingARequestPage(@RequestParam(name="id")int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("request");
 		mv.addObject("inventoryId", id);
+		mv.setViewName("request");
 		return mv;
 	}
 	
-
-	// @RequestMapping(path="acceptRequestToBorrow.do", method=RequestMethod.POST)
-	// public ModelAndView acceptingARequestToBorrow(HttpSession session, Request
-	// request) {
-	// ModelAndView mv = new ModelAndView();
-	//
-	//
-	//
-	// return mv;
-	// }
-	//
-	// @RequestMapping(path="acceptRequestToOwn.do", method=RequestMethod.POST)
-	// public ModelAndView ARequest(HttpSession session, Request request) {
-	// ModelAndView mv = new ModelAndView();
-	//
-	//
-	//
-	// return mv;
-	// }
-	//
-	// @RequestMapping(path="notAcceptRequest.do", method=RequestMethod.POST)
-	// public ModelAndView updatingARequest(HttpSession session, Request request) {
-	// ModelAndView mv = new ModelAndView();
-	// dao.updateRequest(inventoryId)
-	//
-	//
-	// return mv;
-	// }
+	@RequestMapping(path="replyToRequest.do", method=RequestMethod.GET)
+	public ModelAndView replyingPage(@RequestParam(name="id")int id) {
+		ModelAndView mv = new ModelAndView();
+		Request request = puzdao.findRequestById(id);
+		mv.addObject("request", request);
+		mv.setViewName("reply-page");
+		return mv;
+	}
+	
 
 }
