@@ -13,15 +13,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
+import com.skilldistillery.puzzlepieces.data.UserDAO;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Puzzle;
+import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.User;
 
 @Controller
 public class PuzzleController {
 	@Autowired
 	private PuzzleDAO dao;
+	@Autowired
+	private UserDAO uDao;
+	
 
 	@RequestMapping(path = "deleteInventory.do", method = RequestMethod.POST)
 	public ModelAndView destroy(@RequestParam(name = "itemId") Integer inventoryId) {
@@ -57,15 +62,16 @@ public class PuzzleController {
 	@RequestMapping(path = "updateInventory.do", method = RequestMethod.POST)
 	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, InventoryItem updated) {
 		ModelAndView mv = new ModelAndView();
-		try {
-			InventoryItem ii = dao.updateInventory(inventoryId, updated);
+		InventoryItem ii = dao.updateInventory(inventoryId, updated);
+		if (ii != null) {
 			mv.addObject("updated", ii);
-			mv.setViewName("redirect:success");
-		} catch (IllegalArgumentException e) {
-			mv.setViewName("redirect:fail");
-		} catch (NullPointerException n) {
-			mv.setViewName("redirect:fail");
+			mv.setViewName("success");
 		}
+		if (ii == null) {
+			mv.setViewName("edit-inventory");
+			mv.addObject("errorMessage", "You failed to edit to your inventory. Please try again");
+		}
+		
 		return mv;
 	}
 
@@ -183,7 +189,16 @@ public class PuzzleController {
 	@RequestMapping(path = "/puzzleDetails.do", method = RequestMethod.GET)
 	public ModelAndView displayPuzzleDetails(@RequestParam(name = "puzzle") Integer inventoryId) {
 		ModelAndView mv = new ModelAndView();
-
+		InventoryItem ii = dao.getInventoryItemById(inventoryId);
+		Integer puzzleId = ii.getPuzzle().getId();
+        User user = uDao.getUserById(ii.getOwner().getId());
+        List<PuzzleRating> puzRatings = dao.getPuzzleRatingsByPuzzleId(puzzleId);
+        Double d = agrigatePuzzleRating(puzRatings);
+        mv.addObject(puzzleRating);
+        mv.addObject("ii", ii);
+        mv.addObject("user", user);
+        mv.addObject("rating", d);
+        mv.addObject("puzzle",ii.getPuzzle());
 		mv.setViewName("puzzle-details");
 
 		return mv;

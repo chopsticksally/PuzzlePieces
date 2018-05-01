@@ -8,7 +8,7 @@
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container">
 		<h1 class="header">Edit ${item.puzzle.name }</h1>
-		<form action="updateInventory.do">
+		<form action="updateInventory.do" method = "POST">
 			<div class="form-group">
 				<label>Puzzle Name</label> <input type="text" class="form-control"
 					value="${item.puzzle.name }" name="name">
@@ -345,8 +345,12 @@
 					</c:if>
 				</select>
 			</div>
-			<input type="submit" value="Submit">
+			<input type= "hidden" value ="${item.id}">
+			<button type="submit" class="btn btn-outline-info"> Edit</button>
 		</form>
+		<div>
+			<c:if test="${not empty errorMessage}">${errorMessage}</c:if>
+		</div>
 
 	</div>
 	<jsp:include page="script.jsp" />
