@@ -50,7 +50,7 @@ public class RequestController {
 	}
 
 	@RequestMapping(path = "acceptingOrRejectingRequest.do", method = RequestMethod.POST)
-	public ModelAndView acceptingOrRejectingARequest(Request request, @RequestParam(name = "choice") int choice, HttpSession session) {
+	public ModelAndView acceptingOrRejectingARequest(@RequestParam(name ="id") int id,@RequestParam(name ="message") String message, @RequestParam(name = "choice") int choice, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User user = (User) session.getAttribute("userLoggedIn");
 		int userId = user.getId(); 	
@@ -58,13 +58,13 @@ public class RequestController {
 		
 		//MIGHT HAVE TO TRY TO ADD THE REQUEST BACK TO THE USER IN SESSION
 		if (choice == 1) {
-			puzdao.notAcceptRequest(request);
+			puzdao.notAcceptRequest(id, message);
 		}
 		if (choice == 2) {
-			puzdao.acceptRequestToBorrow(request);
+			puzdao.acceptRequestToBorrow(id, message);
 		}
 		if (choice == 3) {
-			puzdao.acceptRequestToOwn(request);
+			puzdao.acceptRequestToOwn(id, message);
 		}
 		List<Borrow> borrows = puzdao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzdao.getInventoryItemsByUserId(userId);

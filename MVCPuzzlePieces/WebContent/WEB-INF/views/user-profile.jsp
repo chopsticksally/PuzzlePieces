@@ -33,16 +33,18 @@
 		</div>
 	</div>
 	<div>
+		<h4 class="header">Requests Received</h4>
 		<c:forEach var="req" items="${userRequests }">
-		<h4 class="header">Requests Recieved</h4>
-			<p>${req.requestee.userName}</p>
+		<c:if test="${req.active == true}">
+			<p>Request for user: ${req.requestee.userName}</p>
 			<p>${req.message }</p>
-			<p>${req.requester.userName }</p>
+			<p>Request from: ${req.requester.userName }</p>
 			<form action="replyToRequest.do" method="get">
     											<input type="hidden" value="${req.id}" name="id">
     											<input type="submit" value="Reply">
     											</form>
 			<br>
+			</c:if>
 		</c:forEach>
 	</div>
 	<div>
@@ -62,8 +64,8 @@
 				<p>${borrows.inventoryItem.puzzle.name }</p>
 				<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 					alt="${borrows.inventoryItem.puzzle.name } Puzzle">
-				<p>${borrows.borrowDate }</p>
-				<p>${borrows.returnDate }</p>
+				<p>Borrow date: ${borrows.borrowDate }</p>
+				<p>Return by: ${borrows.returnDate }</p>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>

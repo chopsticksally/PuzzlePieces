@@ -205,36 +205,29 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	}
 
 	@Override
-	public boolean notAcceptRequest(Request requestUpdate) {
-		try {
-			int requestId = requestUpdate.getId();
-			Request request = em.find(Request.class, requestId);
+	public boolean notAcceptRequest(int id, String message) {
+	
+			Request request = em.find(Request.class, id);
 			if (request != null) {
 				request.setAccepted(false);
-				request.setActive(true);
-				request.setInventoryItem(requestUpdate.getInventoryItem());
-				request.setMessage(requestUpdate.getMessage());
+				request.setActive(false);
+				request.setMessage(message);
 				em.persist(request);
 				em.flush();
 				return true;
 			} else {
 				return false;
 			}
-		} catch (Exception e) {
-			return false;
-		}
 	}
 
 	@Override
-	public boolean acceptRequestToBorrow(Request requestUpdate) {
-		try {
-			int requestId = requestUpdate.getId();
-			Request request = em.find(Request.class, requestId);
+	public boolean acceptRequestToBorrow(int id, String message) {
+	
+			Request request = em.find(Request.class, id);
 			if (request != null) {
 				request.setAccepted(true);
-				request.setActive(true);
-				request.setInventoryItem(requestUpdate.getInventoryItem());
-				request.setMessage(requestUpdate.getMessage());
+				request.setActive(false);
+				request.setMessage(message);
 				em.persist(request);
 				em.flush();
 
@@ -245,47 +238,42 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 				Date convertedReturnDate = Date.from(returnDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 				borrow.setBorrowDate(convertedStartDate);
 				borrow.setReturnDate(convertedReturnDate);
-				borrow.setLoaner(requestUpdate.getRequester());
-				borrow.setInventoryItem(requestUpdate.getInventoryItem());
+				borrow.setLoaner(request.getRequester());
+				borrow.setInventoryItem(request.getInventoryItem());
 				em.persist(borrow);
 				em.flush();
 				return true;
 			}
 			return false;
-		} catch (Exception e) {
-			return false;
-		}
+		
 	}
 
 	@Override
-	public boolean acceptRequestToOwn(Request requestUpdate) {
-		Request request = em.find(Request.class, requestUpdate.getId());
-		try {
+	public boolean acceptRequestToOwn(int id, String message) {
+		Request request = em.find(Request.class, id);
+		
 			if (request != null) {
 				request.setAccepted(true);
-				request.setActive(true);
-				request.setInventoryItem(request.getInventoryItem());
-				request.setMessage(requestUpdate.getMessage());
+				request.setActive(false);
+				request.setMessage(message);
 				em.persist(request);
 				em.flush();
 				Borrow borrow = new Borrow();
 				borrow.setBorrowDate(new Date());
 				borrow.setReturnDate(null);
-				borrow.setInventoryItem(requestUpdate.getInventoryItem());
+				borrow.setInventoryItem(request.getInventoryItem());
 				em.persist(borrow);
 				em.flush();
 				// Add the InventoryItem to the User, add the User to the InventoryItem
-				InventoryItem ii = requestUpdate.getInventoryItem();
-				ii.setOwner(requestUpdate.getRequester());
+				InventoryItem ii = request.getInventoryItem();
+				ii.setOwner(request.getRequester());
 				em.persist(ii);
 				em.flush();
 				return true;
 			}
 			return false;
-		} catch (Exception e) {
-			return false;
+		
 		}
-	}
 
 	@Override
 	public List<InventoryItem> getInventoryItemsByUserId(int userId) {

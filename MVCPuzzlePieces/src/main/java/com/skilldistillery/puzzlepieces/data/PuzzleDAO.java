@@ -33,11 +33,11 @@ public interface PuzzleDAO {
 	
 	Category getCategoryByName(String catName);
 
-	boolean notAcceptRequest(Request requestUpdate);
+	boolean notAcceptRequest(int id, String message);
 
-	boolean acceptRequestToBorrow(Request requestUpdate);
+	boolean acceptRequestToBorrow(int id, String message);
 
-	boolean acceptRequestToOwn(Request requestUpdate);
+	boolean acceptRequestToOwn(int id, String message);
 
 	Request sendOrCreateRequest(int inventoryId, User user, String message);
 
