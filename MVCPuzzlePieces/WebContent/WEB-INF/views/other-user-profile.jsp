@@ -19,7 +19,8 @@
 	<div>
 		<h4 class="header">Current Inventory</h4>
 		<c:forEach var="items" items="${inventoryItems}">
-		 <div class="container-fluid bg-2 text-center">
+		<div class= "container-fluid image row">
+		<!--  <div class="container-fluid bg-2 text-center"> -->
    <p> Puzzle name: ${items.puzzle.name }</p>
    <p>Puzzle Id#: ${items.id}</p>
    <p>Condition:  ${items.condition}</p>
@@ -35,16 +36,21 @@
 	<div>
 		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
-			<c:forEach var="borrows" items="${borrows }">
+		<div class= "container-fluid image row">
+		<!-- <div class="container-fluid bg-2 text-center"> -->
+			<c:forEach var="borrow" items="${borrows }">
 				<p>${borrows.inventoryItem.puzzle.name }</p>
-				<img src="${borrows.inventoryItem.puzzle.imageUrl }width="195" height="160"
-					alt="${borrows.inventoryItem.puzzle.name } Puzzle">
-				<p>${borrows.borrowDate }</p>
-				<p>${borrows.returnDate }</p>
+				<img src="${borrow.inventoryItem.puzzle.imageUrl }width="195" height="160"
+					alt="${borrow.inventoryItem.puzzle.name } Puzzle">
+				<p>${borrow.borrowDate }</p>
+				<p>${borrow.returnDate }</p>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
-	</div>
+		</div>
+		</div>
+	
+	
 
 	<div>
 		<h4 class="header">User Ratings</h4>

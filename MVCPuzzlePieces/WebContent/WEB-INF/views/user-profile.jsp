@@ -30,24 +30,20 @@
 		</div>
 
 		<c:forEach var="items" items="${inventoryItems}">
-	
-		 <div class="container-fluid bg-2 text-center">
+			<div class= "container-fluid image row">
+		<!--  <div class="container-fluid bg-2 text-center "> -->
 			<p>${items.puzzle.name }</p>
 			<img type ="center" alt="${items.puzzle.name } Puzzle Photo"
 				src="${items.puzzle.imageUrl }">
 				<br>
 				
-			<p><a href="userInventoryDetails.do?itemId=${items.id }"><button 
+		<p><a href="userInventoryDetails.do?itemId=${items.id }"><button 
 					class="btn">View Puzzle Details</button></a></p>
 </div>
 </div>
 		</c:forEach>
 
 		
-		<div class="container bg-1 text-center">
-			<a href="addInventoryPage.do"><button class="btn">Add
-					Inventory</button></a>
-		</div>
 
 	</div>
 	<div>
@@ -84,6 +80,7 @@
 		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
 			<c:forEach var="borrows" items="${borrows }">
+			<div class= "container-fluid image row">
 				<p>${borrows.inventoryItem.puzzle.name }</p>
 				<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 					alt="${borrows.inventoryItem.puzzle.name } Puzzle">
@@ -93,7 +90,7 @@
 		</c:if>
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
 	</div>
-
+</div>
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
