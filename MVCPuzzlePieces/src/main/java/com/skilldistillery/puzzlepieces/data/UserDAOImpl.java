@@ -137,8 +137,8 @@ public class UserDAOImpl implements UserDAO {
 		UserRating addUserRating = new UserRating();
 		User user = em.find(User.class, userId);
 		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-//		userRating.setRatedUser(user);
-//		userRating.setRaterUser(userLoggedIn);
+		// userRating.setRatedUser(user);
+		// userRating.setRaterUser(userLoggedIn);
 		addUserRating.setComment(userRating.getComment());
 		addUserRating.setRating(userRating.getRating());
 		addUserRating.setRaterUser(userLoggedIn);
@@ -153,8 +153,8 @@ public class UserDAOImpl implements UserDAO {
 		PuzzleRating addPuzzleRating = new PuzzleRating();
 		Puzzle puzzle = em.find(Puzzle.class, puzzleId);
 		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-//		puzzleRating.setPuzzle(puzzle);
-//		puzzleRating.setUser(userLoggedIn);
+		// puzzleRating.setPuzzle(puzzle);
+		// puzzleRating.setUser(userLoggedIn);
 		addPuzzleRating.setComment(puzzleRating.getComment());
 		addPuzzleRating.setUser(userLoggedIn);
 		addPuzzleRating.setPuzzle(puzzle);
@@ -169,11 +169,16 @@ public class UserDAOImpl implements UserDAO {
 		InventoryItem item = em.find(InventoryItem.class, invId);
 		Puzzle puzzle = item.getPuzzle();
 		String query = "select pr from PuzzleRating pr where pr.puzzle.id = :id";
-		List<PuzzleRating> puzzleRatings = em.createQuery(query, PuzzleRating.class).setParameter("id", puzzle.getId()).getResultList();
+		List<PuzzleRating> puzzleRatings = em.createQuery(query, PuzzleRating.class).setParameter("id", puzzle.getId())
+				.getResultList();
 		Boolean ratedThePuzzle = false;
-		for (PuzzleRating puzzleRating : puzzleRatings) {
-			if(puzzleRating.getUser().getId() == user.getId()) {
-				ratedThePuzzle = true;
+		if (puzzleRatings.size() > 0) {
+			for (PuzzleRating puzzleRating : puzzleRatings) {
+				if (puzzleRating != null && puzzleRating.getUser() != null && user != null) {
+					if (puzzleRating.getUser().getId() == user.getId()) {
+						ratedThePuzzle = true;
+					}
+				}
 			}
 		}
 		return ratedThePuzzle;
@@ -183,14 +188,16 @@ public class UserDAOImpl implements UserDAO {
 	public Boolean checkIfUserHasRatedUserBefore(User user, int userId) {
 		User ratedUser = em.find(User.class, userId);
 		String query = "select ur from UserRating ur where ur.ratedUser.id = :id";
-		List<UserRating> userRatings = em.createQuery(query, UserRating.class).setParameter("id", ratedUser.getId()).getResultList();
+		List<UserRating> userRatings = em.createQuery(query, UserRating.class).setParameter("id", ratedUser.getId())
+				.getResultList();
 		Boolean ratedTheUser = false;
-		for (UserRating userRating : userRatings) {
-			if(userRating.getRaterUser().getId() == user.getId()) {
-				ratedTheUser = true;
+		if (userRatings.size() > 0) {
+			for (UserRating userRating : userRatings) {
+				if (userRating.getRaterUser().getId() == user.getId()) {
+					ratedTheUser = true;
+				}
 			}
 		}
-		
 		return ratedTheUser;
 	}
 
@@ -198,18 +205,18 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> searchUserByUserRating(int rating) {
 		String query = "select distinct(u) from User u join fetch u.ratingsOfUser";
 		List<User> returnedList = new ArrayList<>();
-		List<User>allUsers = em.createQuery(query, User.class).getResultList();
+		List<User> allUsers = em.createQuery(query, User.class).getResultList();
 		for (User user : allUsers) {
-			List<UserRating>urs = user.getRatingsOfUser();
+			List<UserRating> urs = user.getRatingsOfUser();
 			Double check = agrigateUserRating(urs);
-			if(check >= rating) {
+			if (check >= rating) {
 				returnedList.add(user);
 			}
 		}
-		
+
 		return returnedList;
 	}
-	
+
 	public Double agrigateUserRating(List<UserRating> userRatings) {
 		int rating = 0;
 		double userAverage = 0.00;
@@ -217,9 +224,9 @@ public class UserDAOImpl implements UserDAO {
 			rating = rating + userRating.getRating();
 		}
 		if (userRatings.size() != 0) {
-			double ratingP = (rating*100)/100;
+			double ratingP = (rating * 100) / 100;
 			userAverage = ratingP / userRatings.size();
-			userAverage = (Math.round(userAverage*100.0))/100.0;
+			userAverage = (Math.round(userAverage * 100.0)) / 100.0;
 		}
 		return userAverage;
 

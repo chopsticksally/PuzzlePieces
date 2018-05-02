@@ -32,7 +32,6 @@ public class RatingController {
 	public ModelAndView puzzleRatingPage(@RequestParam(name = "id") int inventoryId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-//		Boolean checkIfRatedBefore = userdao.checkIfUserHasRatedPuzzleBefore(userLoggedIn, inventoryId);
 		
 		InventoryItem ii = pdao.getInventoryItemById(inventoryId);
 		User user = userdao.getUserById(ii.getOwner().getId());
@@ -42,20 +41,30 @@ public class RatingController {
 		mv.addObject("user", user);
 		mv.addObject("rating", d);
 		mv.addObject("puzzle",ii.getPuzzle());
-
+		Boolean checkIfRatedBefore = userdao.checkIfUserHasRatedPuzzleBefore(userLoggedIn, inventoryId);
+		if(checkIfRatedBefore) {
+			mv.setViewName("already-rated");
+		}
+		else {
 		mv.setViewName("puzzle-rating");
-
+		}
 
 		return mv;
 	}
 
 	@RequestMapping(path = "userRatingPage.do", method = RequestMethod.GET)
-	public ModelAndView userRatingPage(@RequestParam(name = "id") int userId) {
+	public ModelAndView userRatingPage(@RequestParam(name = "id") int userId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
 		User user = userdao.getUserById(userId);
 		mv.addObject("user", user);
+		Boolean checkIfRatedBefore = userdao.checkIfUserHasRatedUserBefore(userLoggedIn, userId);
+		if(checkIfRatedBefore) {
+			mv.setViewName("already-rated");
+		}
+		else {
 		mv.setViewName("user-rating");
-
+		}
 		return mv;
 	}
 
