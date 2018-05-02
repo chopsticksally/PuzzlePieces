@@ -455,11 +455,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `puzzlepieces`;
-INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (1, 2, 1, '\'Sure thing! Thanks for the request!\'', 1, 1, 1);
-INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (2, 4, 2, '\'I like this one! Go for it!\'', 3, 1, 1);
-INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (3, 3, 4, '\'Here ya go!\'', 9, 1, 1);
-INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (4, 4, 1, '\'Yes, it\'s on the way!\'', 6, 1, 1);
-INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (5, 3, 1, '\'Yep this is a fun one!\'', 2, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (1, 2, 1, '\'Can I have this puzzle?\'', 1, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (2, 4, 2, '\'This puzzle is neat, can I borrow it?\'', 3, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (3, 3, 4, '\'I remember this puzzle from my childhood, can I have it?\'', 9, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (4, 4, 1, '\'I really like this puzzle! Can I borrow it?\'', 6, 1, 1);
+INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (5, 3, 1, '\'Wow! I\'d like to borrow this puzzle!\'', 2, 1, 1);
 INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (6, 1, 2, '\'No I don\'t like you\'', 7, 0, 0);
 INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (7, 1, 4, '\'Sorry I\'m holding on to this for a bit\'', 5, 0, 0);
 INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (8, 2, 3, '\'Don\'t want to\'', 8, 0, 0);
