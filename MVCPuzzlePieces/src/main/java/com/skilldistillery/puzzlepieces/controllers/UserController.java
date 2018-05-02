@@ -313,7 +313,7 @@ public class UserController {
 		if (userRatings.size() != 0) {
 			double ratingP = (rating*100)/100;
 			userAverage = ratingP / userRatings.size();
-			userAverage = Math.round(userAverage*100.0)/100.0;
+			userAverage = (Math.round(userAverage*100.0))/100.0;
 		}
 		return userAverage;
 

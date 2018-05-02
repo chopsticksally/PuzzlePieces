@@ -105,7 +105,9 @@ public class RatingController {
 			rating = rating + puzzleRating.getRating();
 		}
 		if (puzRatings.size() != 0) {
-			puzzleAverage = rating / puzRatings.size();
+			double ratingP = (rating*100)/100;
+			puzzleAverage = ratingP / puzRatings.size();
+			puzzleAverage = (Math.round(puzzleAverage*100.0))/100;
 		}
 		return puzzleAverage;
 
@@ -120,7 +122,7 @@ public class RatingController {
 		if (userRatings.size() != 0) {
 			double ratingP = (rating*100)/100;
 			userAverage = ratingP / userRatings.size();
-			userAverage = Math.round(userAverage*100.0)/100.0;
+			userAverage = (Math.round(userAverage*100.0))/100.0;
 		}
 		return userAverage;
 

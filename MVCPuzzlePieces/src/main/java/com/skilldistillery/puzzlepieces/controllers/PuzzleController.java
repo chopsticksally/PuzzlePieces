@@ -203,12 +203,14 @@ public class PuzzleController {
 	}
 	public Double agrigatePuzzleRating(List<PuzzleRating> puzRatings) {
 		int rating = 0;
-		double puzzleAverage = 0;
+		double puzzleAverage = 0.00;
 		for (PuzzleRating puzzleRating : puzRatings) {
 			rating = rating + puzzleRating.getRating();
 		}
 		if (puzRatings.size() != 0) {
-			puzzleAverage = rating / puzRatings.size();
+			double ratingP = (rating*100)/100;
+			puzzleAverage = ratingP / puzRatings.size();
+			puzzleAverage = Math.round(puzzleAverage*100.0)/100;
 		}
 		return puzzleAverage;
 
