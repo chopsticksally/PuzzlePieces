@@ -13,7 +13,7 @@
 		<li class="nav-item"><a class="nav-link" href="searchUserPage.do">Search
 				Users</a></li>
 		<form action="logout.do">
-			<input type="hidden" name="id" value="${restaurant.id }" />
+			<input type="hidden" name="id" value="${userLoggedIn.id }" />
 			<button type="submit" class="btn btn-secondary btn-sm"
 				onclick=" return confirm('Are you sure you want to logout?')">Logout</button>
 		</form>
