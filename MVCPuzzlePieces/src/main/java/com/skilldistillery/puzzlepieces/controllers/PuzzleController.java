@@ -82,7 +82,11 @@ public class PuzzleController {
 	public ModelAndView userInventoryDetailsPage(@RequestParam(name = "itemId") Integer itemId) {
 		ModelAndView mv = new ModelAndView();
 		InventoryItem ii = dao.getInventoryItemById(itemId);
+		List<PuzzleRating> puzzleRatings = dao.getPuzzleRatingsByPuzzleId(ii.getPuzzle().getId());
+		Double rating = agrigatePuzzleRating(puzzleRatings);
 		mv.addObject("item", ii);
+		mv.addObject("puzzleRatings", puzzleRatings);
+		mv.addObject("rating", rating);
 		mv.setViewName("user-inventory");
 		return mv;
 	}
