@@ -132,22 +132,32 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public UserRating createUserRating(int userId, UserRating userRating, HttpSession session) {
+		UserRating addUserRating = new UserRating();
 		User user = em.find(User.class, userId);
 		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-		userRating.setRatedUser(user);
-		userRating.setRaterUser(userLoggedIn);
-		em.persist(userRating);
+//		userRating.setRatedUser(user);
+//		userRating.setRaterUser(userLoggedIn);
+		addUserRating.setComment(userRating.getComment());
+		addUserRating.setRating(userRating.getRating());
+		addUserRating.setRaterUser(userLoggedIn);
+		addUserRating.setRatedUser(user);
+		em.persist(addUserRating);
 		em.flush();
 		return userRating;
 	}
 
 	@Override
 	public PuzzleRating createPuzzleRating(int puzzleId, PuzzleRating puzzleRating, HttpSession session) {
+		PuzzleRating addPuzzleRating = new PuzzleRating();
 		Puzzle puzzle = em.find(Puzzle.class, puzzleId);
 		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-		puzzleRating.setPuzzle(puzzle);
-		puzzleRating.setUser(userLoggedIn);
-		em.persist(puzzleRating);
+//		puzzleRating.setPuzzle(puzzle);
+//		puzzleRating.setUser(userLoggedIn);
+		addPuzzleRating.setComment(puzzleRating.getComment());
+		addPuzzleRating.setUser(userLoggedIn);
+		addPuzzleRating.setPuzzle(puzzle);
+		addPuzzleRating.setRating(puzzleRating.getRating());
+		em.persist(addPuzzleRating);
 		em.flush();
 		return puzzleRating;
 	}
