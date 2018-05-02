@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp" />
@@ -47,7 +48,7 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
-		<h5>${userInfo.user.userName}'s Rating: ${rating }</h5>
+		<h5>${userInfo.user.userName}'s Rating: ${rating } out of ${fn:length(userRatings)} ratings</h5>
 			<c:forEach var="ratings" items="${userRatings }">
 				<p>User that Rated: ${ratings.raterUser.userName}</p>
 				<p>Rating: ${ratings.rating}</p>
