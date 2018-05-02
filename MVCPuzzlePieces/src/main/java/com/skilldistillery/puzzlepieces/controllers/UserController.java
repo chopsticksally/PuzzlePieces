@@ -93,8 +93,7 @@ public class UserController {
 		if (userCheck == true && user.getPassword().equals(confirm)) {
 			mv.addObject("errorMessage", "Username is taken, try again with a different username");
 			mv.setViewName("register");
-		}
-		else if (!user.getPassword().equals(confirm)) {
+		} else if (!user.getPassword().equals(confirm)) {
 			mv.addObject("errorMessage", "Password does not match, please try again.");
 			mv.addObject("username", user.getUserName());
 			mv.setViewName("register");
@@ -104,7 +103,7 @@ public class UserController {
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
 			mv.addObject("inventoryItems", ii);
 			mv.setViewName("logged-in-home");
-			
+
 		}
 		return mv;
 	}
@@ -139,27 +138,42 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "/updateUser.do", method = RequestMethod.POST)
-	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId, User user, HttpSession session) {
+	public ModelAndView updateUserInfo(@RequestParam(name = "id") Integer userId,
+			@RequestParam(name = "passwordConfirm") String confirm, User user, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		user = dao.updateUser(userId, user);
-		session.setAttribute("userLoggedIn", user);
-		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
-		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
-		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
-		Double rating = agrigateUserRating(userRatings);
-		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
-		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
-		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
-		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
-		mv.addObject("borrows", borrows);
-		mv.addObject("inventoryItems", inventoryItems);
-		mv.addObject("userRatings", userRatings);
-		mv.addObject("userRequests", userRequests);
-		mv.addObject("sentRequests", sentRequests);
-		mv.addObject("userSubmittedRatings", userSubmittedRatings);
-		mv.addObject("userInfo", userInfo);
-		mv.addObject("rating", rating);
-		mv.setViewName("user-profile");
+		boolean userCheck = dao.isUserNameTaken(user.getUserName());
+		if (user.getPassword().equals("")) {
+			mv.addObject("errorMessage", "You have to enter a new password.");
+			mv.setViewName("edit-profile");
+		}
+		if (userCheck == true && user.getPassword().equals(confirm)) {
+			mv.addObject("errorMessage", "Username is taken, try again with a different username.");
+			mv.setViewName("edit-profile");
+		} else if (!user.getPassword().equals(confirm)) {
+			mv.addObject("errorMessage", "Password does not match, please try again.");
+			mv.addObject("username", user.getUserName());
+			mv.setViewName("edit-profile");
+		} else {
+			user = dao.updateUser(userId, user);
+			session.setAttribute("userLoggedIn", user);
+			List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
+			List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
+			List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+			Double rating = agrigateUserRating(userRatings);
+			List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
+			List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
+			List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
+			UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
+			mv.addObject("borrows", borrows);
+			mv.addObject("inventoryItems", inventoryItems);
+			mv.addObject("userRatings", userRatings);
+			mv.addObject("userRequests", userRequests);
+			mv.addObject("sentRequests", sentRequests);
+			mv.addObject("userSubmittedRatings", userSubmittedRatings);
+			mv.addObject("userInfo", userInfo);
+			mv.addObject("rating", rating);
+			mv.setViewName("user-profile");
+		}
 
 		return mv;
 
