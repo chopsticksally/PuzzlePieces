@@ -7,19 +7,45 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
+	<div class="container">
+	<div class="container">
+		<div class="wrapper">
 	<h1 class="header">Update your profile</h1>
+			<form action="updateUser.do" method="post" class="form-signin">
+				<h3 class="form-signin-heading">Update Username & Password</h3>
+				<hr class="colorgraph">
+				<input type= "hidden" value="${userLoggedIn.id}"name= "id">
+					<br> <label for="userName"> User name:</label>
+				 <input type="text" class="form-control" name="userName"
+					value="${userLoggedIn.userName}" required="" autofocus="" min="1" max="100"/> 
+				<input
+					type="password" class="form-control" name="password"
+					value="${userLoggedIn.password }"required="" />
+				<input type="password"
+					class="form-control" name="passwordConfirm"
+					placeholder="Confirm Password" required="" />
+
+				<button class="btn btn-lg btn-info btn-block" name="Submit"
+					 type="Submit">Update</button>
+				<c:if test="${not empty errorMessage }">
+					<h4 class="errorMessage">${errorMessage}</h4>
+				</c:if>
+			</form>
+		</div>
+	</div>
 	
-	<form action= "updateUser.do" method= "POST">
+	
+<%-- 	<form action= "updateUser.do" method= "POST">
 	<input type= "hidden" value="${userLoggedIn.id}"name= "id">
 		<label for="userName"> User name:</label>
-	    <input type="text" value="${userLoggedIn.userName}"min="1" max="100" name="userName"> <br>
+	    <input type="text" value="${userLoggedIn.userName} name="userName"> <br>
 <br>
 		<label for="password">Password:</label>
 		<input type="text" value="${userLoggedIn.password}" min="1" max="100" name="password"> <br>
 		<input type="submit" value="update">
 	</form>	
 	<br>
-
+ --%>
 
 
 	<form action= "updateUserInformation.do" method= "POST">
@@ -54,6 +80,7 @@
 		<input type="submit" value="update">
 		
 	</form>
+	</div>
 	
 	
 	<jsp:include page="script.jsp" />
