@@ -10,6 +10,7 @@
 	<div class="container">
 		<c:if test="${not empty inventoryItems }">
 			<c:forEach var="ii" items="${inventoryItems }">
+				<c:if test="${ii.owner.id != userLoggedIn.id }">
 				<p>
 					<a href="puzzleDetails.do?puzzle=${ii.id }"> ${ii.puzzle.name }</a>
 				</p>
@@ -18,6 +19,7 @@
 						alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }">
 					</a>
 				</p>
+				</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty inventoryItems }">No Puzzles Available for Exchange</c:if>
