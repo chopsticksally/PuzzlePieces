@@ -35,7 +35,7 @@
 	 <div class="container-fluid bg-2 text-center "> 
 			<p>${items.puzzle.name }</p>
 			<img type ="center" alt="${items.puzzle.name } Puzzle Photo"
-				src="${items.puzzle.imageUrl }">
+				src="${items.puzzle.imageUrl }" width="295" height="260">
 				<br>
 				
 		<p><a href="userInventoryDetails.do?itemId=${items.id }"><button 
