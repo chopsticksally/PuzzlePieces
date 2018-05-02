@@ -408,11 +408,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `puzzlepieces`;
-INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (1, 1, '\'2018-01-01\'', '\'2018-02-01\'', 2);
-INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (2, 3, '\'2018-02-01\'', '\'2018-03-01\'', 4);
-INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (3, 9, '\'2018-03-01\'', '\'2018-04-01\'', 3);
-INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (4, 6, '\'2018-04-01\'', '\'2018-05-01\'', 4);
-INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (5, 2, '\'2018-05-01\'', '\'2018-06-01\'', 3);
+INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (1, 1, '2018-01-01', '2018-02-01', 2);
+INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (2, 3, '2018-02-01', '2018-03-01', 4);
+INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (3, 9, '2018-03-01', '2018-04-01', 3);
+INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (4, 6, '2018-04-01', '2018-05-01', 4);
+INSERT INTO `borrow` (`id`, `inventory_item_id`, `borrow_date`, `return_date`, `loaner_id`) VALUES (5, 2, '2018-05-01', '2018-06-01', 3);
 
 COMMIT;
 
@@ -467,3 +467,4 @@ INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `invento
 INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (10, 2, 4, '\'Nope\'', 5, 0, 0);
 
 COMMIT;
+
