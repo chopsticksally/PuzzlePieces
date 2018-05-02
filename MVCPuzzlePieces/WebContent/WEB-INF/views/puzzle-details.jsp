@@ -9,9 +9,10 @@
 	<h1 class="header">Puzzle Details</h1>
 	<table>
 		<tr>
-			<td><img src="${puzzle.imageUrl}" width="275" height="250"
+			<td><img src="${puzzle.imageUrl}" width="295" height="260"
 				alt="${puzzle.name}"></td>
-			<td>
+			</tr>
+			</table>
 				<p>
 				<h2>About this puzzle:</h2>
 				</p>
@@ -25,7 +26,7 @@
 						<td><c:forEach var="cat" items="${puzzle.categories}">
 											${cat.name }
 											</c:forEach></td>
-						<%-- <td>${puzzle.categories}</td> --%>
+						
 					</tr>
 					<tr>
 						<td>Puzzle size:</td>
@@ -45,13 +46,16 @@
 					</tr>
 
 				</table>
+			
 				<c:if test="${user.id != userLoggedIn.id }">
+				
 				<div class="Request">
 					<form action="makeRequest.do" method="get">
 						<input type="hidden" value="${ii.id }"
 							name="id"> <input type="submit"
 							value="Request This Puzzle!">
 					</form>
+					<br>
 				</div>
 				</c:if>
 				<div class="Rate Puzzle">
@@ -59,12 +63,15 @@
 						<input type="hidden" value="${ii.id }"
 							name="id"> <input type="submit" value="Rate">
 					</form>
+					<br>
 				</div>
 				<c:if test="${user.id != userLoggedIn.id }">
 				<div class="See Owner Profile">
 					<form action="otherUserProfile.do" method="get">
 						<input type="hidden" value="${user.id }" name="userId"> <input
 							type="submit" value="See Owner">
+					<br>
+					
 					</form>
 				</div> 
 				</c:if>

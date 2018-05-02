@@ -98,3 +98,10 @@ input[type="password"] {
 		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
 		87.5%, #62c2e4 87.5%, #62c2e4);
 }
+td{
+	 padding: 10px;
+    text-align: center;
+}
+
+	
+}

@@ -37,12 +37,12 @@
 		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
 			<c:forEach var="borrow" items="${borrows }">
-			<div class= "container-fluid"">
+			<div class="container-fluid text-left">
 				<p>${borrow.inventoryItem.puzzle.name }</p>
-				<img src="${borrow.inventoryItem.puzzle.imageUrl }width="195" height="160"
+				<img src="${borrow.inventoryItem.puzzle.imageUrl }"
 					alt="${borrow.inventoryItem.puzzle.name } Puzzle">
-				<p><fmt:formatDate value="${borrow.borrowDate }" pattern="yyyy-MM-dd"/></p>
-				<p><fmt:formatDate value="${borrow.returnDate }" pattern="yyyy-MM-dd"/></p>
+				<p>Borrow date:<fmt:formatDate value="${borrow.borrowDate }" pattern="yyyy-MM-dd"/></p>
+				<p>Return by:<fmt:formatDate value="${borrow.returnDate }" pattern="yyyy-MM-dd"/></p>
 				</div>
 			</c:forEach>
 	
