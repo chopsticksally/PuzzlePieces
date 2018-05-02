@@ -85,9 +85,6 @@ public class RatingController {
 		ModelAndView mv = new ModelAndView();
 		userdao.createPuzzleRating(puzzleId, puzzleRating, session);
 		InventoryItem ii = pdao.getInventoryItemById(inventoryId);
-		System.out.println("***************************************************");
-		System.out.println(puzzleRating.getRating() + " " + puzzleRating.getComment());
-		System.out.println("***************************************************");
 		User user = userdao.getUserById(ii.getOwner().getId());
 		List<PuzzleRating> puzRatings = pdao.getPuzzleRatingsByPuzzleId(puzzleId);
 		Double d = agrigatePuzzleRating(puzRatings);

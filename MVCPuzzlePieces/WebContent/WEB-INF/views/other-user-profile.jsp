@@ -47,10 +47,11 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
+		<h5>${userInfo.user.userName}'s Rating: </h5>
 			<c:forEach var="ratings" items="${userRatings }">
-				<p>${ratings.raterUser.userName}</p>
-				<p>${ratings.rating}</p>
-				<p>${ratings.comment}</p>
+				<p>User that Rated: ${ratings.raterUser.userName}</p>
+				<p>Rating: ${ratings.rating}</p>
+				<p>Comment: ${ratings.comment}</p>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty userRatings}">No ratings available</c:if>

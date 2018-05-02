@@ -19,6 +19,7 @@ import com.skilldistillery.puzzlepieces.data.UserDAO;
 import com.skilldistillery.puzzlepieces.entities.Address;
 import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
+import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
@@ -276,6 +277,7 @@ public class UserController {
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		
 		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
 		mv.addObject("borrows", borrows);
 		mv.addObject("inventoryItems", inventoryItems);
@@ -288,5 +290,18 @@ public class UserController {
 	@RequestMapping(path = "/*", method = RequestMethod.GET)
 	public String fallback() {
 		return "fallback";
+	}
+	
+	public Double agrigateUserRating(List<UserRating> userRatings) {
+		int rating = 0;
+		double userAverage = 0;
+		for (UserRating userRating : userRatings) {
+			rating = rating + userRating.getRating();
+		}
+		if (userRatings.size() != 0) {
+			userAverage = rating / userRatings.size();
+		}
+		return userAverage;
+
 	}
 }

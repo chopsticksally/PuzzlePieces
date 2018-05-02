@@ -74,10 +74,11 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
+		<h5>Your Rating: </h5>
 			<c:forEach var="ratings" items="${userRatings }">
-				<p>${ratings.raterUser.userName}</p>
-				<p>${ratings.rating}</p>
-				<p>${ratings.comment}</p>
+				<p>User that rated you: ${ratings.raterUser.userName}</p>
+				<p>Rating they gave you: ${ratings.rating}</p>
+				<p>Comment: ${ratings.comment}</p>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty userRatings}">No ratings available</c:if>
@@ -87,9 +88,9 @@
 		<h4 class="header">User Submitted Ratings</h4>
 		<c:if test="${not empty userSubmittedRatings}">
 			<c:forEach var="submittedRatings" items="${userSubmittedRatings }">
-				<p>${submittedRatings.ratedUser.userName}</p>
-				<p>${submittedRatings.rating}</p>
-				<p>${submittedRatings.comment}</p>
+				<p>User Rated: ${submittedRatings.ratedUser.userName}</p>
+				<p>Gave this user: ${submittedRatings.rating}</p>
+				<p>Comment: ${submittedRatings.comment}</p>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty userSubmittedRatings}">No submitted ratings</c:if>
