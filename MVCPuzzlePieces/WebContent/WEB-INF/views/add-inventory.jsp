@@ -19,7 +19,7 @@
 					name="imageUrl">
 			</div>
 			<div class="form-group">
-				<label for="category">Category:</label> <select name="category"
+				<label for="categoryName">Category:</label> <select name="categoryName"
 					class="form-control">
 
 					<option value="Pets">Pets</option>

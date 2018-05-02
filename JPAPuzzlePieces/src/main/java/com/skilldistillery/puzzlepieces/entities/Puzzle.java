@@ -3,6 +3,7 @@ package com.skilldistillery.puzzlepieces.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,7 +32,7 @@ public class Puzzle {
 	@OneToMany(mappedBy = "puzzle")
 	private List<PuzzleRating>puzzleRatings;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name="category_puzzle", 
 	joinColumns=@JoinColumn(name="puzzle_id"),
 	inverseJoinColumns=@JoinColumn(name="category_id"))

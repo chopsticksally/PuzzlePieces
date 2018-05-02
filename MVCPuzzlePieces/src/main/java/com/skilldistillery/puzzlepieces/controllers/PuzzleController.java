@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.puzzlepieces.data.PuzzleDAO;
 import com.skilldistillery.puzzlepieces.data.UserDAO;
+import com.skilldistillery.puzzlepieces.entities.Category;
 import com.skilldistillery.puzzlepieces.entities.Condition;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Puzzle;
@@ -26,7 +27,6 @@ public class PuzzleController {
 	private PuzzleDAO dao;
 	@Autowired
 	private UserDAO uDao;
-	
 
 	@RequestMapping(path = "deleteInventory.do", method = RequestMethod.POST)
 	public ModelAndView destroy(@RequestParam(name = "itemId") Integer inventoryId) {
@@ -60,7 +60,8 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "updateInventory.do", method = RequestMethod.POST)
-	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, Puzzle updated, @RequestParam(name = "condition") Integer condition) {
+	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, Puzzle updated,
+			@RequestParam(name = "condition") Integer condition) {
 		ModelAndView mv = new ModelAndView();
 		Condition con = null;
 		if (condition == 1) {
@@ -85,7 +86,7 @@ public class PuzzleController {
 			mv.setViewName("edit-inventory");
 			mv.addObject("errorMessage", "You failed to edit to your inventory. Please try again");
 		}
-		
+
 		return mv;
 	}
 
@@ -95,7 +96,8 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
-	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition, HttpSession session) {
+	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition,
+			 Category categoryName, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Condition con = null;
 		if (condition == 1) {
@@ -111,7 +113,7 @@ public class PuzzleController {
 			con = Condition.WORN;
 		}
 
-		InventoryItem added = dao.addInventory(puzzle, con, (User) session.getAttribute("userLoggedIn"));
+		InventoryItem added = dao.addInventory(puzzle, con, (User) session.getAttribute("userLoggedIn"), categoryName);
 		if (added != null) {
 			mv.addObject("added", added);
 			mv.setViewName("success");
@@ -163,8 +165,9 @@ public class PuzzleController {
 		return mv;
 
 	}
+
 	@RequestMapping(path = "searchPuzzleByRating.do", method = RequestMethod.GET)
-	public ModelAndView searchPuzzleByRating(@RequestParam(name = "puzzleRating")int rating) {
+	public ModelAndView searchPuzzleByRating(@RequestParam(name = "puzzleRating") int rating) {
 		ModelAndView mv = new ModelAndView();
 		List<InventoryItem> inventoryItems = dao.searchPuzzleByRating(rating);
 		System.out.println("********************************************");
@@ -173,7 +176,7 @@ public class PuzzleController {
 		mv.addObject("puzzles", inventoryItems);
 		mv.setViewName("search-puzzle-results");
 		return mv;
-		
+
 	}
 
 	@RequestMapping(path = "updateRequest.do", method = RequestMethod.POST)
@@ -202,17 +205,18 @@ public class PuzzleController {
 		ModelAndView mv = new ModelAndView();
 		InventoryItem ii = dao.getInventoryItemById(inventoryId);
 		Integer puzzleId = ii.getPuzzle().getId();
-        User user = uDao.getUserById(ii.getOwner().getId());
-        List<PuzzleRating> puzRatings = dao.getPuzzleRatingsByPuzzleId(puzzleId);
-        Double d = agrigatePuzzleRating(puzRatings);
-        mv.addObject("ii", ii);
-        mv.addObject("user", user);
-        mv.addObject("rating", d);
-        mv.addObject("puzzle",ii.getPuzzle());
+		User user = uDao.getUserById(ii.getOwner().getId());
+		List<PuzzleRating> puzRatings = dao.getPuzzleRatingsByPuzzleId(puzzleId);
+		Double d = agrigatePuzzleRating(puzRatings);
+		mv.addObject("ii", ii);
+		mv.addObject("user", user);
+		mv.addObject("rating", d);
+		mv.addObject("puzzle", ii.getPuzzle());
 		mv.setViewName("puzzle-details");
 
 		return mv;
 	}
+
 	public Double agrigatePuzzleRating(List<PuzzleRating> puzRatings) {
 		int rating = 0;
 		double puzzleAverage = 0.00;
@@ -220,9 +224,9 @@ public class PuzzleController {
 			rating = rating + puzzleRating.getRating();
 		}
 		if (puzRatings.size() != 0) {
-			double ratingP = (rating*100)/100;
+			double ratingP = (rating * 100) / 100;
 			puzzleAverage = ratingP / puzRatings.size();
-			puzzleAverage = Math.round(puzzleAverage*100.0)/100;
+			puzzleAverage = Math.round(puzzleAverage * 100.0) / 100;
 		}
 		return puzzleAverage;
 
