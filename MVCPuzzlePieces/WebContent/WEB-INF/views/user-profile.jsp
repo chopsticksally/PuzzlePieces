@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp" />
@@ -11,7 +11,7 @@
 
 	<h3 class="header">User: ${userLoggedIn.userName}</h3>
 	<div class="container">
-	
+
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
 			<p>${userInfo.address.city }</p>
@@ -20,6 +20,10 @@
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
+		<div>
+			<a href="addInventoryPage.do"><button
+					class="btn btn-info btn-lg btn-block">Add Inventory</button></a>
+		</div>
 		<c:forEach var="items" items="${inventoryItems}">
 			<p>${items.puzzle.name }</p>
 			<a href="userInventoryDetails.do?itemId=${items.id }"><img
@@ -30,23 +34,19 @@
 
 
 		</c:forEach>
-		<div>
-			<a href="addInventoryPage.do"><button class="btn">Add
-					Inventory</button></a>
-		</div>
 	</div>
 	<div>
 		<h4 class="header">Requests Received</h4>
 		<c:forEach var="req" items="${userRequests }">
-		<c:if test="${req.active == true}">
-			<p>Request from: ${req.requester.userName }</p>			
-			<p>User Comment: ${req.message }</p>
-			<p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
-			<form action="replyToRequest.do" method="get">
-    											<input type="hidden" value="${req.id}" name="id">
-    											<input type="submit" value="Reply">
-    											</form>
-			<br>
+			<c:if test="${req.active == true}">
+				<p>Request from: ${req.requester.userName }</p>
+				<p>User Comment: ${req.message }</p>
+				<p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
+				<form action="replyToRequest.do" method="get">
+					<input type="hidden" value="${req.id}" name="id"> <input
+						type="submit" value="Reply">
+				</form>
+				<br>
 			</c:if>
 		</c:forEach>
 	</div>
@@ -77,7 +77,8 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
-		<h5>Your Rating: ${rating } out of ${fn:length(userRatings)} ratings</h5>
+			<h5>Your Rating: ${rating } out of ${fn:length(userRatings)}
+				ratings</h5>
 			<c:forEach var="ratings" items="${userRatings }">
 				<p>User that rated you: ${ratings.raterUser.userName}</p>
 				<p>Rating they gave you: ${ratings.rating}</p>
