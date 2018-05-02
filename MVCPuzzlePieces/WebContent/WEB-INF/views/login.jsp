@@ -7,26 +7,27 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="public-navbar.jsp" />
-
-	<h1 class="header">User Login</h1>
 	<div class="container">
-		<form action="loggingIn.do" method="post">
-			<div class="form-group">
-				<label for="userName">Username:</label> <input type="text"
-					placeholder="username" class="form-control" min="1" max="100"
-					name="userName">
-			</div>
-			<div class="form-group">
-				<label for="password">Password:</label> <input type="password"
-					placeholder="password" class="form-control" min="1" max="100"
-					name="password">
-			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
+		<div class="wrapper">
+			<form action="loggingIn.do" method="post" name="Login_Form"
+				class="form-signin">
+				<h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
+				<hr class="colorgraph">
+				<br> <input type="text" class="form-control" name="userName"
+					placeholder="Username" required="" autofocus="" /> <input
+					type="password" class="form-control" name="password"
+					placeholder="Password" required="" />
 
-		</form>
-		<c:if test="${not empty errorMessage }">
-			<h4 class="loginError">${errorMessage}</h4>
-		</c:if>
+				<button class="btn btn-lg btn-primary btn-block" name="Submit"
+					value="Login" type="Submit">Login</button>
+				<a href="register.do" class="register">Not a member?<br>Register
+					Here!
+				</a>
+				<c:if test="${not empty errorMessage }">
+					<h4 class="errorMessage">${errorMessage}</h4>
+				</c:if>
+			</form>
+		</div>
 	</div>
 
 	<jsp:include page="script.jsp" />

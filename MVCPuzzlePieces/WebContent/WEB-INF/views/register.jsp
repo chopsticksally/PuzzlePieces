@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -8,20 +10,29 @@
 <body>
 	<jsp:include page="public-navbar.jsp" />
 
-	<h1 class="header">Register</h1>
+	<div class="container">
+		<div class="wrapper">
+			<form action="registering.do" method="post" name="Login_Form"
+				class="form-signin">
+				<h3 class="form-signin-heading">Join the puzzle club!</h3>
+				<hr class="colorgraph">
+				<br> <input type="text" class="form-control" name="userName" value="${username }"
+					placeholder="Username" required="" autofocus="" /> 
+					<input
+					type="password" class="form-control" name="password"
+					placeholder="Password" required="" /> 
+					<input type="password"
+					class="form-control" name="passwordConfirm"
+					placeholder="Confirm Password" required="" />
 
-	<form action="registering.do" method="POST">
-		<input type="hidden" name="id" value="0"> <label
-			for="userName"> New Username:</label> <input type="text"
-			placeholder=" " min="1" max="100" name="userName"> <br>
-		<br> <label for="password">New Password:</label> <input
-			type="text" placeholder=" " min="1" max="100" name="password">
-		<br> <br> <input type="submit" value="submit">
-
-	</form>
-	<c:if test="${not empty errorMessage }">
-		<h4 class="registerError">${errorMessage}</h4>
-	</c:if>
+				<button class="btn btn-lg btn-primary btn-block" name="Submit"
+					value="Register" type="Submit">Register!</button>
+				<c:if test="${not empty errorMessage }">
+					<h4 class="errorMessage">${errorMessage}</h4>
+				</c:if>
+			</form>
+		</div>
+	</div>
 
 	<jsp:include page="script.jsp" />
 </body>
