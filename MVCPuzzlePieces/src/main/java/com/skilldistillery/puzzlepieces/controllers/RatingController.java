@@ -63,6 +63,7 @@ public class RatingController {
 		List<InventoryItem> inventoryItems = pdao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = pdao.getRatingOfUserByUserId(userId);
 		List<Request> userRequests = pdao.getReceivedByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> sentRequests = pdao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = pdao.getSubmittedRatingsByUserId(userId);
 		UserInformation userInfo = pdao.getUserInformationByUserId(userId);
@@ -73,7 +74,7 @@ public class RatingController {
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
 		mv.addObject("userInfo", userInfo);
-
+		mv.addObject("rating", rating);
 		mv.setViewName("other-user-profile");
 
 		return mv;
@@ -99,7 +100,7 @@ public class RatingController {
 
 	public Double agrigatePuzzleRating(List<PuzzleRating> puzRatings) {
 		int rating = 0;
-		double puzzleAverage = 0;
+		double puzzleAverage = 0.00;
 		for (PuzzleRating puzzleRating : puzRatings) {
 			rating = rating + puzzleRating.getRating();
 		}
@@ -107,6 +108,21 @@ public class RatingController {
 			puzzleAverage = rating / puzRatings.size();
 		}
 		return puzzleAverage;
+
+	}
+	
+	public Double agrigateUserRating(List<UserRating> userRatings) {
+		int rating = 0;
+		double userAverage = 0.00;
+		for (UserRating userRating : userRatings) {
+			rating = rating + userRating.getRating();
+		}
+		if (userRatings.size() != 0) {
+			double ratingP = (rating*100)/100;
+			userAverage = ratingP / userRatings.size();
+			userAverage = Math.round(userAverage*100.0)/100.0;
+		}
+		return userAverage;
 
 	}
 }

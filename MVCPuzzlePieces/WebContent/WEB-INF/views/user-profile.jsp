@@ -74,7 +74,7 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
-		<h5>Your Rating: </h5>
+		<h5>Your Rating: ${rating }</h5>
 			<c:forEach var="ratings" items="${userRatings }">
 				<p>User that rated you: ${ratings.raterUser.userName}</p>
 				<p>Rating they gave you: ${ratings.rating}</p>

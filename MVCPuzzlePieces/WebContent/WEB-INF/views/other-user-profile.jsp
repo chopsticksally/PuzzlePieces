@@ -47,7 +47,7 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
-		<h5>${userInfo.user.userName}'s Rating: </h5>
+		<h5>${userInfo.user.userName}'s Rating: ${rating }</h5>
 			<c:forEach var="ratings" items="${userRatings }">
 				<p>User that Rated: ${ratings.raterUser.userName}</p>
 				<p>Rating: ${ratings.rating}</p>
@@ -55,6 +55,10 @@
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty userRatings}">No ratings available</c:if>
+		<form action="userRatingPage.do", method="get">
+		<input type="hidden" value=${userInfo.user.id } name="id">
+		<input type="submit" value="Rate This User!">
+		</form>
 	</div>
 
 

@@ -138,6 +138,7 @@ public class UserController {
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
 		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
@@ -149,6 +150,7 @@ public class UserController {
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("rating", rating);
 		mv.setViewName("user-profile");
 
 		return mv;
@@ -166,6 +168,7 @@ public class UserController {
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
 		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
@@ -177,6 +180,7 @@ public class UserController {
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("rating", rating);
 		mv.setViewName("user-profile");
 
 		return mv;
@@ -193,6 +197,7 @@ public class UserController {
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
 		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
@@ -204,6 +209,7 @@ public class UserController {
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("rating", rating);
 		mv.setViewName("user-profile");
 
 		return mv;
@@ -240,6 +246,7 @@ public class UserController {
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> userRequests = puzzleDao.getReceivedByUserId(userId);
 		List<Request> sentRequests = puzzleDao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzzleDao.getSubmittedRatingsByUserId(userId);
@@ -251,6 +258,7 @@ public class UserController {
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("rating", rating);
 		mv.setViewName("user-profile");
 		return mv;
 	}
@@ -277,12 +285,16 @@ public class UserController {
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
-		
+		Double rating = agrigateUserRating(userRatings);
+		System.out.println("**********************");
+		System.out.println(rating);
+		System.out.println("**********************");
 		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
 		mv.addObject("borrows", borrows);
 		mv.addObject("inventoryItems", inventoryItems);
 		mv.addObject("userRatings", userRatings);
 		mv.addObject("userInfo", userInfo);
+		mv.addObject("rating", rating);
 		mv.setViewName("other-user-profile");
 		return mv;
 	}
@@ -294,12 +306,14 @@ public class UserController {
 	
 	public Double agrigateUserRating(List<UserRating> userRatings) {
 		int rating = 0;
-		double userAverage = 0;
+		double userAverage = 0.00;
 		for (UserRating userRating : userRatings) {
 			rating = rating + userRating.getRating();
 		}
 		if (userRatings.size() != 0) {
-			userAverage = rating / userRatings.size();
+			double ratingP = (rating*100)/100;
+			userAverage = ratingP / userRatings.size();
+			userAverage = Math.round(userAverage*100.0)/100.0;
 		}
 		return userAverage;
 
