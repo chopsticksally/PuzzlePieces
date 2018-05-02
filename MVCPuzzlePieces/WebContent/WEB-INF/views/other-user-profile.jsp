@@ -10,18 +10,19 @@
 	<jsp:include page="logged-in-navbar.jsp" />
 
 	<h3 class="header">User: ${userInfo.user.userName}</h3>
-	<div class="container">
+	<div class="container bg-3 text-center">
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
-			<p>${userInfo.address.city }</p>
+			<p>${userInfo.address.city }${userInfo.address.state}</p>
 		</c:if>
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
 		<c:forEach var="items" items="${inventoryItems}">
-    ${items.puzzle.name }
-    ${items.id}
-    ${items.condition}
+		 <div class="container-fluid bg-2 text-center">
+   <p> Puzzle name: ${items.puzzle.name }</p>
+   <p>Puzzle Id#: ${items.id}</p>
+   <p>Condition:  ${items.condition}</p>
     <img alt="stuuff" src="${items.puzzle.imageUrl }"width="295" height="260">
 			<form action="puzzleDetails.do" method="get">
 				<input type="hidden" value="${items.id }" name="puzzle"> <input

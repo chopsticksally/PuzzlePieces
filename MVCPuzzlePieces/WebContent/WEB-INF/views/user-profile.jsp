@@ -10,32 +10,37 @@
 	<jsp:include page="logged-in-navbar.jsp" />
 
 	<h3 class="header">User: ${userLoggedIn.userName}</h3>
-	<div class="container">
+	<div class="container bg-3 text-center">
 	
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
-			<p>${userInfo.address.city }</p>
-			<p>${userInfo.address.state}</p>
+			<p>${userInfo.address.city }${userInfo.address.state}</p>
 		</c:if>
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
+		
 		<c:forEach var="items" items="${inventoryItems}">
+	
+		 <div class="container-fluid bg-2 text-center">
 			<p>${items.puzzle.name }</p>
-			<a href="userInventoryDetails.do?itemId=${items.id }"><img
-				alt="${items.puzzle.name } Puzzle Photo"
-				src="${items.puzzle.imageUrl }"></a>
-			<a href="userInventoryDetails.do?itemId=${items.id }"><button
-					class="btn">View Puzzle Details</button></a>
-
-
+			<img type ="center" alt="${items.puzzle.name } Puzzle Photo"
+				src="${items.puzzle.imageUrl }">
+				<br>
+				
+			<p><a href="userInventoryDetails.do?itemId=${items.id }"><button 
+					class="btn">View Puzzle Details</button></a></p>
+</div>
+</div>
 		</c:forEach>
-		<div>
+		
+		<div class="container bg-1 text-center">
 			<a href="addInventoryPage.do"><button class="btn">Add
 					Inventory</button></a>
 		</div>
 	</div>
 	<div>
+	<div class="container bg-5 text-left">
 		<h4 class="header">Requests Received</h4>
 		<c:forEach var="req" items="${userRequests }">
 		<c:if test="${req.active == true}">
@@ -50,13 +55,13 @@
 			</c:if>
 		</c:forEach>
 	</div>
-	<div>
+	<div class="container bg-5 text-left">
 		<h4 class="header">Requests Sent</h4>
 		<c:forEach var="sentReq" items="${sentRequests }">
 			<p>${sentReq.message }</p>
 			<p>${sentReq.active }</p>
 			<p>${sentReq.accepted }</p>
-			<br>
+			<br><hr>
 		</c:forEach>
 	</div>
 
