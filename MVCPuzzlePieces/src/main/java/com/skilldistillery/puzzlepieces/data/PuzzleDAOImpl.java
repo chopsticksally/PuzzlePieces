@@ -54,7 +54,6 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	public InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition, Integer categoryId) {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
 		Category newCategory = em.find(Category.class, categoryId);
-		updated.getCategories().remove(0);
 		updated.getCategories().add(newCategory);
 
 		managedPuzzle.setCondition(condition);

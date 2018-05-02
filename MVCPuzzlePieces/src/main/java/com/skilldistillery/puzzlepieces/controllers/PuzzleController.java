@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -60,14 +61,16 @@ public class PuzzleController {
 	}
 
 	@RequestMapping(path = "updateInventory.do", method = RequestMethod.POST)
-	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, Puzzle updated,
-			@RequestParam(name = "condition") Integer condition, @RequestParam(name = "category") Integer category) {
+	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId,
+			@RequestParam(name = "name") String name, @RequestParam(name = "imageUrl") String imageUrl,
+			@RequestParam(name = "condition") Integer condition, @RequestParam(name = "size") Integer size,
+			@RequestParam(name = "categoryId") Integer categoryId) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("**********************************");
-		System.out.println(updated.getName());
-		System.out.println(updated.getImageUrl());
-		System.out.println(updated.getCategories().get(0));
-		System.out.println("**********************************");
+		Puzzle newPuzz = new Puzzle();
+		newPuzz.setName(name);
+		newPuzz.setImageUrl(imageUrl);
+		newPuzz.setSize(size);
+		newPuzz.setCategories(new ArrayList<Category>());
 		Condition con = null;
 		if (condition == 1) {
 			con = Condition.NEW;
@@ -82,7 +85,7 @@ public class PuzzleController {
 			con = Condition.WORN;
 		}
 		InventoryItem old = dao.getInventoryItemById(inventoryId);
-		InventoryItem ii = dao.updateInventory(inventoryId, updated, con, category);
+		InventoryItem ii = dao.updateInventory(inventoryId, newPuzz, con, categoryId);
 		if (ii != old) {
 			mv.addObject("updated", ii);
 			mv.setViewName("success");

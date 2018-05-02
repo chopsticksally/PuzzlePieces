@@ -18,7 +18,7 @@
 					value="${item.puzzle.imageUrl }" name="imageUrl">
 			</div>
 			<div class="form-group">
-				<label for="category">Category:</label> <select name="category" class="form-control">
+				<label for="category">Category:</label> <select name="categoryId" class="form-control">
 				<c:if test="${empty item.puzzle.categories[0].name }">
 					<option value=1>Pets</option>
 					<option value=2>Ocean</option>
@@ -295,6 +295,20 @@
 			</div>
 			<div class="form-group">
 				<label for="size">Size:</label> <select name="size" class="form-control">
+				<c:if test="${empty item.puzzle.size}">
+					<option value="350" selected>350</option>
+					<option value="500">500</option>
+					<option value="1000">1000</option>
+					<option value="1500">1500</option>
+					<option value="3000">3000</option>
+					</c:if>
+				<c:if test="${not empty item.puzzle.size}">
+					<option value="350" selected>350</option>
+					<option value="500">500</option>
+					<option value="1000">1000</option>
+					<option value="1500">1500</option>
+					<option value="3000">3000</option>
+					</c:if>
 				<c:if test="${item.puzzle.size == 350 }">
 					<option value="350" selected>350</option>
 					<option value="500">500</option>
