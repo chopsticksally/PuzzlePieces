@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp" />
@@ -81,11 +82,13 @@
 		<c:if test="${not empty borrows }">
 			<c:forEach var="borrows" items="${borrows }">
 			<div class= "container-fluid image row">
+			<p>Borrowed From: ${borrows.inventoryItem.owner.userName }</p><br>
 				<p>${borrows.inventoryItem.puzzle.name }</p>
 				<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 					alt="${borrows.inventoryItem.puzzle.name } Puzzle">
-				<p>Borrow date: ${borrows.borrowDate }</p>
-				<p>Return by: ${borrows.returnDate }</p>
+				<p>Borrow date: <fmt:formatDate value="${borrows.borrowDate }" pattern="yyyy-MM-dd"/></p>
+				<p>Return by: <fmt:formatDate value="${borrows.returnDate }" pattern="yyyy-MM-dd"/></p>
+				</div>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
