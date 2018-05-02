@@ -23,7 +23,7 @@ public interface PuzzleDAO {
 
 	InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition, Integer category);
 
-	InventoryItem addInventory(Puzzle p, Condition condition, User u, Category categoryName);
+	InventoryItem addInventory(Puzzle p, Condition condition, User u, Integer categoryId);
 
 	List<InventoryItem> searchPuzzle(String name, int size, Condition condition);
 

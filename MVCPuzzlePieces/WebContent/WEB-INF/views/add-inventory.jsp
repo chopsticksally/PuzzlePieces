@@ -19,24 +19,24 @@
 					name="imageUrl">
 			</div>
 			<div class="form-group">
-				<label for="categoryName">Category:</label> <select name="categoryName"
+				<label for="categoryId">Category:</label> <select name="categoryId"
 					class="form-control">
 
-					<option value="Pets">Pets</option>
-					<option value="Ocean">Ocean</option>
-					<option value="Under the sea">Under the sea</option>
-					<option value="Landscape">Landscape</option>
-					<option value="Flowers">Flowers</option>
-					<option value="Space">Space</option>
-					<option value="Animals">Animals</option>
-					<option value="Jungle">Jungle</option>
-					<option value="Futuristic">Futuristic</option>
-					<option value="Food">Food</option>
-					<option value="Architecture">Architecture</option>
-					<option value="Superhero">Superhero</option>
-					<option value="Cartoon">Cartoon</option>
-					<option value="Sports">Sports</option>
-					<option value="Miscellaneous">Miscellaneous</option>
+					<option value=1>Pets</option>
+					<option value=2>Ocean</option>
+					<option value=3>Under the sea</option>
+					<option value=4>Landscape</option>
+					<option value=5>Flowers</option>
+					<option value=6>Space</option>
+					<option value=7>Animals</option>
+					<option value=8>Jungle</option>
+					<option value=9>Futuristic</option>
+					<option value=10>Food</option>
+					<option value=11>Architecture</option>
+					<option value=12>Superhero</option>
+					<option value=13>Cartoon</option>
+					<option value=14>Sports</option>
+					<option value=15>Miscellaneous</option>
 				</select>
 			</div>
 			<div class="form-group">

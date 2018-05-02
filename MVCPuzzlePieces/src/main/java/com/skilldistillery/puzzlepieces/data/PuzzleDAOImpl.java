@@ -36,10 +36,11 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	private EntityManager em;
 
 	@Override
-	public InventoryItem addInventory(Puzzle p, Condition c, User u, Category categoryName) {
-		List<Category> cat = new ArrayList<>();
-		cat.add(categoryName);
-		p.setCategories(cat);
+	public InventoryItem addInventory(Puzzle p, Condition c, User u, Integer categoryId) {
+		Category category = em.find(Category.class, categoryId);
+		List<Category> addedCat = new ArrayList<>();
+		addedCat.add(category);
+		p.setCategories(addedCat);
 		InventoryItem item = new InventoryItem();
 		item.setPuzzle(p);
 		item.setCondition(c);

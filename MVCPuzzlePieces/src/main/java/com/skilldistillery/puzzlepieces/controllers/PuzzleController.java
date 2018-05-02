@@ -29,6 +29,42 @@ public class PuzzleController {
 	@Autowired
 	private UserDAO uDao;
 
+		@RequestMapping(path = "addInventoryPage.do", method = RequestMethod.GET)
+		public String addInventoryPage() {
+			return "add-inventory";
+		}
+		
+		@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
+		public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition,
+				@RequestParam(name="categoryId")Integer categoryId, HttpSession session) {
+			ModelAndView mv = new ModelAndView();
+			Condition con = null;
+			if (condition == 1) {
+				con = Condition.NEW;
+			}
+			if (condition == 2) {
+				con = Condition.LIKE_NEW;
+			}
+			if (condition == 3) {
+				con = Condition.USED;
+			}
+			if (condition == 4) {
+				con = Condition.WORN;
+			}
+			
+			InventoryItem added = dao.addInventory(puzzle, con, (User) session.getAttribute("userLoggedIn"), categoryId);
+			if (added != null) {
+				mv.addObject("added", added);
+				mv.setViewName("success");
+			}
+			if (added == null) {
+				mv.setViewName("add-inventory");
+				mv.addObject("errorMessage", "You failed to add to your inventory. Please try again");
+			}
+			
+			return mv;
+		}
+
 	@RequestMapping(path = "deleteInventory.do", method = RequestMethod.POST)
 	public ModelAndView destroy(@RequestParam(name = "itemId") Integer inventoryId) {
 		ModelAndView mv = new ModelAndView();
@@ -98,41 +134,6 @@ public class PuzzleController {
 		return mv;
 	}
 
-	@RequestMapping(path = "addInventoryPage.do", method = RequestMethod.GET)
-	public String addInventoryPage() {
-		return "add-inventory";
-	}
-
-	@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
-	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition,
-			Category categoryName, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		Condition con = null;
-		if (condition == 1) {
-			con = Condition.NEW;
-		}
-		if (condition == 2) {
-			con = Condition.LIKE_NEW;
-		}
-		if (condition == 3) {
-			con = Condition.USED;
-		}
-		if (condition == 4) {
-			con = Condition.WORN;
-		}
-
-		InventoryItem added = dao.addInventory(puzzle, con, (User) session.getAttribute("userLoggedIn"), categoryName);
-		if (added != null) {
-			mv.addObject("added", added);
-			mv.setViewName("success");
-		}
-		if (added == null) {
-			mv.setViewName("add-inventory");
-			mv.addObject("errorMessage", "You failed to add to your inventory. Please try again");
-		}
-
-		return mv;
-	}
 
 	@RequestMapping(path = "retrieveAll.do", method = RequestMethod.GET)
 	public ModelAndView retrieveAll() {
@@ -178,9 +179,6 @@ public class PuzzleController {
 	public ModelAndView searchPuzzleByRating(@RequestParam(name = "puzzleRating") int rating) {
 		ModelAndView mv = new ModelAndView();
 		List<InventoryItem> inventoryItems = dao.searchPuzzleByRating(rating);
-		System.out.println("********************************************");
-		System.out.println(inventoryItems.get(0).getId());
-		System.out.println("********************************************");
 		mv.addObject("puzzles", inventoryItems);
 		mv.setViewName("search-puzzle-results");
 		return mv;
