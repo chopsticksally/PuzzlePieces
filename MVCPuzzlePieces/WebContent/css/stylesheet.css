@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+* {
+    font-family: unset;
+}
 body {
 	
 	background-color: #FFF7E2;
