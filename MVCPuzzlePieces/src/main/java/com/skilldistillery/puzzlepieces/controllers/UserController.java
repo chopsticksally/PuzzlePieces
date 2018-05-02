@@ -86,17 +86,25 @@ public class UserController {
 	}
 
 	@RequestMapping(path = "registering.do", method = RequestMethod.POST)
-	public ModelAndView registering(User user, Errors errors, HttpSession session) {
+	public ModelAndView registering(@RequestParam(name = "passwordConfirm") String confirm, User user, Errors errors,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		boolean userCheck = dao.isUserNameTaken(user.getUserName());
-		if (userCheck == true) {
-//			errors.rejectValue("userName", "Username is taken, please enter a new Username");
-			mv.addObject("errorMessage", "Username is taken, please enter another username.");
+		if (userCheck == true && user.getPassword().equals(confirm)) {
+			mv.addObject("errorMessage", "Username is taken, try again with a different username");
+			mv.setViewName("register");
+		}
+		else if (!user.getPassword().equals(confirm)) {
+			mv.addObject("errorMessage", "Password does not match, please try again.");
+			mv.addObject("username", user.getUserName());
 			mv.setViewName("register");
 		} else {
 			dao.createUser(user);
 			session.setAttribute("userLoggedIn", user);
+			List<InventoryItem> ii = puzzleDao.retrieveAll();
+			mv.addObject("inventoryItems", ii);
 			mv.setViewName("logged-in-home");
+			
 		}
 		return mv;
 	}
@@ -271,6 +279,7 @@ public class UserController {
 		mv.setViewName("search-user-results");
 		return mv;
 	}
+
 	@RequestMapping(path = "/searchUserByRating.do", method = RequestMethod.GET)
 	public ModelAndView searchUserByUserRating(@RequestParam(name = "userRating") int rating) {
 		ModelAndView mv = new ModelAndView();
@@ -286,9 +295,9 @@ public class UserController {
 		mv.setViewName("edit-profile");
 		return mv;
 	}
-	
-	@RequestMapping(path="otherUserProfile.do", method=RequestMethod.GET)
-	public ModelAndView otherUserProfile(@RequestParam(name="userId")int userId) {
+
+	@RequestMapping(path = "otherUserProfile.do", method = RequestMethod.GET)
+	public ModelAndView otherUserProfile(@RequestParam(name = "userId") int userId) {
 		ModelAndView mv = new ModelAndView();
 		List<Borrow> borrows = puzzleDao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
@@ -308,7 +317,7 @@ public class UserController {
 	public String fallback() {
 		return "fallback";
 	}
-	
+
 	public Double agrigateUserRating(List<UserRating> userRatings) {
 		int rating = 0;
 		double userAverage = 0.00;
@@ -316,9 +325,9 @@ public class UserController {
 			rating = rating + userRating.getRating();
 		}
 		if (userRatings.size() != 0) {
-			double ratingP = (rating*100)/100;
+			double ratingP = (rating * 100) / 100;
 			userAverage = ratingP / userRatings.size();
-			userAverage = (Math.round(userAverage*100.0))/100.0;
+			userAverage = (Math.round(userAverage * 100.0)) / 100.0;
 		}
 		return userAverage;
 
