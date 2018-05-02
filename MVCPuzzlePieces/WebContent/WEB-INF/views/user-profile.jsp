@@ -13,7 +13,7 @@
 	<h3 class="header">User: ${userLoggedIn.userName}</h3>
 	<div class="container bg-3 text-center">
 	
-	<div class="container">
+	<div class="containerbg-3 text-center">
 
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
