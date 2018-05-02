@@ -12,18 +12,17 @@
 			<div class="col-sm-8">
 
 				<div class="container-fluid bg-3 text-center">
-<!-- <h1 class="header">Puzzles found according to your search</h1> -->
+					<!-- <h1 class="header">Puzzles found according to your search</h1> -->
+					<c:if test="${empty puzzles }">
+						<p>*No Puzzles Found, Please Try Again*</p>
+					</c:if>
 
 					<c:forEach var="ii" items="${puzzles}">
 
 						<table>
 							<tr>
-								<td>
-								
-									
-									<img src="${ii.puzzle.imageUrl}" width="275" height="250"
-									alt="${ii.puzzle.name}">
-								</td>
+								<td><img src="${ii.puzzle.imageUrl}" width="275"
+									height="250" alt="${ii.puzzle.name}"></td>
 								<td>
 									<p>
 									<h2>About this puzzle:</h2>
@@ -34,12 +33,12 @@
 											<td>${ii.puzzle.name}</td>
 										</tr>
 										<tr>
-										
-										
-										
-										
+
+
+
+
 											<td>Puzzle Category:</td>
-											<td><c:forEach var ="cat" items="${ii.puzzle.categories}">
+											<td><c:forEach var="cat" items="${ii.puzzle.categories}">
 											${cat.name }
 											</c:forEach></td>
 											<%-- <td>${puzzle.categories}</td> --%>
@@ -55,11 +54,11 @@
 										<td>
 
 											<div class="Request">
-											<form action="puzzleDetails.do" method="get">
-    											<input type="hidden" value="${ii.id }" name="puzzle">
-    											<input type="submit" value="View Puzzle Details">
-    											</form>
-												
+												<form action="puzzleDetails.do" method="get">
+													<input type="hidden" value="${ii.id }" name="puzzle">
+													<input type="submit" value="View Puzzle Details">
+												</form>
+
 												<!-- <input class="toggle-btn" type="checkbox" value="Request"> -->
 										</td>
 									</table>

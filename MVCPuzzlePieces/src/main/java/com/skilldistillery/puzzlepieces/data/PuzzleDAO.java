@@ -21,9 +21,9 @@ public interface PuzzleDAO {
 
 	boolean destroy(int id);
 
-	InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition);
+	InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition, Integer category);
 
-	InventoryItem addInventory(Puzzle p, Condition condition, User u);
+	InventoryItem addInventory(Puzzle p, Condition condition, User u, Integer categoryId);
 
 	List<InventoryItem> searchPuzzle(String name, int size, Condition condition);
 

@@ -36,7 +36,11 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	private EntityManager em;
 
 	@Override
-	public InventoryItem addInventory(Puzzle p, Condition c, User u) {
+	public InventoryItem addInventory(Puzzle p, Condition c, User u, Integer categoryId) {
+		Category category = em.find(Category.class, categoryId);
+		List<Category> addedCat = new ArrayList<>();
+		addedCat.add(category);
+		p.setCategories(addedCat);
 		InventoryItem item = new InventoryItem();
 		item.setPuzzle(p);
 		item.setCondition(c);
@@ -48,13 +52,10 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	}
 
 	@Override
-	public InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition) {
+	public InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition, Integer categoryId) {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
-
-		// managedPuzzle.setName(updated.getName());
-		// managedPuzzle.setImageUrl(updated.getImageUrl());
-		// managedPuzzle.setSize(updated.getSize());
-		// managedPuzzle.setCategories(updated.getCategories());
+		Category newCategory = em.find(Category.class, categoryId);
+		updated.getCategories().add(newCategory);
 
 		managedPuzzle.setCondition(condition);
 		managedPuzzle.setPuzzle(updated);
@@ -364,27 +365,28 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		String query = "select distinct(p) from Puzzle p join fetch p.puzzleRatings";
 		List<InventoryItem> returnedList = new ArrayList<>();
 		List<Puzzle> puzzleReturnedList = new ArrayList<>();
-		List<Puzzle>allPuzzles = em.createQuery(query, Puzzle.class).getResultList();
+		List<Puzzle> allPuzzles = em.createQuery(query, Puzzle.class).getResultList();
 		for (Puzzle puzzle : allPuzzles) {
-			List<PuzzleRating>ratings = puzzle.getPuzzleRatings();
+			List<PuzzleRating> ratings = puzzle.getPuzzleRatings();
 			Double check = agrigatePuzzleRating(ratings);
-			if(check >= rating) {
+			if (check >= rating) {
 				puzzleReturnedList.add(puzzle);
 			}
 		}
-		if(puzzleReturnedList.size() > 0) {
+		if (puzzleReturnedList.size() > 0) {
 			for (Puzzle puzzle : puzzleReturnedList) {
 				query = "select p from Puzzle p join fetch p.inventoryItems where p.id = :id";
-				Puzzle puzzleWithItems = em.createQuery(query, Puzzle.class).setParameter("id", puzzle.getId()).getResultList().get(0);
+				Puzzle puzzleWithItems = em.createQuery(query, Puzzle.class).setParameter("id", puzzle.getId())
+						.getResultList().get(0);
 				for (InventoryItem ii : puzzleWithItems.getInventoryItems()) {
 					returnedList.add(ii);
 				}
 			}
 		}
-		
+
 		return returnedList;
 	}
-	
+
 	public Double agrigatePuzzleRating(List<PuzzleRating> puzRatings) {
 		int rating = 0;
 		double puzzleAverage = 0.00;
@@ -392,9 +394,9 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			rating = rating + puzzleRating.getRating();
 		}
 		if (puzRatings.size() != 0) {
-			double ratingP = (rating*100)/100;
+			double ratingP = (rating * 100) / 100;
 			puzzleAverage = ratingP / puzRatings.size();
-			puzzleAverage = (Math.round(puzzleAverage*100.0))/100;
+			puzzleAverage = (Math.round(puzzleAverage * 100.0)) / 100;
 		}
 		return puzzleAverage;
 

@@ -378,6 +378,7 @@ INSERT INTO `category` (`id`, `name`) VALUES (11, 'Architechture');
 INSERT INTO `category` (`id`, `name`) VALUES (12, 'Superhero');
 INSERT INTO `category` (`id`, `name`) VALUES (13, 'Cartoon');
 INSERT INTO `category` (`id`, `name`) VALUES (14, 'Sports');
+INSERT INTO `category` (`id`, `name`) VALUES (15, 'Miscellaneous');
 
 COMMIT;
 
@@ -466,4 +467,3 @@ INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `invento
 INSERT INTO `request` (`id`, `requester_id`, `requestee_id`, `message`, `inventory_id`, `accepted`, `active`) VALUES (10, 2, 4, '\'Nope\'', 5, 0, 0);
 
 COMMIT;
-
