@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-/* body {
-	background-image:url("images/puzzle.png");
-	background-repeat: no-repeat;
+ body {
+	background-image:url("images/puzzle2.png");
+	background-repeat: repeat;
 	background-size: 100%;
 	
-} */
+} 
 
 .header {
 	text-align: center;
