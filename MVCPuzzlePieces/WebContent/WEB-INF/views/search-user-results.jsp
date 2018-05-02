@@ -10,7 +10,9 @@
 	<div class="container">
 		<c:if test="${not empty users }">
 			<c:forEach var="user" items="${users }">
-				<a href="otherUserProfile.do?userId=${user.id }"><h3>${user.userName }</h3></a>
+			<c:if test="${user.id != userLoggedIn.id}">
+				<h3><a href="otherUserProfile.do?userId=${user.id }">${user.userName }</a></h3>
+			</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty users }">No Users with this Username</c:if>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp" />
@@ -44,6 +45,7 @@
 					</tr>
 
 				</table>
+				<c:if test="${user.id != userLoggedIn.id }">
 				<div class="Request">
 					<form action="makeRequest.do" method="get">
 						<input type="hidden" value="${ii.id }"
@@ -51,17 +53,21 @@
 							value="Request This Puzzle!">
 					</form>
 				</div>
+				</c:if>
 				<div class="Rate Puzzle">
 					<form action="puzzleRatingPage.do" method="get">
 						<input type="hidden" value="${ii.id }"
 							name="id"> <input type="submit" value="Rate">
 					</form>
 				</div>
+				<c:if test="${user.id != userLoggedIn.id }">
 				<div class="See Owner Profile">
-					<form action="userProfile.do" method="get">
-						<input type="hidden" value="${user.id }" name="id"> <input
+					<form action="otherUserProfile.do" method="get">
+						<input type="hidden" value="${user.id }" name="userId"> <input
 							type="submit" value="See Owner">
 					</form>
-				</div> <br> <jsp:include page="script.jsp" />
+				</div> 
+				</c:if>
+				<br> <jsp:include page="script.jsp" />
 </body>
 </html>

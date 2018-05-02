@@ -32,7 +32,7 @@ public class RatingController {
 	public ModelAndView puzzleRatingPage(@RequestParam(name = "id") int inventoryId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
-		Boolean checkIfRatedBefore = userdao.checkIfUserHasRatedPuzzleBefore(userLoggedIn, inventoryId);
+//		Boolean checkIfRatedBefore = userdao.checkIfUserHasRatedPuzzleBefore(userLoggedIn, inventoryId);
 		
 		InventoryItem ii = pdao.getInventoryItemById(inventoryId);
 		User user = userdao.getUserById(ii.getOwner().getId());

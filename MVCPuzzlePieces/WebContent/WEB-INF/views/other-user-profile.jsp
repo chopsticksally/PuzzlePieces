@@ -22,9 +22,9 @@
     ${items.id}
     ${items.condition}
     <img alt="stuuff" src="${items.puzzle.imageUrl }">
-			<form action="makeRequest.do" method="get">
-				<input type="hidden" value="${items.id }" name="id"> <input
-					type="submit" value="Request This Puzzle!">
+			<form action="puzzleDetails.do" method="get">
+				<input type="hidden" value="${items.id }" name="puzzle"> <input
+					type="submit" value="View Puzzle Details!">
 			</form>
 		</c:forEach>
 	</div>

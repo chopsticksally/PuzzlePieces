@@ -286,9 +286,6 @@ public class UserController {
 		List<InventoryItem> inventoryItems = puzzleDao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzzleDao.getRatingOfUserByUserId(userId);
 		Double rating = agrigateUserRating(userRatings);
-		System.out.println("**********************");
-		System.out.println(rating);
-		System.out.println("**********************");
 		UserInformation userInfo = puzzleDao.getUserInformationByUserId(userId);
 		mv.addObject("borrows", borrows);
 		mv.addObject("inventoryItems", inventoryItems);
