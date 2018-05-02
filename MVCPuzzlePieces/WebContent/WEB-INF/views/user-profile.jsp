@@ -13,7 +13,7 @@
 	<h3 class="header">User: ${userLoggedIn.userName}</h3>
 	<div class="container bg-3 text-center">
 	
-	<div class="container">
+	<div class="containerbg-3 text-center">
 
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
@@ -35,7 +35,7 @@
 	 <div class="container-fluid bg-2 text-center "> 
 			<p>${items.puzzle.name }</p>
 			<img type ="center" alt="${items.puzzle.name } Puzzle Photo"
-				src="${items.puzzle.imageUrl }">
+				src="${items.puzzle.imageUrl }" width="295" height="260">
 				<br>
 				
 		<p><a href="userInventoryDetails.do?itemId=${items.id }"><button 
