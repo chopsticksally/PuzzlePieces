@@ -34,4 +34,8 @@ public interface UserDAO {
     UserRating createUserRating(int userId, UserRating userRating, HttpSession session);
     
     PuzzleRating createPuzzleRating(int puzzleId, PuzzleRating puzzleRating, HttpSession session);
+    
+    Boolean checkIfUserHasRatedPuzzleBefore(User user, int invId);
+    
+    Boolean checkIfUserHasRatedUserBefore(User user, int userId);
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.puzzlepieces.entities.Address;
+import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Puzzle;
 import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
 import com.skilldistillery.puzzlepieces.entities.User;
@@ -160,5 +161,35 @@ public class UserDAOImpl implements UserDAO {
 		em.persist(addPuzzleRating);
 		em.flush();
 		return puzzleRating;
+	}
+
+	@Override
+	public Boolean checkIfUserHasRatedPuzzleBefore(User user, int invId) {
+		InventoryItem item = em.find(InventoryItem.class, invId);
+		Puzzle puzzle = item.getPuzzle();
+		String query = "select pr from PuzzleRating pr where pr.puzzle.id = :id";
+		List<PuzzleRating> puzzleRatings = em.createQuery(query, PuzzleRating.class).setParameter("id", puzzle.getId()).getResultList();
+		Boolean ratedThePuzzle = false;
+		for (PuzzleRating puzzleRating : puzzleRatings) {
+			if(puzzleRating.getUser().getId() == user.getId()) {
+				ratedThePuzzle = true;
+			}
+		}
+		return ratedThePuzzle;
+	}
+
+	@Override
+	public Boolean checkIfUserHasRatedUserBefore(User user, int userId) {
+		User ratedUser = em.find(User.class, userId);
+		String query = "select ur from UserRating ur where ur.ratedUser.id = :id";
+		List<UserRating> userRatings = em.createQuery(query, UserRating.class).setParameter("id", ratedUser.getId()).getResultList();
+		Boolean ratedTheUser = false;
+		for (UserRating userRating : userRatings) {
+			if(userRating.getRaterUser().getId() == user.getId()) {
+				ratedTheUser = true;
+			}
+		}
+		
+		return ratedTheUser;
 	}
 }

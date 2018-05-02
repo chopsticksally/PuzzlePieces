@@ -29,8 +29,11 @@ public class RatingController {
 	private UserDAO userdao;
 
 	@RequestMapping(path = "puzzleRatingPage.do", method = RequestMethod.GET)
-	public ModelAndView puzzleRatingPage(@RequestParam(name = "id") int inventoryId) {
+	public ModelAndView puzzleRatingPage(@RequestParam(name = "id") int inventoryId, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		User userLoggedIn = (User) session.getAttribute("userLoggedIn");
+		Boolean checkIfRatedBefore = userdao.checkIfUserHasRatedPuzzleBefore(userLoggedIn, inventoryId);
+		
 		InventoryItem ii = pdao.getInventoryItemById(inventoryId);
 		User user = userdao.getUserById(ii.getOwner().getId());
 		List<PuzzleRating> puzRatings = pdao.getPuzzleRatingsByPuzzleId(ii.getPuzzle().getId());
@@ -41,6 +44,7 @@ public class RatingController {
 		mv.addObject("puzzle",ii.getPuzzle());
 
 		mv.setViewName("puzzle-rating");
+
 
 		return mv;
 	}
