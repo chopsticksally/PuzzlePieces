@@ -16,7 +16,7 @@
 
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
-			<p>${userInfo.address.city }${userInfo.address.state}</p>
+			<p>${userInfo.address.city }, ${userInfo.address.state}</p>
 		</c:if>
 	</div>
 	<div>
