@@ -8,8 +8,14 @@
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container-fluid bg-3 text-center">
 	<c:if test="${not empty inventoryItems }">
-	<h1 class="header">Welcome!</h1>
-			<c:set var="count" value="0" scope="page" />
+ <div class="jumbotron text-center jumbobackground">
+            <h1 class="header">Welcome Back!</h1>
+  <p>Find a puzzle you like? Choose the Puzzle and Make a Request!</p>
+  <p>Looking for Something More Specific? Search by User or Puzzle!</p>
+	<p>Want to Connect with Other Users? Edit Your Profile and Add Some Puzzles!</p>
+</div>			
+<h1 align="center">See a Puzzle You Like? Select It!</h1>
+<c:set var="count" value="0" scope="page" />
 			<div class="row">
 				<c:forEach var="ii" items="${inventoryItems }">
 					<c:if test="${count % 3 == 0}">
@@ -38,6 +44,7 @@
 			<c:set var="count" value="${count + 1}" scope="page" />
 			</c:forEach>
 		</div>
+	<a href="#top"><button type="button" class="btn btn-primary btn-block topbutton">Back to Top</button></a>
 	</c:if>
 	<c:if test="${empty inventoryItems }">No Puzzles Available for Exchange</c:if>
 	

@@ -8,7 +8,16 @@ body {
 	background-color: #FFF7E2;
 }
 
+.jumbobackground{
+	background-image: url("images/puzzle2.png");
+	background-color: white;
+	color: darkblue;
+	width:100%;
 
+}
+.topbutton{
+	margin-bottom: 35px;
+}
 .header {
 	text-align: center;
 }

@@ -9,9 +9,18 @@
 <body>
     <jsp:include page="public-navbar.jsp" />
 
-    <div class="container-fluid bg-3 text-center">
+    <div class="container-fluid bg-3 text-center" id="#top">
         <c:if test="${not empty inventoryItems }">
-            <h1 class="header">Welcome!</h1>
+            <div class="jumbotron text-center jumbobackground">
+            <h1 class="header">Welcome To Puzzle Pieces!</h1>
+  <p>Have a closet full of completed puzzles?</p> 
+  <p>Want to connect with and share puzzles with other puzzle lovers?</p>
+  <br><br>
+  <h2><em>You're in the right place!</em></h2>
+  <br><br>
+  <p>Find other puzzles available to loan or exchange from users like you!</p>
+</div>
+<h1 align="center">Puzzles Our Users Are Offering</h1><br>
             <c:set var="count" value="0" scope="page" />
             <div class="row">
                 <c:forEach var="ii" items="${inventoryItems }">
@@ -38,8 +47,8 @@
     </div>
     </c:if>
     <c:if test="${empty inventoryItems }">No Puzzles Available for Exchange</c:if>
-
-
+<h1 align="center">Come Join The Fun! Register Today!</h1><br>
+<a href="#top"><button type="button" class="btn btn-primary btn-block topbutton">Back to Top</button></a>
     <jsp:include page="script.jsp" />
 </body>
 </html>

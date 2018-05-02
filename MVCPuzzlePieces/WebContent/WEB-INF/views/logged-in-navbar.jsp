@@ -14,7 +14,7 @@
 				Users</a></li>
 		<form action="logout.do">
 			<input type="hidden" name="id" value="${userLoggedIn.id }" />
-			<button type="submit" class="btn btn-secondary btn-sm"
+			<button type="submit" class="btn btn-secondary"
 				onclick=" return confirm('Are you sure you want to logout?')">Logout</button>
 		</form>
 
