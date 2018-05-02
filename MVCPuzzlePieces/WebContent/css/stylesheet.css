@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+body {
+	background-image:url("images/puzzle.png");
+}
 .header {
 	text-align: center;
 }
