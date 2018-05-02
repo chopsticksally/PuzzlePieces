@@ -15,15 +15,15 @@
 				<h3 class="form-signin-heading">Update Username & Password</h3>
 				<hr class="colorgraph">
 				<input type= "hidden" value="${userLoggedIn.id}"name= "id">
-					<br> <label for="userName"> User name:</label>
+					<br> <label for="userName">New Username:</label>
 				 <input type="text" class="form-control" name="userName"
-					value="${userLoggedIn.userName}" required="" autofocus="" min="1" max="100"/> 
+					value="${userLoggedIn.userName}" placeholder="New Username" required="" autofocus="" min="1" max="100"/> 
 				<input
 					type="password" class="form-control" name="password"
-					value="${userLoggedIn.password }"required="" />
+					placeholder="New Password"value="${userLoggedIn.password }" required="" />
 				<input type="password"
 					class="form-control" name="passwordConfirm"
-					placeholder="Confirm Password" required="" />
+					placeholder="Confirm New Password" value="${userLoggedIn.password }" required="" />
 
 				<button class="btn btn-lg btn-info btn-block" name="Submit"
 					 type="Submit">Update</button>
