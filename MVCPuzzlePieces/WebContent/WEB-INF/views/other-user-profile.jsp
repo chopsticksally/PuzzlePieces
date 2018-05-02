@@ -22,7 +22,7 @@
     ${items.puzzle.name }
     ${items.id}
     ${items.condition}
-    <img alt="stuuff" src="${items.puzzle.imageUrl }">
+    <img alt="stuuff" src="${items.puzzle.imageUrl }"width="295" height="260">
 			<form action="puzzleDetails.do" method="get">
 				<input type="hidden" value="${items.id }" name="puzzle"> <input
 					type="submit" value="View Puzzle Details!">
@@ -36,7 +36,7 @@
 		<c:if test="${not empty borrows }">
 			<c:forEach var="borrows" items="${borrows }">
 				<p>${borrows.inventoryItem.puzzle.name }</p>
-				<img src="${borrows.inventoryItem.puzzle.imageUrl }"
+				<img src="${borrows.inventoryItem.puzzle.imageUrl }width="195" height="160"
 					alt="${borrows.inventoryItem.puzzle.name } Puzzle">
 				<p>${borrows.borrowDate }</p>
 				<p>${borrows.returnDate }</p>

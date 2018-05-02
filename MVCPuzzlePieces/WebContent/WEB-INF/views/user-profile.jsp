@@ -11,9 +11,11 @@
 
 	<h3 class="header">User: ${userLoggedIn.userName}</h3>
 	<div class="container">
+	
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
 			<p>${userInfo.address.city }</p>
+			<p>${userInfo.address.state}</p>
 		</c:if>
 	</div>
 	<div>
