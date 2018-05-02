@@ -61,8 +61,13 @@ public class PuzzleController {
 
 	@RequestMapping(path = "updateInventory.do", method = RequestMethod.POST)
 	public ModelAndView updateInventory(@RequestParam(name = "id") Integer inventoryId, Puzzle updated,
-			@RequestParam(name = "condition") Integer condition) {
+			@RequestParam(name = "condition") Integer condition, @RequestParam(name = "category") Integer category) {
 		ModelAndView mv = new ModelAndView();
+		System.out.println("**********************************");
+		System.out.println(updated.getName());
+		System.out.println(updated.getImageUrl());
+		System.out.println(updated.getCategories().get(0));
+		System.out.println("**********************************");
 		Condition con = null;
 		if (condition == 1) {
 			con = Condition.NEW;
@@ -77,7 +82,7 @@ public class PuzzleController {
 			con = Condition.WORN;
 		}
 		InventoryItem old = dao.getInventoryItemById(inventoryId);
-		InventoryItem ii = dao.updateInventory(inventoryId, updated, con);
+		InventoryItem ii = dao.updateInventory(inventoryId, updated, con, category);
 		if (ii != old) {
 			mv.addObject("updated", ii);
 			mv.setViewName("success");
@@ -97,7 +102,7 @@ public class PuzzleController {
 
 	@RequestMapping(path = "addInventory.do", method = RequestMethod.POST)
 	public ModelAndView addInventory(Puzzle puzzle, @RequestParam(name = "condition") Integer condition,
-			 Category categoryName, HttpSession session) {
+			Category categoryName, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		Condition con = null;
 		if (condition == 1) {

@@ -51,13 +51,11 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	}
 
 	@Override
-	public InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition) {
+	public InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition, Integer categoryId) {
 		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
-
-		// managedPuzzle.setName(updated.getName());
-		// managedPuzzle.setImageUrl(updated.getImageUrl());
-		// managedPuzzle.setSize(updated.getSize());
-		// managedPuzzle.setCategories(updated.getCategories());
+		Category newCategory = em.find(Category.class, categoryId);
+		updated.getCategories().remove(0);
+		updated.getCategories().add(newCategory);
 
 		managedPuzzle.setCondition(condition);
 		managedPuzzle.setPuzzle(updated);
