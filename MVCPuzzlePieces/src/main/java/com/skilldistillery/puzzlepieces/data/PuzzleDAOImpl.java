@@ -273,6 +273,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			borrow.setBorrowDate(new Date());
 			borrow.setReturnDate(null);
 			borrow.setInventoryItem(request.getInventoryItem());
+			borrow.setLoaner(request.getRequester());
 			em.persist(borrow);
 			em.flush();
 			// Add the InventoryItem to the User, add the User to the InventoryItem
