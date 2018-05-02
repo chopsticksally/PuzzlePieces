@@ -1,11 +1,10 @@
 @charset "UTF-8";
 
- body {
-	background-image:url("images/puzzle2.png");
-	background-repeat: repeat;
-	background-size: 100%;
+body {
 	
-} 
+	background-color: #FFF7E2;
+}
+
 
 .header {
 	text-align: center;
@@ -16,22 +15,17 @@
 }
 
 .logo-header {
-	width: 600px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	background-image: url("images/puzzle2.png");
+	background-repeat: no-repeat;
+	width: 100%;
 }
 
-/* img {
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 250px;
-} */
 ul.nav.justify-content-center {
 	background-color: #D6D8EE;
+	font-size: 30px;
 }
 
 .wrapper {
