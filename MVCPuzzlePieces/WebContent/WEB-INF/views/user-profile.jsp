@@ -39,9 +39,9 @@
 		<h4 class="header">Requests Received</h4>
 		<c:forEach var="req" items="${userRequests }">
 		<c:if test="${req.active == true}">
-			<p>Request for user: ${req.requestee.userName}</p>
-			<p>${req.message }</p>
-			<p>Request from: ${req.requester.userName }</p>
+			<p>Request from: ${req.requester.userName }</p>			
+			<p>User Comment: ${req.message }</p>
+			<p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
 			<form action="replyToRequest.do" method="get">
     											<input type="hidden" value="${req.id}" name="id">
     											<input type="submit" value="Reply">
@@ -53,9 +53,9 @@
 	<div>
 		<h4 class="header">Requests Sent</h4>
 		<c:forEach var="sentReq" items="${sentRequests }">
-			<p>${sentReq.message }</p>
-			<p>${sentReq.active }</p>
-			<p>${sentReq.accepted }</p>
+			<p>User Request Sent To: ${sentReq.requestee.userName }</p>
+			<p>Message: ${sentReq.message }</p>
+			<p>Requested Puzzle Name: ${sentReq.inventoryItem.puzzle.name }</p>
 			<br>
 		</c:forEach>
 	</div>
