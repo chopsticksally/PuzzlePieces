@@ -362,7 +362,7 @@
 					</c:if>
 				</select>
 			</div>
-			<input type="hidden" name="id" value="${item.puzzle.id }" />
+			<input type="hidden" name="id" value="${item.id }" />
 			<button type="submit" class="btn btn-outline-info">Submit Edit</button>
 		</form>
 		<div>

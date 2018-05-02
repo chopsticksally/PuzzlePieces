@@ -76,7 +76,7 @@ public class PuzzleController {
 			con = Condition.WORN;
 		}
 		InventoryItem old = dao.getInventoryItemById(inventoryId);
-		InventoryItem ii = dao.updateInventory(inventoryId, updated, condition);
+		InventoryItem ii = dao.updateInventory(inventoryId, updated, con);
 		if (ii != old) {
 			mv.addObject("updated", ii);
 			mv.setViewName("success");

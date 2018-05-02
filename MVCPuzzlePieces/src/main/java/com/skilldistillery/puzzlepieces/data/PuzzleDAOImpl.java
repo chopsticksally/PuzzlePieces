@@ -42,24 +42,25 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		item.setOwner(em.find(User.class, u.getId()));
 		em.persist(item);
 		em.flush();
-		
+
 		return item;
 	}
 
 	@Override
-	public InventoryItem updateInventory(Integer id, Puzzle updated, Integer condition) {
-		Puzzle managedPuzzle = em.find(Puzzle.class, id);
-		managedPuzzle.setName(updated.getName());
-		managedPuzzle.setImageUrl(updated.getImageUrl());
-		managedPuzzle.setSize(updated.getSize());
-		managedPuzzle.setCategories(updated.getCategories());
-		
-		managedPuzzle.setCondition(updated.getCondition());
-		managedPuzzle.setPuzzle(updated.getPuzzle());
+	public InventoryItem updateInventory(Integer id, Puzzle updated, Condition condition) {
+		InventoryItem managedPuzzle = em.find(InventoryItem.class, id);
+
+		// managedPuzzle.setName(updated.getName());
+		// managedPuzzle.setImageUrl(updated.getImageUrl());
+		// managedPuzzle.setSize(updated.getSize());
+		// managedPuzzle.setCategories(updated.getCategories());
+
+		managedPuzzle.setCondition(condition);
+		managedPuzzle.setPuzzle(updated);
 
 		em.persist(managedPuzzle);
 		em.flush();
-		return P;
+		return managedPuzzle;
 	}
 
 	// @Override
@@ -216,74 +217,74 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 
 	@Override
 	public boolean notAcceptRequest(int id, String message) {
-	
-			Request request = em.find(Request.class, id);
-			if (request != null) {
-				request.setAccepted(false);
-				request.setActive(false);
-				request.setMessage(message);
-				em.persist(request);
-				em.flush();
-				return true;
-			} else {
-				return false;
-			}
+
+		Request request = em.find(Request.class, id);
+		if (request != null) {
+			request.setAccepted(false);
+			request.setActive(false);
+			request.setMessage(message);
+			em.persist(request);
+			em.flush();
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean acceptRequestToBorrow(int id, String message) {
-	
-			Request request = em.find(Request.class, id);
-			if (request != null) {
-				request.setAccepted(true);
-				request.setActive(false);
-				request.setMessage(message);
-				em.persist(request);
-				em.flush();
 
-				Borrow borrow = new Borrow();
-				LocalDate date = LocalDate.now();
-				LocalDate returnDate = date.plusMonths(2);
-				Date convertedStartDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-				Date convertedReturnDate = Date.from(returnDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-				borrow.setBorrowDate(convertedStartDate);
-				borrow.setReturnDate(convertedReturnDate);
-				borrow.setLoaner(request.getRequester());
-				borrow.setInventoryItem(request.getInventoryItem());
-				em.persist(borrow);
-				em.flush();
-				return true;
-			}
-			return false;
-		
+		Request request = em.find(Request.class, id);
+		if (request != null) {
+			request.setAccepted(true);
+			request.setActive(false);
+			request.setMessage(message);
+			em.persist(request);
+			em.flush();
+
+			Borrow borrow = new Borrow();
+			LocalDate date = LocalDate.now();
+			LocalDate returnDate = date.plusMonths(2);
+			Date convertedStartDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			Date convertedReturnDate = Date.from(returnDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+			borrow.setBorrowDate(convertedStartDate);
+			borrow.setReturnDate(convertedReturnDate);
+			borrow.setLoaner(request.getRequester());
+			borrow.setInventoryItem(request.getInventoryItem());
+			em.persist(borrow);
+			em.flush();
+			return true;
+		}
+		return false;
+
 	}
 
 	@Override
 	public boolean acceptRequestToOwn(int id, String message) {
 		Request request = em.find(Request.class, id);
-		
-			if (request != null) {
-				request.setAccepted(true);
-				request.setActive(false);
-				request.setMessage(message);
-				em.persist(request);
-				em.flush();
-				Borrow borrow = new Borrow();
-				borrow.setBorrowDate(new Date());
-				borrow.setReturnDate(null);
-				borrow.setInventoryItem(request.getInventoryItem());
-				em.persist(borrow);
-				em.flush();
-				// Add the InventoryItem to the User, add the User to the InventoryItem
-				InventoryItem ii = request.getInventoryItem();
-				ii.setOwner(request.getRequester());
-				em.persist(ii);
-				em.flush();
-				return true;
-			}
-			return false;
-		
+
+		if (request != null) {
+			request.setAccepted(true);
+			request.setActive(false);
+			request.setMessage(message);
+			em.persist(request);
+			em.flush();
+			Borrow borrow = new Borrow();
+			borrow.setBorrowDate(new Date());
+			borrow.setReturnDate(null);
+			borrow.setInventoryItem(request.getInventoryItem());
+			em.persist(borrow);
+			em.flush();
+			// Add the InventoryItem to the User, add the User to the InventoryItem
+			InventoryItem ii = request.getInventoryItem();
+			ii.setOwner(request.getRequester());
+			em.persist(ii);
+			em.flush();
+			return true;
 		}
+		return false;
+
+	}
 
 	@Override
 	public List<InventoryItem> getInventoryItemsByUserId(int userId) {
@@ -336,8 +337,6 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return ui;
 	}
 
-	
-
 	@Override
 	public InventoryItem getInventoryItemById(int itemId) {
 		InventoryItem item = em.find(InventoryItem.class, itemId);
@@ -354,7 +353,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	public List<PuzzleRating> getPuzzleRatingsByPuzzleId(int puzzleId) {
 		String query = "Select p from PuzzleRating p where p.puzzle.id = :id";
 		List<PuzzleRating> pr = em.createQuery(query, PuzzleRating.class).setParameter("id", puzzleId).getResultList();
-				
+
 		return pr;
 	}
 
