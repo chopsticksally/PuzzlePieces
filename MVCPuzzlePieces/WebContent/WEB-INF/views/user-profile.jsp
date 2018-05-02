@@ -31,8 +31,8 @@
 		</div>
 
 		<c:forEach var="items" items="${inventoryItems}">
-			<div class= "container-fluid image row">
-		<!--  <div class="container-fluid bg-2 text-center "> -->
+		
+	 <div class="container-fluid bg-2 text-center "> 
 			<p>${items.puzzle.name }</p>
 			<img type ="center" alt="${items.puzzle.name } Puzzle Photo"
 				src="${items.puzzle.imageUrl }">
@@ -66,9 +66,8 @@
 	<div class="container bg-5 text-left">
 		<h4 class="header">Requests Sent</h4>
 		<c:forEach var="sentReq" items="${sentRequests }">
-			<p>${sentReq.message }</p>
-			<p>${sentReq.active }</p>
-			<p>${sentReq.accepted }</p>
+			
+			
 			<br><hr>
 			<p>User Request Sent To: ${sentReq.requestee.userName }</p>
 			<p>Message: ${sentReq.message }</p>
@@ -81,7 +80,7 @@
 		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
 			<c:forEach var="borrows" items="${borrows }">
-			<div class= "container-fluid image row">
+			<div class= "container-fluid">
 			<p>Borrowed From: ${borrows.inventoryItem.owner.userName }</p><br>
 				<p>${borrows.inventoryItem.puzzle.name }</p>
 				<img src="${borrows.inventoryItem.puzzle.imageUrl }"
@@ -97,8 +96,10 @@
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
+				<div class="container bg-5 text-center">
 			<h5>Your Rating: ${rating } out of ${fn:length(userRatings)}
 				ratings</h5>
+				</div>
 			<c:forEach var="ratings" items="${userRatings }">
 				<p>User that rated you: ${ratings.raterUser.userName}</p>
 				<p>Rating they gave you: ${ratings.rating}</p>

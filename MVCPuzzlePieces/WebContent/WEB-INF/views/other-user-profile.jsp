@@ -14,14 +14,13 @@
 	<div class="container bg-3 text-center">
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
-			<p>${userInfo.address.city }${userInfo.address.state}</p>
+			<p>${userInfo.address.city }, ${userInfo.address.state}</p>
 		</c:if>
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
 		<c:forEach var="items" items="${inventoryItems}">
-		<div class= "container-fluid image row">
-		<!--  <div class="container-fluid bg-2 text-center"> -->
+		 <div class="container-fluid bg-2 text-center"> 
    <p> Puzzle name: ${items.puzzle.name }</p>
    <p>Puzzle Id#: ${items.id}</p>
    <p>Condition:  ${items.condition}</p>
@@ -37,33 +36,38 @@
 	<div>
 		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
-		<div class= "container-fluid image row">
-		<!-- <div class="container-fluid bg-2 text-center"> -->
 			<c:forEach var="borrow" items="${borrows }">
+			<div class= "container-fluid"">
 				<p>${borrow.inventoryItem.puzzle.name }</p>
 				<img src="${borrow.inventoryItem.puzzle.imageUrl }width="195" height="160"
 					alt="${borrow.inventoryItem.puzzle.name } Puzzle">
 				<p><fmt:formatDate value="${borrow.borrowDate }" pattern="yyyy-MM-dd"/></p>
 				<p><fmt:formatDate value="${borrow.returnDate }" pattern="yyyy-MM-dd"/></p>
+				</div>
 			</c:forEach>
+	
 		</c:if>
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
 		</div>
 		</div>
 	
-	
 
 	<div>
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
+		<div class="container bg-5 text-center">
 		<h5>${userInfo.user.userName}'s Rating: ${rating } out of ${fn:length(userRatings)} ratings</h5>
+		</div>
+		<div class="container bg-5 text-left">
 			<c:forEach var="ratings" items="${userRatings }">
 				<p>User that Rated: ${ratings.raterUser.userName}</p>
 				<p>Rating: ${ratings.rating}</p>
 				<p>Comment: ${ratings.comment}</p>
+				<hr><br>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty userRatings}">No ratings available</c:if>
+		</div>
 		<form action="userRatingPage.do", method="get">
 		<input type="hidden" value=${userInfo.user.id } name="id">
 		<input type="submit" value="Rate This User!">
