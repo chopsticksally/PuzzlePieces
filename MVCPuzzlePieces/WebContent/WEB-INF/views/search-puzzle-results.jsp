@@ -55,9 +55,9 @@
 										<td>
 
 											<div class="Request">
-											<form action="makeRequest.do" method="get">
-    											<input type="hidden" value="${items.id }" name="id">
-    											<input type="submit" value="Request This Puzzle!">
+											<form action="puzzleDetails.do" method="get">
+    											<input type="hidden" value="${ii.id }" name="puzzle">
+    											<input type="submit" value="View Puzzle Details">
     											</form>
 												
 												<!-- <input class="toggle-btn" type="checkbox" value="Request"> -->

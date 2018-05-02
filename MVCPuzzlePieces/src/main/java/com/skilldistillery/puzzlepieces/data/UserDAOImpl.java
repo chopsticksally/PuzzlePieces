@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -191,5 +192,36 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 		return ratedTheUser;
+	}
+
+	@Override
+	public List<User> searchUserByUserRating(int rating) {
+		String query = "select distinct(u) from User u join fetch u.ratingsOfUser";
+		List<User> returnedList = new ArrayList<>();
+		List<User>allUsers = em.createQuery(query, User.class).getResultList();
+		for (User user : allUsers) {
+			List<UserRating>urs = user.getRatingsOfUser();
+			Double check = agrigateUserRating(urs);
+			if(check >= rating) {
+				returnedList.add(user);
+			}
+		}
+		
+		return returnedList;
+	}
+	
+	public Double agrigateUserRating(List<UserRating> userRatings) {
+		int rating = 0;
+		double userAverage = 0.00;
+		for (UserRating userRating : userRatings) {
+			rating = rating + userRating.getRating();
+		}
+		if (userRatings.size() != 0) {
+			double ratingP = (rating*100)/100;
+			userAverage = ratingP / userRatings.size();
+			userAverage = (Math.round(userAverage*100.0))/100.0;
+		}
+		return userAverage;
+
 	}
 }

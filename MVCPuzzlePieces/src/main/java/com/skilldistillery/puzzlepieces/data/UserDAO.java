@@ -16,6 +16,7 @@ public interface UserDAO {
 
 	public User updateUser(int id, User updated);
 
+	List<User> searchUserByUserRating(int rating);
 
 	List<User> searchUserByUserName(String userName);
 
@@ -38,4 +39,6 @@ public interface UserDAO {
     Boolean checkIfUserHasRatedPuzzleBefore(User user, int invId);
     
     Boolean checkIfUserHasRatedUserBefore(User user, int userId);
+    
+    
 }

@@ -53,6 +53,19 @@
 
 	</form>
 	
+			<form action="searchPuzzleByRating.do" method="GET">
+
+			<label for="puzzleRating">Search by Puzzle Rating:</label> 
+			<select name="puzzleRating">
+			<option value="1">More than 1</option>
+			<option value="2">More than 2</option>
+			<option value="3">More than 3</option>
+			<option value="4">More than 4</option>
+			<option value="5">More than 5</option>
+			</select>
+			<input type="submit" value="Search">
+
+		</form>
 
 	<jsp:include page="script.jsp" />
 </body>

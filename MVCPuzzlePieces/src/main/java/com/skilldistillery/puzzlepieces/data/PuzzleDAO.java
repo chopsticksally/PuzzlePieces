@@ -27,6 +27,7 @@ public interface PuzzleDAO {
 
 	List<InventoryItem> searchPuzzle(String name, int size, Condition condition);
 
+	List<InventoryItem> searchPuzzleByRating(int rating);
 
 	Request requestUserForPuzzle(InventoryItem id, User loggedInUser);
 

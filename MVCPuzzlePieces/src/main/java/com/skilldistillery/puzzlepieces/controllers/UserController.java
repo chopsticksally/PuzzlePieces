@@ -271,6 +271,14 @@ public class UserController {
 		mv.setViewName("search-user-results");
 		return mv;
 	}
+	@RequestMapping(path = "/searchUserByRating.do", method = RequestMethod.GET)
+	public ModelAndView searchUserByUserRating(@RequestParam(name = "userRating") int rating) {
+		ModelAndView mv = new ModelAndView();
+		List<User> users = dao.searchUserByUserRating(rating);
+		mv.addObject("users", users);
+		mv.setViewName("search-user-results");
+		return mv;
+	}
 
 	@RequestMapping(path = "editProfile.do", method = RequestMethod.GET)
 	public ModelAndView editProfile() {

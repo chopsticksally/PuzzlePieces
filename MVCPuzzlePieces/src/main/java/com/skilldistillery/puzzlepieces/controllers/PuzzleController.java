@@ -163,6 +163,18 @@ public class PuzzleController {
 		return mv;
 
 	}
+	@RequestMapping(path = "searchPuzzleByRating.do", method = RequestMethod.GET)
+	public ModelAndView searchPuzzleByRating(@RequestParam(name = "puzzleRating")int rating) {
+		ModelAndView mv = new ModelAndView();
+		List<InventoryItem> inventoryItems = dao.searchPuzzleByRating(rating);
+		System.out.println("********************************************");
+		System.out.println(inventoryItems.get(0).getId());
+		System.out.println("********************************************");
+		mv.addObject("puzzles", inventoryItems);
+		mv.setViewName("search-puzzle-results");
+		return mv;
+		
+	}
 
 	@RequestMapping(path = "updateRequest.do", method = RequestMethod.POST)
 	public ModelAndView updateRequest(@RequestParam(name = "id") Integer inventoryId) {

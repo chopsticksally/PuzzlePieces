@@ -16,6 +16,19 @@
 			<input type="submit" value="Search">
 
 		</form>
+		<form action="searchUserByRating.do" method="GET">
+
+			<label for="userRating">Search by User Rating:</label> 
+			<select name="userRating">
+			<option value="1">More than 1</option>
+			<option value="2">More than 2</option>
+			<option value="3">More than 3</option>
+			<option value="4">More than 4</option>
+			<option value="5">More than 5</option>
+			</select>
+			<input type="submit" value="Search">
+
+		</form>
 	</div>
 
 	<jsp:include page="script.jsp" />
