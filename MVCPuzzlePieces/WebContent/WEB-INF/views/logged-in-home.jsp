@@ -17,11 +17,11 @@
 			<div class="row">
 				<div class="col-sm-4">
 
-					<c:if test="${ii.owner.id != userLoggedIn.id }">
+					
 						<p><a href="puzzleDetails.do?puzzle=${ii.id }"> ${ii.puzzle.name }</a></p>
 						<p><a href="puzzleDetails.do?puzzle=${ii.id }"> <img
 								alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
-								width="295" height="260"></a></p></c:if>
+								width="295" height="260"></a></p>
 			
 					
 	</div>
