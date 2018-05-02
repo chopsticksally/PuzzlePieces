@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="head">
-	<h1 class="logo">Puzzle Pieces</h1>
+	<img class="logo-header" src="images/PuzzlePiecesHeader.pdf" alt="Puzzle Pieces Header">
 	<ul class="nav justify-content-center">
 		<li class="active nav-item"><a class="nav-link"
 			href="logged-in-home.do">Home</a></li>

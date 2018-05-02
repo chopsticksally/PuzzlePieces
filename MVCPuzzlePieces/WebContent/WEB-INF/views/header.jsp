@@ -7,4 +7,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="css/stylesheet.css" rel="stylesheet">
 <title>Puzzle Pieces</title>
+
 </head>
