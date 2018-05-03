@@ -103,6 +103,9 @@ table, th, td {
 						<td>
 							<div class="container-fluid text-center">
 								<p>${borrow.inventoryItem.puzzle.name }</p>
+								<c:if test="${returnDate not empty }">
+								<p>From: ${borrow.inventoryItem.owner.userName }</p>
+								</c:if>
 								<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 									height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
 								<p>
@@ -111,9 +114,13 @@ table, th, td {
 										pattern="yyyy-MM-dd" />
 								</p>
 								<p>
-									Return by:
+									Return by: <c:if test="${borrow.returnDate not empty }">
 									<fmt:formatDate value="${borrow.returnDate }"
 										pattern="yyyy-MM-dd" />
+									</c:if>
+									<c:if test="${borrow.returnDate empty }">
+									  You own this puzzle now!
+									</c:if>
 								</p>
 							</div>
 						</td>
@@ -135,7 +142,7 @@ table, th, td {
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
 			<div class="container bg-5 text-center">
-				<h5>${userInfo.user.userName}'sRating:${rating }
+				<h5>${userInfo.user.userName}'s Rating:${rating } out of
 					${fn:length(userRatings)} ratings</h5>
 			</div>
 			<div class="container bg-5 text-left">
