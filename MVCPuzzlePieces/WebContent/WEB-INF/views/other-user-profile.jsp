@@ -27,8 +27,8 @@ table, th, td {
 		<c:set var="invcount" value="0" scope="page" />
 		<table>
 			<tr>
-			<c:forEach var="items" items="${inventoryItems}">
-			<c:if test="${invcount % 3 == 0}">
+				<c:forEach var="items" items="${inventoryItems}">
+					<c:if test="${invcount % 3 == 0}">
 			</tr>
 			<tr>
 				<td>
@@ -60,8 +60,8 @@ table, th, td {
 					</td>
 				</c:if>
 				<c:set var="invcount" value="${count + 1}" scope="page" />
-				
-					</c:forEach>
+
+				</c:forEach>
 			</tr>
 		</table>
 	</div>
@@ -73,12 +73,13 @@ table, th, td {
 			<c:set var="borrowcount" value="0" scope="page" />
 			<table>
 				<tr>
-					<c:forEach var="borrow" items="${borrows }">
-						<c:if test="${borrowcount % 5 == 0}">
-				</tr>
-				<tr>
+				<c:forEach var="borrow" items="${borrows }">
+					<c:if test="${borrowcount % 5 == 0}">
+					</tr>
+					<tr>
 					<td>
 						<div class="container-fluid text-left">
+							<br>
 							<p>${borrow.inventoryItem.puzzle.name }</p>
 							<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 								height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
@@ -118,20 +119,17 @@ table, th, td {
 					</c:forEach>
 				</tr>
 			</table>
-
 		</c:if>
-
-
-		
 	</div>
 	</div>
-
-
+	<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
+	</div>
+	</div>
 	<div class="container bg-5 text-center">
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
 			<div class="container bg-5 text-center">
-				<h5>${userInfo.user.userName}'sRating:${rating } out of
+				<h5>${userInfo.user.userName}'sRating:${rating }
 					${fn:length(userRatings)} ratings</h5>
 			</div>
 			<div class="container bg-5 text-left">
@@ -142,18 +140,18 @@ table, th, td {
 					<hr>
 					<br>
 				</c:forEach>
-				</div>
-				
+			</div>
+
 		</c:if>
 		<c:if test="${empty userRatings}">No ratings available</c:if>
-	
-	<form action="userRatingPage.do" , method="get">
-		<input type="hidden" value=${userInfo.user.id } name="id"> <input
-			type="submit" value="Rate This User!">
-	</form>
-			</div>
-	
-	
+
+		<form action="userRatingPage.do" , method="get">
+			<input type="hidden" value=${userInfo.user.id } name="id"> <input
+				type="submit" value="Rate This User!">
+		</form>
+	</div>
+
+
 
 	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
