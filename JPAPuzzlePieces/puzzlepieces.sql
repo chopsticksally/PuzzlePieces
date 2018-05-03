@@ -290,6 +290,7 @@ INSERT INTO `user` (`id`, `username`, `password`) VALUES (1, 'alex', 'alex');
 INSERT INTO `user` (`id`, `username`, `password`) VALUES (2, 'julian', 'julian');
 INSERT INTO `user` (`id`, `username`, `password`) VALUES (3, 'miranda', 'miranda');
 INSERT INTO `user` (`id`, `username`, `password`) VALUES (4, 'xian', 'xian');
+INSERT INTO `user` (`id`, `username`, `password`) VALUES (5, 'admin', 'admin');
 
 COMMIT;
 
@@ -342,6 +343,7 @@ INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (2, '456 Other Lane', 'Apt. 17', 'Kansas City', 'KS', '88888');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (3, '1414 Dewberry Lane', NULL, 'Houston', 'TX', '77005');
 INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (4, '77 Spooky Ave', 'Apt. B', 'Washington, DC', NULL, '55465');
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `postal_code`) VALUES (5, '7400 East Orchard Road, Greenwood Village, CO 80111', 'Suite 1450 N', 'Greenwood Villiage', 'CO', '80111');
 
 COMMIT;
 
@@ -355,6 +357,7 @@ INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_
 INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (2, 'julian@aol.com', 'julian', 'goudy', 2, 2);
 INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (3, 'miranda@rr.net', 'miranda', 'martin', 3, 3);
 INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (4, 'xian@google.com', 'xian', 'zheng', 4, 4);
+INSERT INTO `user_information` (`id`, `email`, `first_name`, `last_name`, `user_id`, `address_id`) VALUES (5, 'admin@admin.com', 'admin', 'admin', 5, 5);
 
 COMMIT;
 
