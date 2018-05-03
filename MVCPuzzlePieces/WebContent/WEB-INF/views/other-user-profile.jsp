@@ -7,6 +7,11 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="header.jsp" />
+<style>
+table, th, td {
+    margin: 1em auto;
+}
+</style>
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 
@@ -19,34 +24,84 @@
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
+		<c:set var="invcount" value="0" scope="page"/>
+		<table>
+		<tr>
 		<c:forEach var="items" items="${inventoryItems}">
-		 <div class="container-fluid bg-2 text-center"> 
-   <p> Puzzle name: ${items.puzzle.name }</p>
-   <p>Puzzle Id#: ${items.id}</p>
-   <p>Condition:  ${items.condition}</p>
-    <img alt="stuuff" src="${items.puzzle.imageUrl }"width="295" height="260">
-			<form action="puzzleDetails.do" method="get">
-				<input type="hidden" value="${items.id }" name="puzzle"> <input
-					type="submit" value="View Puzzle Details!">
-			</form>
+			<c:if test="${invcount % 3 == 0}">
+			</tr>
+				<tr>
+				<td>
+		 			<div class="container-fluid bg-2 text-center"> 
+   					<p> Puzzle name: ${items.puzzle.name }</p>
+  		 			<p>Puzzle Id#: ${items.id}</p>
+   					<p>Condition:  ${items.condition}</p>
+    				<img alt="stuuff" src="${items.puzzle.imageUrl }"width="295" height="260">
+					<form action="puzzleDetails.do" method="get">
+						<input type="hidden" value="${items.id }" name="puzzle"> <input
+							type="submit" value="View Puzzle Details!">
+					</form>
+				</td>
+			</c:if>
+			<c:if test="${invcount % 3 != 0}">
+				
+				<td>
+		 			<div class="container-fluid bg-2 text-center"> 
+   					<p> Puzzle name: ${items.puzzle.name }</p>
+  		 			<p>Puzzle Id#: ${items.id}</p>
+   					<p>Condition:  ${items.condition}</p>
+    				<img alt="stuuff" src="${items.puzzle.imageUrl }"width="295" height="260">
+					<form action="puzzleDetails.do" method="get">
+						<input type="hidden" value="${items.id }" name="puzzle"> <input
+							type="submit" value="View Puzzle Details!">
+					</form>
+				</td>
+			</c:if>
+			<c:set var="invcount" value="${count + 1}" scope="page"/>
 		</c:forEach>
+		</tr>
+		</table>
 	</div>
 
 
 	<div>
 		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
-			<c:forEach var="borrow" items="${borrows }">
-			<div class="container-fluid text-left">
-				<p>${borrow.inventoryItem.puzzle.name }</p>
-				<img src="${borrow.inventoryItem.puzzle.imageUrl }"
-					alt="${borrow.inventoryItem.puzzle.name } Puzzle">
-				<p>Borrow date:<fmt:formatDate value="${borrow.borrowDate }" pattern="yyyy-MM-dd"/></p>
-				<p>Return by:<fmt:formatDate value="${borrow.returnDate }" pattern="yyyy-MM-dd"/></p>
-				</div>
+			<c:set var="borrowcount" value="0" scope="page"/>
+			<table>
+			<tr>
+				<c:forEach var="borrow" items="${borrows }">
+					<c:if test="${borrowcount % 5 == 0}">
+						</tr>
+						<tr>
+						<td>
+							<div class="container-fluid text-left">
+							<p>${borrow.inventoryItem.puzzle.name }</p>
+							<img src="${borrow.inventoryItem.puzzle.imageUrl }"width="221" height="195"
+								alt="${borrow.inventoryItem.puzzle.name } Puzzle">
+							<p>Borrow date:<fmt:formatDate value="${borrow.borrowDate }" pattern="yyyy-MM-dd"/></p>
+							<p>Return by:<fmt:formatDate value="${borrow.returnDate }" pattern="yyyy-MM-dd"/></p>
+						</div>
+						</td>
+					</c:if>
+					<c:if test="${borrowcount % 5 != 0}">
+						<td>
+						<div class="container-fluid text-left">
+							<p>${borrow.inventoryItem.puzzle.name }</p>
+							<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221" height="195"
+								alt="${borrow.inventoryItem.puzzle.name } Puzzle">
+							<p>Borrow date:<fmt:formatDate value="${borrow.borrowDate }" pattern="yyyy-MM-dd"/></p>
+							<p>Return by:<fmt:formatDate value="${borrow.returnDate }" pattern="yyyy-MM-dd"/></p>
+						</div>
+						</td>
+					</c:if>
+				<c:set var="borrowcount" value="${count + 1}" scope="page"/>
 			</c:forEach>
-	
+			</tr>
+			</table>
 		</c:if>
+		
+		
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
 		</div>
 		</div>
