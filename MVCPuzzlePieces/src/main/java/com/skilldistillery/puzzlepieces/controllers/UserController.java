@@ -39,7 +39,6 @@ public class UserController {
 		List<InventoryItem> ii = puzzleDao.retrieveAll();
 		Collections.shuffle(ii);
 		mv.addObject("inventoryItems", ii);
-		// TEST
 		System.out.println(ii.size());
 		mv.setViewName("home");
 		return mv;
@@ -136,18 +135,14 @@ public class UserController {
 			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		try {
-			System.out.println("****************************");
-			System.out.println(address);
-			System.out.println("****************************");
 			Address updatedAddress = dao.updateAddress(userId, address);
-			// mv.addObject("address",updatedAddress );
-//			System.out.println("****************************");
-//			System.out.println(updatedAddress);
-//			System.out.println("****************************");
 			User user = (User) session.getAttribute("userLoggedIn");
 			if (updatedAddress != null) {
 				user.getUserInformation().setAddress(updatedAddress);
 				session.setAttribute("userLoggedIn", user);
+				List<InventoryItem> ii = puzzleDao.retrieveAll();
+				Collections.shuffle(ii);
+				mv.addObject("inventoryItems", ii);
 				mv.setViewName("logged-in-home");
 			}
 		} catch (Exception e) {
