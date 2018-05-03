@@ -116,6 +116,9 @@ table, th, td {
 									<h4>
 										<p class="uppercase">${borrows.inventoryItem.puzzle.name }</p>
 									</h4>
+									<c:if test="${borrows.returnDate not empty }">
+									<p>From User: ${borrows.inventoryItem.owner.userName }</p>
+									</c:if>
 									<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 										width="221" height="195"
 										alt="${borrows.inventoryItem.puzzle.name } Puzzle">
@@ -125,9 +128,13 @@ table, th, td {
 											pattern="yyyy-MM-dd" />
 									</p>
 									<p>
-										Return by:
+										Return by:<c:if test="${borrows.returnDate not empty }">
 										<fmt:formatDate value="${borrows.returnDate }"
 											pattern="yyyy-MM-dd" />
+											</c:if>
+											<c:if test="${borrows.returnDate empty }">
+											 You own this puzzle now!
+											 </c:if>
 									</p>
 								</div>
 							</td>
@@ -195,6 +202,7 @@ table, th, td {
 		</c:if>
 		<c:if test="${empty userSubmittedRatings}">No submitted ratings</c:if>
 	</div>
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
 </html>
