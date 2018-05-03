@@ -36,7 +36,7 @@
 			<div class="row">
 				<div class="col-sm-4">
 
-					<p>${ii.puzzle.name }</p>
+					<h3><p class="uppercase">${ii.puzzle.name }</p></h3>
 					<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
 						width="295" height="260">
 				</div>
@@ -44,7 +44,7 @@
 		<c:if test="${count % 3 != 0}">
 			<div class="col-sm-4">
 
-				<p>${ii.puzzle.name }</p>
+				<h3><p class="uppercase">${ii.puzzle.name }</p></h3>
 				<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
 					width="295" height="260">
 			</div>
