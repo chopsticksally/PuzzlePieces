@@ -24,7 +24,7 @@ public interface UserDAO {
 
 	User userLoginByUserNameAndPassword(String userName, String password);
 
-	boolean destroy(int id);
+	boolean deleteUser(int userId);
 	
     UserInformation updateUserInformation(int id, UserInformation updated); 
     

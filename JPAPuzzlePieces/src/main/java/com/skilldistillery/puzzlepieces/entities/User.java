@@ -31,25 +31,25 @@ public class User {
 	@OneToOne(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	private UserInformation userInformation;
 
-	@OneToMany(mappedBy = "requestee")
+	@OneToMany(mappedBy = "requestee", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<Request> requestsRecieved;
 
-	@OneToMany(mappedBy = "requester")
+	@OneToMany(mappedBy = "requester", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<Request> requestsSent;
 
-	@OneToMany(mappedBy = "ratedUser")
+	@OneToMany(mappedBy = "ratedUser", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<UserRating> ratingsOfUser;
 
-	@OneToMany(mappedBy = "raterUser")
+	@OneToMany(mappedBy = "raterUser", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<UserRating> ratingsOfOtherUsers;
 
-	@OneToMany(mappedBy = "loaner")
+	@OneToMany(mappedBy = "loaner", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<Borrow> loans;
 
-	@OneToMany(mappedBy = "owner")
+	@OneToMany(mappedBy = "owner", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<InventoryItem> owns;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	List<PuzzleRating> puzzleRatings;
 
 	public User() {

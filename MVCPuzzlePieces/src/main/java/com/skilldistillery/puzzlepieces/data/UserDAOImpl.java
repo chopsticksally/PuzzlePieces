@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skilldistillery.puzzlepieces.entities.Address;
+import com.skilldistillery.puzzlepieces.entities.Borrow;
 import com.skilldistillery.puzzlepieces.entities.InventoryItem;
 import com.skilldistillery.puzzlepieces.entities.Puzzle;
 import com.skilldistillery.puzzlepieces.entities.PuzzleRating;
+import com.skilldistillery.puzzlepieces.entities.Request;
 import com.skilldistillery.puzzlepieces.entities.User;
 import com.skilldistillery.puzzlepieces.entities.UserInformation;
 import com.skilldistillery.puzzlepieces.entities.UserRating;
@@ -63,8 +65,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public Address createAddress(int id, Address newAddress) {
-		UserInformation newUser = em.find(UserInformation.class,
-				em.find(User.class, id).getUserInformation().getId());
+		UserInformation newUser = em.find(UserInformation.class, em.find(User.class, id).getUserInformation().getId());
 		newUser.setAddress(newAddress);
 		System.out.println("****************************");
 		System.out.println(newAddress);
@@ -74,7 +75,7 @@ public class UserDAOImpl implements UserDAO {
 		Address addedAddress = newUser.getAddress();
 		return addedAddress;
 	}
-	
+
 	@Override
 	public Address updateAddress(int id, Address updatedAddress) {
 		int addressIdofUser = em.find(User.class, id).getUserInformation().getAddress().getId();
@@ -84,7 +85,7 @@ public class UserDAOImpl implements UserDAO {
 		managedAddress.setCity(updatedAddress.getCity());
 		managedAddress.setState(updatedAddress.getState());
 		managedAddress.setPostalCode(updatedAddress.getPostalCode());
-		
+
 		em.persist(managedAddress);
 		em.flush();
 		return managedAddress;
@@ -111,18 +112,12 @@ public class UserDAOImpl implements UserDAO {
 			return null;
 		}
 	}
-
+	
 	@Override
-	public boolean destroy(int id) {
+	public boolean deleteUser(int id) {
 		try {
-
-			User it = em.find(User.class, id);
-			Address ad = em.find(Address.class, it.getUserInformation().getAddress().getId());
-			UserInformation ui = em.find(UserInformation.class, it.getUserInformation().getId());
-			em.remove(ad);
-			em.remove(ui);
-			em.remove(it);
-			em.flush();
+			User u = em.find(User.class, id);
+			em.remove(u);
 			return true;
 		} catch (Exception e) {
 			return false;
