@@ -8,22 +8,24 @@
 
 <body>
 	<jsp:include page="public-navbar.jsp" />
-	<div class="container">
-		<div class="row">
-			<div id="loader">
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="dot"></div>
-				<div class="lading"></div>
+
+	<!-- <div class="container-fluid bg-3 text-center" id="#top">
+		<div class="container">
+			<div class="row">
+				<div id="loader">
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="dot"></div>
+					<div class="lading"></div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="container-fluid bg-3 text-center" id="#top">
+		</div> -->
+		
 		<c:if test="${not empty inventoryItems }">
 			<div class="jumbotron text-center jumbobackground">
 				<h1 class="header">Welcome To Puzzle Pieces!</h1>
