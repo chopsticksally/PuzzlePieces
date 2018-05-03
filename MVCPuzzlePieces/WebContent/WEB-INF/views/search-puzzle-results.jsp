@@ -5,7 +5,8 @@
 <html>
 <jsp:include page="header.jsp" />
 <body>
-	<jsp:include page="logged-in-navbar.jsp" />
+<!-- 	test comment
+ -->	<jsp:include page="logged-in-navbar.jsp" />
 	
 	<div class="container-fluid">
 		<h1 class="header">Puzzles found according to your search</h1>
@@ -28,21 +29,13 @@
 
 
 						<p>Puzzle Name: ${ii.puzzle.name}</p>
-
-
-
-
-
-
+							<c:forEach var="cat" items="${ii.puzzle.categories}">
+																${cat.name }
+																</c:forEach>
 						<p>
 							Puzzle Category:
-							<c:forEach var="cat" items="${ii.puzzle.categories}">
-											${cat.name }
-											</c:forEach>
+					
 						</p>
-
-
-
 
 						<p>Puzzle size: ${ii.puzzle.size}</p>
 						<p>Condition: ${ii.condition}</p>
