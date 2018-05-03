@@ -16,15 +16,15 @@ table, th, td {
 	<jsp:include page="logged-in-navbar.jsp" />
 
 	<h3 class="header">User: ${userInfo.user.userName}</h3>
-	<div class="container bg-3 text-center">
+	<div class="container-fluid bg-3 text-center">
 		<h4 class="header">Current Location</h4>
 		<c:if test="${not empty userInfo }">
 			<p>${userInfo.address.city },${userInfo.address.state}</p>
 		</c:if>
 	</div>
+		<hr class="colorgraph">
 	<div>
 		<h4 class="header">Current Inventory</h4>
-		<hr class="colorgraph">
 		<c:set var="invcount" value="0" scope="page" />
 		<table>
 			<tr>
@@ -71,8 +71,8 @@ table, th, td {
 
 
 	<div>
-		<h4 class="header">Puzzles Borrowed</h4>
 		<hr class="colorgraph">
+		<h4 class="header">Puzzles Borrowed</h4>
 		<c:if test="${not empty borrows }">
 			<c:set var="borrowcount" value="0" scope="page" />
 			<table>
@@ -82,7 +82,7 @@ table, th, td {
 				</tr>
 				<tr>
 					<td>
-						<div class="container text-left">
+						<div class="container-fluid text-center">
 							<p>${borrow.inventoryItem.puzzle.name }</p>
 							<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 								height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
@@ -101,7 +101,7 @@ table, th, td {
 					</c:if>
 					<c:if test="${borrowcount % 5 != 0}">
 						<td>
-							<div class="container text-left">
+							<div class="container-fluid text-center">
 								<p>${borrow.inventoryItem.puzzle.name }</p>
 								<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 									height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
@@ -129,6 +129,7 @@ table, th, td {
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
 	</div>
 	</div>
+				<hr class="colorgraph">
 	</div>
 	<div class="container bg-5 text-center">
 		<h4 class="header">User Ratings</h4>
@@ -136,7 +137,6 @@ table, th, td {
 			<div class="container bg-5 text-center">
 				<h5>${userInfo.user.userName}'sRating:${rating }
 					${fn:length(userRatings)} ratings</h5>
-		<hr class="colorgraph">
 			</div>
 			<div class="container bg-5 text-left">
 				<c:forEach var="ratings" items="${userRatings }">
