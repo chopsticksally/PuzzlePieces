@@ -79,7 +79,6 @@ table, th, td {
 					<tr>
 					<td>
 						<div class="container-fluid text-left">
-							<br>
 							<p>${borrow.inventoryItem.puzzle.name }</p>
 							<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 								height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
