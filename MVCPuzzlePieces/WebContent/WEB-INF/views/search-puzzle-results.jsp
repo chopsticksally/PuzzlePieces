@@ -6,12 +6,10 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
+	
 	<div class="container-fluid">
 		<h1 class="header">Puzzles found according to your search</h1>
 		<hr class="colorgraph">
-		<div class="row justify-content-start">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-8">
 
 				<div class="container-fluid bg-3 text-center">
 					<c:if test="${empty puzzles }">

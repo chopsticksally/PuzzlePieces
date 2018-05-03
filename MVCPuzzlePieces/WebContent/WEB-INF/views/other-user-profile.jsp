@@ -161,9 +161,9 @@ table, th, td {
 
 	<div class="container bg-5 text-center">
 		<c:if test="${userLoggedIn.id == 5 }">
-			<a href="editProfile.do?id=${userInfo.user.id }">
+<%-- 			<a href="editProfile.do?id=${userInfo.user.id }">
 				<button type="submit" class="btn btn-outline-info">Update</button>
-			</a>
+			</a> --%>
 			<a href="deleteUser.do?itemId=${userInfo.user.id}">
 				<button type="submit" class="btn btn-outline-danger"
 					onclick=" return confirm('Are you sure you want to delete this user?')">Delete</button>

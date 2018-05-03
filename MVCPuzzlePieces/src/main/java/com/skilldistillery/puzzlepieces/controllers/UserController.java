@@ -353,12 +353,23 @@ public class UserController {
 	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
 	public ModelAndView logout(SessionStatus logout) {
 		ModelAndView mv = new ModelAndView();
+		
 		List<InventoryItem> ii = puzzleDao.retrieveAll();
 		Collections.shuffle(ii);
 		mv.addObject("inventoryItems", ii);
 		logout.setComplete();
 		mv.setViewName("home");
 		return mv;
-
+	}
+	
+	@RequestMapping(path = "deleteUser.do", method = RequestMethod.GET)
+	public ModelAndView deleteUser(@RequestParam(name="itemId")int userId) {
+		ModelAndView mv = new ModelAndView();
+		dao.deleteUser(userId);
+		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		Collections.shuffle(ii);
+		mv.addObject("inventoryItems", ii);
+		mv.setViewName("logged-in-home");
+		return mv;
 	}
 }
