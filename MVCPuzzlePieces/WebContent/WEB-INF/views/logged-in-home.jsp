@@ -26,9 +26,9 @@
 				<div class="col-sm-4">
 
 
-					<p>
+					<h3><p class="uppercase">
 						<a href="puzzleDetails.do?puzzle=${ii.id }"> ${ii.puzzle.name }</a>
-					</p>
+					</p></h3>
 					<p>
 						<a href="puzzleDetails.do?puzzle=${ii.id }"> <img
 							alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
@@ -41,9 +41,9 @@
 		<c:if test="${count % 3 != 0}">
 			<div class="col-sm-4">
 
-				<p>
+				<h3><p class="uppercase">
 					<a href="puzzleDetails.do?puzzle=${ii.id }"> ${ii.puzzle.name }</a>
-				</p>
+				</p></h3>
 				<p>
 					<a href="puzzleDetails.do?puzzle=${ii.id }"> <img
 						alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
