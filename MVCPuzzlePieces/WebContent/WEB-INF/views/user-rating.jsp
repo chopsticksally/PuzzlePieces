@@ -29,7 +29,7 @@
 					placeholder="Leave a comment..."></textarea>
 			</div>
 
-			<button type="submit" class="btn">Rate</button>
+			<button type="submit" class="btn btn-outline-info">Rate</button>
 		</form>
 	</div>
 
