@@ -77,9 +77,8 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public Address updateAddress(int id, Address updatedAddress) {
-		//TRY PUTTING IT IN TWO LINES
-		Address managedAddress = em.find(Address.class,
-				em.find(User.class, id).getUserInformation().getAddress().getId());
+		int addressIdofUser = em.find(User.class, id).getUserInformation().getAddress().getId();
+		Address managedAddress = em.find(Address.class, addressIdofUser);
 		managedAddress.setStreet(updatedAddress.getStreet());
 		managedAddress.setStreet2(updatedAddress.getStreet2());
 		managedAddress.setCity(updatedAddress.getCity());
