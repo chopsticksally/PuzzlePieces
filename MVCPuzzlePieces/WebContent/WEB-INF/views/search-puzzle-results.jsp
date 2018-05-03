@@ -8,6 +8,7 @@
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container-fluid">
 		<h1 class="header">Puzzles found according to your search</h1>
+		<hr class="colorgraph">
 		<div class="row justify-content-start">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-8">
@@ -21,50 +22,47 @@
 
 						<table>
 							<tr>
-								<td><img src="${ii.puzzle.imageUrl}" width="275"
-									height="250" alt="${ii.puzzle.name}"></td>
-								<td>
-									<p>
-									<h2>About this puzzle:</h2>
-									</p>
-									<table>
-										<tr>
-											<td>Puzzle Name:</td>
-											<td>${ii.puzzle.name}</td>
-										</tr>
-										<tr>
+								<p>
+									<img src="${ii.puzzle.imageUrl}" width="275" height="250"
+										alt="${ii.puzzle.name}">
+								</p>
+								<p>
+								<p>
+								<h2>About this puzzle:</h2>
+								</p>
+
+								<p>Puzzle Name: ${ii.puzzle.name}</p>
+								
+							<tr>
 
 
 
 
-											<td>Puzzle Category:</td>
-											<td><c:forEach var="cat" items="${ii.puzzle.categories}">
+								<p>Puzzle Category:</p>
+								<p>
+									<c:forEach var="cat" items="${ii.puzzle.categories}">
 											${cat.name }
-											</c:forEach></td>
-											<%-- <td>${puzzle.categories}</td> --%>
-										</tr>
-										<tr>
-											<td>Puzzle size:</td>
-											<td>${ii.puzzle.size}</td>
-										</tr>
-										<tr>
-											<td>Condition:</td>
-											<td>${ii.condition}</td>
-										</tr>
-										<td>
+											</c:forEach>
+								</p>
 
-											<div class="Request">
-												<form action="puzzleDetails.do" method="get">
-													<input type="hidden" value="${ii.id }" name="puzzle">
-													<input type="submit" class="btn btn-outline-info" value="View Puzzle Details">
-												</form>
+								<p>Puzzle size:</p>
+								<p>${ii.puzzle.size}</p>
+								<p>Condition:</p>
+								<p>${ii.condition}</p>
 
-												<!-- <input class="toggle-btn" type="checkbox" value="Request"> -->
-										</td>
-									</table>
-								</td>
-						</table>
-						<br>
+								<p>
+								<div class="Request">
+									<form action="puzzleDetails.do" method="get">
+										<input type="hidden" value="${ii.id }" name="puzzle">
+										<input type="submit" class="btn btn-outline-info"
+											value="View Puzzle Details">
+									</form>
+
+									<!-- <input class="toggle-btn" type="checkbox" value="Request"> -->
+									</p>
+
+
+									<br>
 					</c:forEach>
 				</div>
 				<br>
