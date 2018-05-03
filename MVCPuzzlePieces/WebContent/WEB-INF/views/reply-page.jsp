@@ -8,20 +8,30 @@
 
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-	<h3 class="header">User: ${userLoggedIn.userName}</h3>
-	<h2>Reply to your request</h2>
-	<br> ${request.requester.userName} ${request.message}
-	<form action="acceptingOrRejectingRequest.do" method="post">
-		<input type="hidden" value="${request.id }" name="id"> <br>
-		<label for="reply">Reply:</label> <select name="choice">
-			<option value="1">Reject Request</option>
-			<option value="2">Accept Request</option>
-			<option value="3">Gift Puzzle</option>
-		</select> <br>
-		<textarea name="message" rows="10" cols="30"
-			placeholder="Reply here..."></textarea>
-		<input type="submit" class="btn btn-outline-info" value="Send">
-	</form>
+
+	<div class="wrapper">
+		<form action="acceptingOrRejectingRequest.do" method="post" class="form-signin">
+			<h3 class="form-signin-heading">Reply to your request</h3>
+			<hr class="colorgraph">
+			<input type="hidden" value="${inventoryId}" name="id"> <br>
+			<h4 class="uppercase">${request.requester.userName}:</h4>
+			<h5 class="message">${request.message}</h5>
+			<h4>
+				Reply: <select name="choice">
+					<option value="1">Reject Request</option>
+					<option value="2">Accept Request</option>
+					<option value="3">Gift Puzzle</option>
+				</select>
+			</h4>
+
+			<br> <label for="userName">Reply Message:</label>
+			<textarea type="message" class="form-control" name="message"
+				placeholder="Reply here..." required=""></textarea>
+
+			<button class="btn btn-lg btn-info btn-block" name="Submit"
+				type="Submit">Submit Reply!</button>
+		</form>
+	</div>
 
 	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />

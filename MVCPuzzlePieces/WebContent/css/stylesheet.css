@@ -55,6 +55,12 @@ a.register {
 	text-align: center;
 }
 
+/*--------------Reply Page---------------*/
+
+.message {
+	text-align: center;
+}
+
 /*------------About Us---------------*/
 .headshot {
 	width: 200px;
