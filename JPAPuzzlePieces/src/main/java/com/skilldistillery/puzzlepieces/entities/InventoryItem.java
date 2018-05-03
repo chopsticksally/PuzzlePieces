@@ -29,7 +29,7 @@ public class InventoryItem {
 
 	// @Column(name= "puzzle_id")
 	// private int puzzleId;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "puzzle_id")
 	private Puzzle puzzle;
 
@@ -42,10 +42,10 @@ public class InventoryItem {
 	@JoinColumn(name = "owner_id")
 	private User owner;
 
-	@OneToMany(mappedBy = "inventoryItem")
+	@OneToMany(mappedBy = "inventoryItem",  cascade=CascadeType.REMOVE)
 	private List<Request> requests;
 
-	@OneToMany(mappedBy = "inventoryItem")
+	@OneToMany(mappedBy = "inventoryItem",  cascade=CascadeType.REMOVE)
 	private List<Borrow> borrows;
 
 	public InventoryItem() {

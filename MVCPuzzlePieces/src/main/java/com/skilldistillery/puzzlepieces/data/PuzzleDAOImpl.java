@@ -187,7 +187,6 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		try {
 			InventoryItem it = em.find(InventoryItem.class, id);
 			em.remove(it);
-			em.flush();
 			d = true;
 			return d;
 		} catch (Exception e) {
