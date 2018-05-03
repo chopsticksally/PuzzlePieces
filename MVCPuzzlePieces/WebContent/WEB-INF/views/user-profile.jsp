@@ -23,6 +23,7 @@
 		<div>
 			<h4 class="header">Current Inventory</h4>
 
+<<<<<<< HEAD
 
 
 			<div>
@@ -43,12 +44,27 @@
 					</p>
 				</div>
 		</div>
+=======
+		<c:forEach var="items" items="${inventoryItems}">
+		
+	 <div class="container-fluid bg-2 text-center "> 
+			<p>${items.puzzle.name }</p>
+			<img type ="center" alt="${items.puzzle.name } Puzzle Photo"
+				src="${items.puzzle.imageUrl }" width="295" height="260">
+				<br>
+				
+		<p><a href="userInventoryDetails.do?itemId=${items.id }"><button 
+					class="btn btn-outline-info">View Puzzle Details</button></a></p>
+</div>
+</div>
+>>>>>>> d982512e2c048f3fe3d3c19aa3dc5184cb2b8a70
 		</c:forEach>
 
 
 
 	</div>
 	<div>
+<<<<<<< HEAD
 		<div class="container bg-5 text-left">
 			<h4 class="header">Requests Received</h4>
 			<c:forEach var="req" items="${userRequests }">
@@ -67,6 +83,35 @@
 		<div class="container bg-5 text-left">
 			<h4 class="header">Requests Sent</h4>
 			<c:forEach var="sentReq" items="${sentRequests }">
+=======
+	<div class="container bg-5 text-left">
+		<h4 class="header">Requests Received</h4>
+		<c:forEach var="req" items="${userRequests }">
+			<c:if test="${req.active == true}">
+				<p>Request from: ${req.requester.userName }</p>
+				<p>User Comment: ${req.message }</p>
+				<p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
+				<form action="replyToRequest.do" method="get">
+					<input type="hidden" value="${req.id}" name="id"> <input
+						type="submit" class="btn btn-outline-info" value="Reply">
+				</form>
+				<br>
+			</c:if>
+		</c:forEach>
+	</div>
+	<div class="container bg-5 text-left">
+		<h4 class="header">Requests Sent</h4>
+		<c:forEach var="sentReq" items="${sentRequests }">
+			
+			
+			<br><hr>
+			<p>User Request Sent To: ${sentReq.requestee.userName }</p>
+			<p>Message: ${sentReq.message }</p>
+			<p>Requested Puzzle Name: ${sentReq.inventoryItem.puzzle.name }</p>
+			<br>
+		</c:forEach>
+	</div>
+>>>>>>> d982512e2c048f3fe3d3c19aa3dc5184cb2b8a70
 
 
 				<br>
