@@ -8,7 +8,21 @@
 
 <body>
 	<jsp:include page="public-navbar.jsp" />
-
+	<div class="container">
+		<div class="row">
+			<div id="loader">
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="dot"></div>
+				<div class="lading"></div>
+			</div>
+		</div>
+	</div>
 	<div class="container-fluid bg-3 text-center" id="#top">
 		<c:if test="${not empty inventoryItems }">
 			<div class="jumbotron text-center jumbobackground">
@@ -16,13 +30,11 @@
 				<p>Have a closet full of completed puzzles?</p>
 				<p>Want to connect with and share puzzles with other puzzle
 					lovers?</p>
-				<br>
-				<br>
+				<br> <br>
 				<h2>
 					<em>You're in the right place!</em>
 				</h2>
-				<br>
-				<br>
+				<br> <br>
 				<p>Find other puzzles available to loan or exchange from users
 					like you!</p>
 			</div>
@@ -36,7 +48,9 @@
 			<div class="row">
 				<div class="col-sm-4">
 
-					<h3><p class="uppercase">${ii.puzzle.name }</p></h3>
+					<h3>
+						<p class="uppercase">${ii.puzzle.name }</p>
+					</h3>
 					<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
 						width="295" height="260">
 				</div>
@@ -44,7 +58,9 @@
 		<c:if test="${count % 3 != 0}">
 			<div class="col-sm-4">
 
-				<h3><p class="uppercase">${ii.puzzle.name }</p></h3>
+				<h3>
+					<p class="uppercase">${ii.puzzle.name }</p>
+				</h3>
 				<img alt="${ii.puzzle.name } ii Photo" src="${ii.puzzle.imageUrl }"
 					width="295" height="260">
 			</div>

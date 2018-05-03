@@ -6,9 +6,14 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link href="css/stylesheet.css" rel="stylesheet">
+
 <title>Puzzle Pieces</title>
 
 </head>
