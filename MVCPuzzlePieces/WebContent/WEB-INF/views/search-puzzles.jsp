@@ -8,10 +8,15 @@
 
 	<h1 class="header">Enter Search criteria</h1>
 
-	<form action="searchPuzzle.do" method="GET">
-
+<div class="container">
+		<div class="wrapper">
+	<form action="searchPuzzle.do" method="GET" class="form-signin">
+	
+	<h2 class="form-signin-heading">Search for Puzzles</h2>
+		<hr class="colorgraph">
+		
 		<label for="category">Category:</label> <select name="category">
-
+		
 			<option value="Pets">Pets</option>
 			<option value="Ocean">Ocean</option>
 			<option value="Under the sea">Under the sea</option>
@@ -42,22 +47,31 @@
 			<option value="2">Like new</option>
 			<option value="3">Used</option>
 			<option value="4">Worn</option>
-		</select> <br> <br> <input type="submit" class="btn btn-outline-info" value="Search">
+		</select> <br> <br> <button class="btn btn-lg btn-primary btn-block" name="Submit"
+					value="Submit" type="Submit">Submit</button>
 
 	</form>
-
-	<form action="searchPuzzleByRating.do" method="GET">
-
-		<label for="puzzleRating">Search by Puzzle Rating:</label> <select
-			name="puzzleRating">
+	</div>
+	</div>
+<div class="container">
+		<div class="wrapper">
+	<form action="searchPuzzleByRating.do" method="GET" class="form-signin">
+<h2 class="form-signin-heading">Search for Puzzles</h2>
+			<hr class="colorgraph">
+		<label for="puzzleRating">Puzzle Rating:</label> 
+		<select name="puzzleRating">
 			<option value="1">More than 1</option>
 			<option value="2">More than 2</option>
 			<option value="3">More than 3</option>
 			<option value="4">More than 4</option>
 			<option value="5">Perfect 5</option>
-		</select> <input type="submit" class="btn btn-outline-info" value="Search">
+		</select> <br> <br>
+		<button class="btn btn-lg btn-primary btn-block" name="Submit"
+					value="Submit" type="Submit">Submit</button>
 
 	</form>
+	</div>
+	</div>
 	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
