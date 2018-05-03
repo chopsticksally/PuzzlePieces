@@ -26,7 +26,7 @@
 		<input type="submit" value="submit">
 		
 	</form>
-	
+		<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
 </html>

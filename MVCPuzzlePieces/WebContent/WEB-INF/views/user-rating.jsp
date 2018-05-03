@@ -6,7 +6,7 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-	<div class="container">
+	<div class="container" align="center">
 		<h2>Rate ${user.userName }!</h2>
 	</div>
 
@@ -32,7 +32,7 @@
 			<button type="submit" class="btn">Rate</button>
 		</form>
 	</div>
-
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
 </html>

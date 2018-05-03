@@ -6,7 +6,8 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-
+<div class="container-fluid text-center" align="center">
+	<h1>${puzzle.name }</h1>
 	<img src="${puzzle.imageUrl}" width="275" height="250"
 		alt="${puzzle.name}">
 
@@ -27,28 +28,13 @@
 		<textarea name="comment" rows="10" cols="30"
 			placeholder="Leave a comment..."></textarea>
 		<br> 
-		<input type="submit" value="Rate">
+		<button type="submit" class="btn btn-outline-info"
+				value="Rate">Rate</button>
 	</form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
-
+</div>
 </body>
 </html>

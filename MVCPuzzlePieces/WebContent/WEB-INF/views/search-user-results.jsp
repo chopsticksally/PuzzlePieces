@@ -7,7 +7,7 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<h1 class="header">Users according to your search results</h1>
-	<div class="container">
+	<div class="container" align="center">
 		<c:if test="${not empty users }">
 			<c:forEach var="user" items="${users }">
 				<c:if test="${user.id != userLoggedIn.id}">
@@ -25,5 +25,7 @@
 		</c:if>
 		<c:if test="${empty users }">No Users with this Username</c:if>
 	</div>
+		<jsp:include page="footer.jsp" />	
+		<jsp:include page="script.jsp" />
 </body>
 </html>
