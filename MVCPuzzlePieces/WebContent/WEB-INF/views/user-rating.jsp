@@ -32,7 +32,7 @@
 			<button type="submit" class="btn">Rate</button>
 		</form>
 	</div>
-
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
 </html>

@@ -25,5 +25,7 @@
 		</c:if>
 		<c:if test="${empty users }">No Users with this Username</c:if>
 	</div>
+		<jsp:include page="footer.jsp" />	
+		<jsp:include page="script.jsp" />
 </body>
 </html>

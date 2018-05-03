@@ -352,4 +352,10 @@ public class UserController {
 		return userAverage;
 
 	}
+	
+	@RequestMapping(path = "/aboutUs.do", method = RequestMethod.GET)
+	public String aboutUsPage() {
+		return "about-us";
+
+	}
 }
