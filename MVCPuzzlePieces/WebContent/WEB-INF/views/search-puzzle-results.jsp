@@ -7,12 +7,12 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container-fluid">
+		<h1 class="header">Puzzles found according to your search</h1>
 		<div class="row justify-content-start">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-8">
 
 				<div class="container-fluid bg-3 text-center">
-					<!-- <h1 class="header">Puzzles found according to your search</h1> -->
 					<c:if test="${empty puzzles }">
 						<p>*No Puzzles Found, Please Try Again*</p>
 					</c:if>
