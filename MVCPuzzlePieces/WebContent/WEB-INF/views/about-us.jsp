@@ -28,7 +28,8 @@
 		</div>
 		<div class="row" id="aboutUs">
 			<div class="col-md-3">
-				<img alt="" src="">
+				<img alt="Picture of Julian" src="css/images/JulianPicture.png"
+					class="headshot">
 			</div>
 			<div class="col-md-3 col-lg-3">
 				<h3>Julian Goudy</h3>

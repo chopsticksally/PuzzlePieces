@@ -1,4 +1,4 @@
-<div class="head">
+<div class="container-fluid">
 	<img class="logo-header" src="css/images/PuzzlePiecesHeader.png"
 		alt="Puzzle Pieces Header">
 	<ul class="nav justify-content-center">

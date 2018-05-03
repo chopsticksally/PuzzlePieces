@@ -50,13 +50,18 @@ body {
 .topbutton {
 	margin-bottom: 35px;
 }
-/*--------------Login---------------*/
-a.register {
+
+.errorMessage {
+	color: red;
 	text-align: center;
+	font-family: monospace;
 }
+/*--------------Login---------------*/
+/* a.register {
+	text-align: center;
+} */
 
 /*--------------Reply Page---------------*/
-
 .message {
 	text-align: center;
 }
@@ -79,7 +84,6 @@ a.register {
 #whyPuzzles {
 	font-size: 15px;
 }
-
 
 /*------------Fun Form---------------*/
 .wrapper {
