@@ -6,7 +6,15 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container text-center">
-		<h1 class="header">Puzzle Pieces Creators</h1>
+		<h1 class="header">Why Puzzle Pieces?</h1>
+		<p id="whyPuzzles">Four unsuspecting students came together to create a mid-term project at Skill Distillery.
+		Through careful brainstorming, came about the idea of bringing people together, piece by piece. 
+		These four students figured out a solution for people who were puzzled about what they were going 
+		to do with their finished puzzles. Through triumphs, errors, and slight puzzlement came about Puzzle Pieces.
+		</p>
+		<hr class="colorgraph">
+		<h1 class="header">Meet the Team</h1>
+		
 		<div class="row" id="aboutUs">
 			<div class="col-md-3">
 				<img alt="Picture of Alex" src="css/images/AlexPicture.png"
@@ -14,17 +22,18 @@
 			</div>
 			<div class="col-md-3">
 				<h3>Alex Wagner</h3>
-				<p>Full-Stack Java Developer</p>
-				<p>Alex Wagner is a published poet. And he does know it.</p>
+				<h4>Full-Stack Java Developer</h4>
+				<p>Alex is a published poet, and he does know it.</p>
 			</div>
 		</div>
 		<div class="row" id="aboutUs">
 			<div class="col-md-3">
 				<img alt="" src="">
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3 col-lg-3">
 				<h3>Julian Goudy</h3>
-				<p>Full-Stack Java Developer</p>
+				<h4>Full-Stack Java Developer</h4>
+				<p>Julian has done puzzles, legos, and k'nex. He's even built a sand castle.</p>
 			</div>
 		</div>
 		<div class="row" id="aboutUs">
@@ -34,7 +43,8 @@
 			</div>
 			<div class="col-md-3">
 				<h3>Miranda Martin</h3>
-				<p>Full-Stack Java Developer</p>
+				<h4>Full-Stack Java Developer</h4>
+				<p>Miranda is an actual puzzle owner, and is proud of her collection.</p>
 
 			</div>
 		</div>
@@ -45,8 +55,8 @@
 			</div>
 			<div class="col-md-3">
 				<h3>Xian Zheng</h3>
-				<p>Full-Stack Java Developer</p>
-				<p>Xian Zheng is a food blogger in her free time.</p>
+				<h4>Full-Stack Java Developer</h4>
+				<p>Xian is a food blogger in her free time.</p>
 			</div>
 		</div>
 
