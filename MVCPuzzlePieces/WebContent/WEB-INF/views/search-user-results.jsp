@@ -17,9 +17,10 @@
 					</h3><br>
 				</c:if>
 				<c:if test="${user.id == userLoggedIn.id }">
-					<p>You searched for yourself, silly.</p>
+				<img src="css/images/user-results.png" height="150" width="200" alt="User"><br>				
+					<p>You meet the search parameters:</p>
 					<a href="userProfile.do?userId=${userLoggedIn.id }">
-						<button type="submit" class="btn btn-outline-info">Go back to your profile</button>
+						<button type="submit" class="btn">Your Profile</button>
 					</a>
 				</c:if>
 			</c:forEach>
