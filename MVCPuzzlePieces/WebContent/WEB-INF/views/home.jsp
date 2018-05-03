@@ -9,7 +9,8 @@
 <body>
 	<jsp:include page="public-navbar.jsp" />
 
-	<!-- <div class="container-fluid bg-3 text-center" id="#top">
+	 <div class="container-fluid bg-3 text-center" >
+	 <!--  id="#top">
 		<div class="container">
 			<div class="row">
 				<div id="loader">
