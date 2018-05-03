@@ -132,6 +132,7 @@
 		<c:if test="${empty userSubmittedRatings}">No submitted ratings</c:if>
 	</div>
 
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 
 </body>
