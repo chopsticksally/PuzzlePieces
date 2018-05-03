@@ -114,7 +114,6 @@ table, th, td {
 										<p class="uppercase">${borrows.inventoryItem.puzzle.name }</p>
 									</h4>
 									<c:if test="${not empty borrows.returnDate }">
-										<p>From User: ${borrows.inventoryItem.owner.userName }</p>
 									</c:if>
 									<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 										width="221" height="195"
@@ -189,6 +188,7 @@ table, th, td {
 		<c:if test="${empty userRatings}">No ratings available</c:if>
 	</div>
 	<hr class="colorgraph">
+	
 	<div class="container bg-5 text-left">
 		<h4 class="header">User Submitted Ratings</h4>
 		<c:if test="${not empty userSubmittedRatings}">

@@ -5,8 +5,7 @@
 <html>
 <jsp:include page="header.jsp" />
 <body>
-<!-- 	test comment
- -->	<jsp:include page="logged-in-navbar.jsp" />
+	<jsp:include page="logged-in-navbar.jsp" />
 	
 	<div class="container-fluid">
 		<h1 class="header">Puzzles found according to your search</h1>
@@ -18,7 +17,6 @@
 					</c:if>
 
 					<c:forEach var="ii" items="${puzzles}">
-
 
 						<p>
 							<img src="${ii.puzzle.imageUrl}" width="275" height="250"
