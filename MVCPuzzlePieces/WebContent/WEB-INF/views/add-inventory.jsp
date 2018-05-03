@@ -8,66 +8,75 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container">
-		<h1 class="header">Add Inventory</h1>
-		<form action="addInventory.do" method = "POST">
-			<div class="form-group">
-				<label>Puzzle Name</label> <input type="text" class="form-control"
-					name="name">
-			</div>
-			<div class="form-group">
-				<label>Image Url</label> <input type="text" class="form-control"
-					name="imageUrl">
-			</div>
-			<div class="form-group">
-				<label for="categoryId">Category:</label> <select name="categoryId"
-					class="form-control">
+		<div class="wrapper">
+			<form action="addInventory.do" method="GET" class="form-signin">
 
-					<option value=1>Pets</option>
-					<option value=2>Ocean</option>
-					<option value=3>Under the sea</option>
-					<option value=4>Landscape</option>
-					<option value=5>Flowers</option>
-					<option value=6>Space</option>
-					<option value=7>Animals</option>
-					<option value=8>Jungle</option>
-					<option value=9>Futuristic</option>
-					<option value=10>Food</option>
-					<option value=11>Architecture</option>
-					<option value=12>Superhero</option>
-					<option value=13>Cartoon</option>
-					<option value=14>Sports</option>
-					<option value=15>Miscellaneous</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="size">Size:</label> <select name="size"
-					class="form-control">
+				<h2 class="form-signin-heading">Add Inventory</h2>
+				<hr class="colorgraph">
+				
+				<label>Puzzle Name:</label> <input
+					type="text" class="form-control" name="name">
 
-					<option value="350">350</option>
-					<option value="500">500</option>
-					<option value="1000">1000</option>
-					<option value="1500">1500</option>
-					<option value="3000">3000</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label for="condition">Condition:</label> <select name="condition"
-					class="form-control">
+				<label>Image Url:</label> <input type="text" class="form-control"
+					name="imageUrl"> 
 
-					<option value="1">New</option>
-					<option value="2">Like new</option>
-					<option value="3">Used</option>
-					<option value="4">Worn</option>
-				</select>
-			</div>
-			<input type="submit" class="btn btn-outline-info" value="Submit">
-		</form>
+				<h4>
+					Category: <select name="category">
+
+						<option value="Pets">Pets</option>
+						<option value="Ocean">Ocean</option>
+						<option value="Under the sea">Under the sea</option>
+						<option value="Landscape">Landscape</option>
+						<option value="Flowers">Flowers</option>
+						<option value="Space">Space</option>
+						<option value="Animals">Animals</option>
+						<option value="Jungle">Jungle</option>
+						<option value="Futuristic">Futuristic</option>
+						<option value="Food">Food</option>
+						<option value="Architecture">Architecture</option>
+						<option value="Superhero">Superhero</option>
+						<option value="Cartoon">Cartoon</option>
+						<option value="Sports">Sports</option>
+						<option value="Miscellaneous">Miscellaneous</option>
+					</select>
+				</h4>
+				<br>
+
+				<h4>
+					Size: <select name="size">
+						<option value="350">350</option>
+						<option value="500">500</option>
+						<option value="1000">1000</option>
+						<option value="1500">1500</option>
+						<option value="3000">3000</option>
+					</select>
+				</h4>
+				<br>
+				<h4>
+					Condition: <select name="condition">
+						<option value="1">New</option>
+						<option value="2">Like new</option>
+						<option value="3">Used</option>
+						<option value="4">Worn</option>
+					</select>
+				</h4>
+
+				<br>
+
+				<button class="btn btn-lg btn-primary btn-block" name="Submit"
+					value="Submit" type="Submit">Add Inventory!</button>
+
+			</form>
+
+
+		</div>
 		<div>
 			<c:if test="${not empty errorMessage}">${errorMessage}</c:if>
 		</div>
 
 	</div>
-		<jsp:include page="footer.jsp" />
+
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 
 </body>
