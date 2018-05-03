@@ -7,15 +7,17 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-	<div class="container">
+	<!-- <div class="container"> -->
+		<div class= "container bg-3 text-center">
 		<h1 class="header">Inventory name: ${item.puzzle.name}</h1>
 		<img alt="${item.puzzle.name } Puzzle Photo"
-			src="${item.puzzle.imageUrl }">
+			src="${item.puzzle.imageUrl }"width="295" height="260">
+			<h3>Puzzle Details</h3>
 		<p>Condition: ${item.condition}</p>
 		<p>Puzzle Size: ${item.puzzle.size}</p>
 		<p>Category: ${item.puzzle.categories[0].name}</p>
 		<p>Rating: ${rating} out of ${fn:length(puzzleRatings) } ratings</p>
-		<p>Ratings for this Puzzle</p>
+		<h3>Ratings for this Puzzle</h3>
 		<c:if test="${fn:length(puzzleRatings) gt 0}">
 		<c:forEach var="rating" items="${puzzleRatings}">
 		<p>User who rated: ${rating.user.userName }</p>
