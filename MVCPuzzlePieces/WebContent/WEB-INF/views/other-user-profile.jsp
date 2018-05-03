@@ -24,6 +24,7 @@ table, th, td {
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
+		<hr class="colorgraph">
 		<c:set var="invcount" value="0" scope="page" />
 		<table>
 			<tr>
@@ -40,7 +41,8 @@ table, th, td {
 							height="260">
 						<form action="puzzleDetails.do" method="get">
 							<input type="hidden" value="${items.id }" name="puzzle">
-							<input type="submit" class="btn btn-outline-info" value="View Puzzle Details!">
+							<input type="submit" class="btn btn-outline-info"
+								value="View Puzzle Details!">
 						</form>
 				</td>
 				</c:if>
@@ -55,7 +57,8 @@ table, th, td {
 								height="260">
 							<form action="puzzleDetails.do" method="get">
 								<input type="hidden" value="${items.id }" name="puzzle">
-								<input type="submit" class="btn btn-outline-info" value="View Puzzle Details!">
+								<input type="submit" class="btn btn-outline-info"
+									value="View Puzzle Details!">
 							</form>
 					</td>
 				</c:if>
@@ -69,16 +72,17 @@ table, th, td {
 
 	<div>
 		<h4 class="header">Puzzles Borrowed</h4>
+		<hr class="colorgraph">
 		<c:if test="${not empty borrows }">
 			<c:set var="borrowcount" value="0" scope="page" />
 			<table>
 				<tr>
-				<c:forEach var="borrow" items="${borrows }">
-					<c:if test="${borrowcount % 5 == 0}">
-					</tr>
-					<tr>
+					<c:forEach var="borrow" items="${borrows }">
+						<c:if test="${borrowcount % 5 == 0}">
+				</tr>
+				<tr>
 					<td>
-						<div class="container-fluid text-left">
+						<div class="container text-left">
 							<p>${borrow.inventoryItem.puzzle.name }</p>
 							<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 								height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
@@ -97,7 +101,7 @@ table, th, td {
 					</c:if>
 					<c:if test="${borrowcount % 5 != 0}">
 						<td>
-							<div class="container-fluid text-left">
+							<div class="container text-left">
 								<p>${borrow.inventoryItem.puzzle.name }</p>
 								<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 									height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
@@ -121,7 +125,9 @@ table, th, td {
 		</c:if>
 	</div>
 	</div>
-	<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
+	<div class="container bg-5 text-center">
+		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
+	</div>
 	</div>
 	</div>
 	<div class="container bg-5 text-center">
@@ -130,6 +136,7 @@ table, th, td {
 			<div class="container bg-5 text-center">
 				<h5>${userInfo.user.userName}'sRating:${rating }
 					${fn:length(userRatings)} ratings</h5>
+		<hr class="colorgraph">
 			</div>
 			<div class="container bg-5 text-left">
 				<c:forEach var="ratings" items="${userRatings }">
@@ -142,12 +149,26 @@ table, th, td {
 			</div>
 
 		</c:if>
-		<c:if test="${empty userRatings}">No ratings available</c:if>
+		<div class="container bg-5 text-center">
+			<c:if test="${empty userRatings}">No ratings available</c:if>
+		</div>
 
 		<form action="userRatingPage.do" , method="get">
 			<input type="hidden" value=${userInfo.user.id } name="id"> <input
 				type="submit" class="btn btn-outline-info" value="Rate This User!">
 		</form>
+	</div>
+
+	<div class="container bg-5 text-center">
+		<c:if test="${userLoggedIn.id == 5 }">
+			<a href="editProfile.do?id=${userInfo.user.id }">
+				<button type="submit" class="btn btn-outline-info">Update</button>
+			</a>
+			<a href="deleteUser.do?itemId=${userInfo.user.id}">
+				<button type="submit" class="btn btn-outline-danger"
+					onclick=" return confirm('Are you sure you want to delete this user?')">Delete</button>
+			</a>
+		</c:if>
 	</div>
 
 

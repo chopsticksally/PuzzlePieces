@@ -11,7 +11,7 @@
 			<form action="registerAddress.do" method="post" class="form-signin">
 				<h3 class="form-signin-heading">Enter Your Address</h3>
 				<hr class="colorgraph">
-				<input type="hidden" name="id"> <br>
+				<input type="hidden" name="id" value="${userLoggedIn.id }"> <br>
 
 				<label for="street">Street:</label> <input type="text"
 					class="form-control" name="street"

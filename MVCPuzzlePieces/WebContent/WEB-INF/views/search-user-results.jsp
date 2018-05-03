@@ -11,13 +11,17 @@
 		<c:if test="${not empty users }">
 			<c:forEach var="user" items="${users }">
 				<c:if test="${user.id != userLoggedIn.id}">
-					<h3>
-						<img src="css/images/user-results.png" height="150" width="200" alt="User"><br>
-						<a href="otherUserProfile.do?userId=${user.id }">${user.userName }</a>
-					</h3><br>
+					<h3 class="uppercase">
+						<img src="css/images/user-results.png" height="150" width="200"
+							alt="User"><br> <a
+							href="otherUserProfile.do?userId=${user.id }">${user.userName }</a>
+					</h3>
+					<br>
 				</c:if>
 				<c:if test="${user.id == userLoggedIn.id }">
-				<img src="css/images/user-results.png" height="150" width="200" alt="User"><br>				
+					<img src="css/images/user-results.png" height="150" width="200"
+						alt="User">
+					<br>
 					<p>You meet the search parameters:</p>
 					<a href="userProfile.do?userId=${userLoggedIn.id }">
 						<button type="submit" class="btn">Your Profile</button>
@@ -25,9 +29,11 @@
 				</c:if>
 			</c:forEach>
 		</c:if>
+
 		<c:if test="${empty users }">No Users with this Username</c:if>
+
 	</div>
-		<jsp:include page="footer.jsp" />	
-		<jsp:include page="script.jsp" />
+	<jsp:include page="footer.jsp" />
+	<jsp:include page="script.jsp" />
 </body>
 </html>

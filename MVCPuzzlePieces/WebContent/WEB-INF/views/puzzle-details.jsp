@@ -45,7 +45,8 @@
 			<div class="Request">
 				<form action="makeRequest.do" method="get">
 					<input type="hidden" value="${ii.id }" name="id"> <input
-						type="submit" class="btn btn-outline-info" value="Request This Puzzle!">
+						type="submit" class="btn btn-outline-info"
+						value="Request This Puzzle!">
 				</form>
 				<br>
 			</div>
@@ -57,14 +58,26 @@
 			</form>
 			<br>
 		</div>
-		<c:if test="${user.id != userLoggedIn.id }">
-			<div class="See Owner Profile">
+		<div class="SeeOwnerProfile">
+			<c:if test="${user.id != userLoggedIn.id }">
 				<form action="otherUserProfile.do" method="get">
 					<input type="hidden" value="${user.id }" name="userId"> <input
-						type="submit" class="btn btn-outline-info" value="See Owner"> <br>
+						type="submit" class="btn btn-outline-info" value="See Owner">
+					<br>
 				</form>
-			</div>
-		</c:if>
+			</c:if>
+		</div>
+		<div>
+			<c:if test="${userLoggedIn.id == 5 }">
+				<a href="updateInventoryPage.do?itemId=${puzzle.id }">
+					<button type="submit" class="btn btn-outline-info">Update</button>
+				</a>
+				<a href="deleteInventory.do?itemId=${puzzle.id }">
+					<button type="submit" class="btn btn-outline-danger"
+						onclick=" return confirm('Are you sure you want to delete this puzzle?')">Delete</button>
+				</a>
+			</c:if>
+		</div>
 	</div>
 	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
