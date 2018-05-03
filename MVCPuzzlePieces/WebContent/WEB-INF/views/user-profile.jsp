@@ -36,13 +36,13 @@ table, th, td {
 		                <tr> 
 		                    <td>
 		                        <div class="container-fluid bg-2 text-center ">
-		                            <p>${items.puzzle.name }</p>
+		                            <h3><p class="uppercase">${items.puzzle.name }</p></h3>
 		                            <img type="center" alt="${items.puzzle.name } Puzzle Photo"
 		                                src="${items.puzzle.imageUrl }" width="295" height="260">
 		                            <br>
 		                            <p>
 		                                <a href="userInventoryDetails.do?itemId=${items.id }"><button
-		                                        class="btn">View Puzzle Details</button></a>
+		                                        class="btn btn-outline-info">View Puzzle Details</button></a>
 		                            </p>
 		                        </div>
 		                    </td>
@@ -50,13 +50,13 @@ table, th, td {
                     <c:if test="${invcount % 3 != 0}">    
                         <td>
                             <div class="container-fluid bg-2 text-center ">
-                                <p>${items.puzzle.name }</p>
+                                <h3><p class="uppercase">${items.puzzle.name }</p></h3>
                                 <img type="center" alt="${items.puzzle.name } Puzzle Photo"
                                     src="${items.puzzle.imageUrl }" width="295" height="260">
                                 <br>
                                 <p>
                                     <a href="userInventoryDetails.do?itemId=${items.id }"><button
-                                            class="btn">View Puzzle Details</button></a>
+                                            class="btn btn-outline-info">View Puzzle Details</button></a>
                                 </p>
                             </div>
                         </td>
@@ -75,7 +75,7 @@ table, th, td {
                         <p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
                         <form action="replyToRequest.do" method="get">
                             <input type="hidden" value="${req.id}" name="id"> <input
-                                type="submit" value="Reply">
+                                type="submit" class="btn btn-outline-info" value="Reply">
                         </form>
                         <br>
                     </c:if>
@@ -105,7 +105,7 @@ table, th, td {
                             <td>
                                 <div class="container-fluid text-left">
                                     
-                                    <p>${borrows.inventoryItem.puzzle.name }</p>
+                                    <h4><p class="uppercase">${borrows.inventoryItem.puzzle.name }</p></h4>
                                     <img src="${borrows.inventoryItem.puzzle.imageUrl }"
                                         width="221" height="195"
                                         alt="${borrows.inventoryItem.puzzle.name } Puzzle">
@@ -125,7 +125,7 @@ table, th, td {
                             <c:if test="${borrowcount % 5 != 0}">
                                 <td>
                                     <div class="container-fluid text-left">
-                                        <p>${borrows.inventoryItem.puzzle.name }</p>
+                                        <h4><p class="uppercase">${borrows.inventoryItem.puzzle.name }</p></h4>
                                         <img src="${borrows.inventoryItem.puzzle.imageUrl }"
                                             width="221" height="195"
                                             alt="${borrows.inventoryItem.puzzle.name } Puzzle">
