@@ -12,8 +12,9 @@
 			<c:forEach var="user" items="${users }">
 				<c:if test="${user.id != userLoggedIn.id}">
 					<h3>
+						<img src="css/images/user-results.png" height="150" width="200" alt="User"><br>
 						<a href="otherUserProfile.do?userId=${user.id }">${user.userName }</a>
-					</h3>
+					</h3><br>
 				</c:if>
 				<c:if test="${user.id == userLoggedIn.id }">
 					<p>You searched for yourself, silly.</p>
