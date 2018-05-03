@@ -76,6 +76,7 @@ public class UserController {
 		if (userLoggingIn != null) {
 			session.setAttribute("userLoggedIn", userLoggingIn);
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
+			Collections.shuffle(ii);
 			mv.addObject("inventoryItems", ii);
 			mv.setViewName("logged-in-home");
 		}
@@ -104,6 +105,7 @@ public class UserController {
 			dao.createUser(user);
 			session.setAttribute("userLoggedIn", user);
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
+			Collections.shuffle(ii);
 			mv.addObject("inventoryItems", ii);
 			mv.setViewName("logged-in-home");
 
@@ -133,6 +135,7 @@ public class UserController {
 	public ModelAndView logout(SessionStatus logout) {
 		ModelAndView mv = new ModelAndView();
 		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		Collections.shuffle(ii);
 		mv.addObject("inventoryItems", ii);
 		logout.setComplete();
 		mv.setViewName("home");

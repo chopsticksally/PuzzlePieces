@@ -7,48 +7,37 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<h1 class="header">Puzzle Details</h1>
-	<table>
-		<tr>
-			<td><img src="${puzzle.imageUrl}" width="295" height="260"
-				alt="${puzzle.name}"></td>
-			</tr>
-			</table>
+	<div class= "container bg-3 text-center">
+	<img src="${puzzle.imageUrl}" width="295" height="260"
+				alt="${puzzle.name}"></p>
+			
 				<p>
 				<h2>About this puzzle:</h2>
 				</p>
-				<table>
-					<tr>
-						<td>Puzzle Name:</td>
-						<td>${puzzle.name}</td>
-					</tr>
-					<tr>
-						<td>Puzzle Category:</td>
-						<td><c:forEach var="cat" items="${puzzle.categories}">
-											${cat.name }
-											</c:forEach></td>
-						
-					</tr>
-					<tr>
-						<td>Puzzle size:</td>
-						<td>${puzzle.size}</td>
-					</tr>
-					<tr>
-						<td>Condition:</td>
-						<td>${ii.condition}</td>
-					</tr>
-					<tr>
-						<td>Puzzle Owner:</td>
-						<td>${user.userName}</td>
-					</tr>
-					<tr>
-						<td>Puzzle Rating:</td>
-						<td>${rating}</td>
-					</tr>
-
-				</table>
-			
-				<c:if test="${user.id != userLoggedIn.id }">
 				
+					
+						<p>Puzzle Name: ${puzzle.name}</p>
+						
+					
+						
+						<p>Puzzle Category:<c:forEach var="cat" items="${puzzle.categories}">
+											${cat.name }
+											</c:forEach></p>
+						
+					
+						<p>Puzzle size: ${puzzle.size}</p>
+						
+					
+						<p>Condition: ${ii.condition}</p>
+						
+				
+						<p>Puzzle Owner: ${user.userName}</p>
+						
+					
+						<p>Puzzle Rating: ${rating}</p>
+					
+				
+				<c:if test="${user.id != userLoggedIn.id }">
 				<div class="Request">
 					<form action="makeRequest.do" method="get">
 						<input type="hidden" value="${ii.id }"
@@ -71,10 +60,10 @@
 						<input type="hidden" value="${user.id }" name="userId"> <input
 							type="submit" value="See Owner">
 					<br>
-					
 					</form>
 				</div> 
 				</c:if>
+				</div>
 				<br> <jsp:include page="script.jsp" />
 </body>
 </html>
