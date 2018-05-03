@@ -40,7 +40,7 @@ table, th, td {
 							height="260">
 						<form action="puzzleDetails.do" method="get">
 							<input type="hidden" value="${items.id }" name="puzzle">
-							<input type="submit" value="View Puzzle Details!">
+							<input type="submit" class="btn btn-outline-info" value="View Puzzle Details!">
 						</form>
 				</td>
 				</c:if>
@@ -55,7 +55,7 @@ table, th, td {
 								height="260">
 							<form action="puzzleDetails.do" method="get">
 								<input type="hidden" value="${items.id }" name="puzzle">
-								<input type="submit" value="View Puzzle Details!">
+								<input type="submit" class="btn btn-outline-info" value="View Puzzle Details!">
 							</form>
 					</td>
 				</c:if>
@@ -146,7 +146,7 @@ table, th, td {
 
 		<form action="userRatingPage.do" , method="get">
 			<input type="hidden" value=${userInfo.user.id } name="id"> <input
-				type="submit" value="Rate This User!">
+				type="submit" class="btn btn-outline-info" value="Rate This User!">
 		</form>
 	</div>
 

@@ -60,7 +60,7 @@
 					<option value="4">Worn</option>
 				</select>
 			</div>
-			<input type="submit" value="Submit">
+			<input type="submit" class="btn btn-outline-info" value="Submit">
 		</form>
 		<div>
 			<c:if test="${not empty errorMessage}">${errorMessage}</c:if>

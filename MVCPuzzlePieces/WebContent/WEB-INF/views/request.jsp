@@ -11,7 +11,7 @@
 		<input type="hidden" value="${inventoryId}" name="id">
 		<textarea name="message" rows="10" cols="30"
 			placeholder="Write your message here..."></textarea>
-		<br> <input type="submit" value="Send">
+		<br> <input type="submit" class="btn btn-outline-info" value="Send">
 	</form>
 
 	<jsp:include page="footer.jsp" />

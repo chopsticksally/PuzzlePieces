@@ -18,7 +18,7 @@
 				<c:if test="${user.id == userLoggedIn.id }">
 					<p>You searched for yourself, silly.</p>
 					<a href="userProfile.do?userId=${userLoggedIn.id }">
-						<button type="submit" class="btn">Go back to your profile</button>
+						<button type="submit" class="btn btn-outline-info">Go back to your profile</button>
 					</a>
 				</c:if>
 			</c:forEach>

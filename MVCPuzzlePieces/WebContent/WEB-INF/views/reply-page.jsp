@@ -20,7 +20,7 @@
 		</select> <br>
 		<textarea name="message" rows="10" cols="30"
 			placeholder="Reply here..."></textarea>
-		<input type="submit" value="Send">
+		<input type="submit" class="btn btn-outline-info" value="Send">
 	</form>
 
 	<jsp:include page="footer.jsp" />

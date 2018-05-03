@@ -55,7 +55,7 @@
 			<option value="3">More than 3</option>
 			<option value="4">More than 4</option>
 			<option value="5">Perfect 5</option>
-		</select> <input type="submit" value="Search">
+		</select> <input type="submit" class="btn btn-outline-info" value="Search">
 
 	</form>
 	<jsp:include page="footer.jsp" />

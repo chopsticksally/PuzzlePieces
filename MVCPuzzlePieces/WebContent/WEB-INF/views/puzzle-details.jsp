@@ -45,7 +45,7 @@
 			<div class="Request">
 				<form action="makeRequest.do" method="get">
 					<input type="hidden" value="${ii.id }" name="id"> <input
-						type="submit" value="Request This Puzzle!">
+						type="submit" class="btn btn-outline-info" value="Request This Puzzle!">
 				</form>
 				<br>
 			</div>
@@ -53,7 +53,7 @@
 		<div class="Rate Puzzle">
 			<form action="puzzleRatingPage.do" method="get">
 				<input type="hidden" value="${ii.id }" name="id"> <input
-					type="submit" value="Rate">
+					type="submit" class="btn btn-outline-info" value="Rate">
 			</form>
 			<br>
 		</div>
@@ -61,7 +61,7 @@
 			<div class="See Owner Profile">
 				<form action="otherUserProfile.do" method="get">
 					<input type="hidden" value="${user.id }" name="userId"> <input
-						type="submit" value="See Owner"> <br>
+						type="submit" class="btn btn-outline-info" value="See Owner"> <br>
 				</form>
 			</div>
 		</c:if>

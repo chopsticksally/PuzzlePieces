@@ -56,7 +56,7 @@
 											<div class="Request">
 												<form action="puzzleDetails.do" method="get">
 													<input type="hidden" value="${ii.id }" name="puzzle">
-													<input type="submit" value="View Puzzle Details">
+													<input type="submit" class="btn btn-outline-info" value="View Puzzle Details">
 												</form>
 
 												<!-- <input class="toggle-btn" type="checkbox" value="Request"> -->
