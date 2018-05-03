@@ -38,5 +38,10 @@ At times we as a team had some trouble effectively communicating and working tog
 
 ### Technologies used
 
--Spring MVC
--JPA
+* Canva
+* Github
+* JPA
+* Paletton
+* Slack
+* Spring MVC
+* Spring Tool Suite

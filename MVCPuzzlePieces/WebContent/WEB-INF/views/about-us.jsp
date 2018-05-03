@@ -6,10 +6,11 @@
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
 	<div class="container">
-		<h1 class="header">The team that brought you Puzzle Pieces</h1>
+		<h1 class="header">Puzzle Pieces Creators</h1>
 		<div class="row">
 			<div class="col-md-3">
-				<img alt="" src="">
+				<img alt="Picture of Alex" src="css/images/AlexPicture.png"
+					class="headshot">
 			</div>
 			<div class="col-md-3">
 				<h3>Alex Wagner</h3>
@@ -36,7 +37,8 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				<img alt="" src="">
+				<img alt="Picture of Xian" src="css/images/XianPicture.jpg"
+					class="headshot">
 			</div>
 			<div class="col-md-3">
 				<h3>Xian Zheng</h3>
