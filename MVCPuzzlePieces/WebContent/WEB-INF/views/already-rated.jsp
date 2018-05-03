@@ -6,12 +6,12 @@
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-	
-<h1 align="center">Sorry, you can only rate that once! Try Another Link!</h1>
 
+	<h1 align="center">Sorry, you can only rate that once! Try Another
+		Link!</h1>
 
-
-<jsp:include page="script.jsp" />
+	<jsp:include page="footer.jsp" />
+	<jsp:include page="script.jsp" />
 
 
 </body>

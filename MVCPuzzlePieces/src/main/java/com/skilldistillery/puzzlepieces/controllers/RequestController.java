@@ -34,6 +34,7 @@ public class RequestController {
 		List<Borrow> borrows = puzdao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzdao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzdao.getRatingOfUserByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> userRequests = puzdao.getReceivedByUserId(userId);
 		List<Request> sentRequests = puzdao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzdao.getSubmittedRatingsByUserId(userId);
@@ -41,6 +42,7 @@ public class RequestController {
 		mv.addObject("borrows", borrows);
 		mv.addObject("inventoryItems", inventoryItems);
 		mv.addObject("userRatings", userRatings);
+		mv.addObject("rating", rating);
 		mv.addObject("userRequests", userRequests);
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
@@ -61,14 +63,25 @@ public class RequestController {
 			puzdao.notAcceptRequest(id, message);
 		}
 		if (choice == 2) {
-			puzdao.acceptRequestToBorrow(id, message);
+			User requester = puzdao.acceptRequestToBorrow(id, message);
+			InventoryItem itemRequested = puzdao.getInventoryItemByRequestId(id);
+			if(requester != null && itemRequested != null) {
+				mv.addObject("userRequester", requester);
+				mv.addObject("requestedItem", itemRequested);
+			}
 		}
 		if (choice == 3) {
-			puzdao.acceptRequestToOwn(id, message);
+			User requester = puzdao.acceptRequestToOwn(id, message);
+			InventoryItem itemRequested = puzdao.getInventoryItemByRequestId(id);
+			if(requester != null && itemRequested != null) {
+				mv.addObject("userRequester", requester);
+				mv.addObject("requestedItem", itemRequested);
+			}
 		}
 		List<Borrow> borrows = puzdao.getBorrowsByLoanerId(userId);
 		List<InventoryItem> inventoryItems = puzdao.getInventoryItemsByUserId(userId);
 		List<UserRating> userRatings = puzdao.getRatingOfUserByUserId(userId);
+		Double rating = agrigateUserRating(userRatings);
 		List<Request> userRequests = puzdao.getReceivedByUserId(userId);
 		List<Request> sentRequests = puzdao.getSentRequestsByUserId(userId);
 		List<UserRating> userSubmittedRatings = puzdao.getSubmittedRatingsByUserId(userId);
@@ -76,6 +89,7 @@ public class RequestController {
 		mv.addObject("borrows", borrows);
 		mv.addObject("inventoryItems", inventoryItems);
 		mv.addObject("userRatings", userRatings);
+		mv.addObject("rating", rating);
 		mv.addObject("userRequests", userRequests);
 		mv.addObject("sentRequests", sentRequests);
 		mv.addObject("userSubmittedRatings", userSubmittedRatings);
@@ -101,5 +115,19 @@ public class RequestController {
 		return mv;
 	}
 	
+	public Double agrigateUserRating(List<UserRating> userRatings) {
+		int rating = 0;
+		double userAverage = 0.00;
+		for (UserRating userRating : userRatings) {
+			rating = rating + userRating.getRating();
+		}
+		if (userRatings.size() != 0) {
+			double ratingP = (rating*100)/100;
+			userAverage = ratingP / userRatings.size();
+			userAverage = (Math.round(userAverage*100.0))/100.0;
+		}
+		return userAverage;
+
+	}
 
 }

@@ -5,28 +5,40 @@
 <jsp:include page="header.jsp" />
 
 <body>
-	<jsp:include page="logged-in-navbar.jsp" />
+	<jsp:include page="public-navbar.jsp" />
+	
+	<div class="wrapper">
+			<form action="registerAddress.do" method="post" class="form-signin">
+				<h3 class="form-signin-heading">Enter Your Address</h3>
+				<hr class="colorgraph">
+				<input type="hidden" name="id"> <br>
 
-	<h1 class ="header">Enter your address</h1>
+				<label for="street">Street:</label> <input type="text"
+					class="form-control" name="street"
+					placeholder="Street" required="" autofocus="" min="1" max="100" />
+
+				<label for="street2">Apt/Suite #:</label> <input type="text"
+					class="form-control" name="street2"
+					placeholder="Apartment/Suite Number" />
+
+				<label for="city">City:</label> <input type="text"
+					class="form-control" name="city" placeholder="City"
+					required="" />
+
+				<label for="state">State:</label> <input type="text"
+					class="form-control" name="state" placeholder="State"
+					required="" />
+
+				<label for="postalCode">Postal Code:</label> <input type="text"
+					class="form-control" name="postalCode" placeholder="Postal Code"
+					required="" />
+
+				<button class="btn btn-lg btn-info btn-block" name="Submit"
+					type="Submit">Register!</button>
+			</form>
+		</div>
 	
-	<form action= "registerAddress.do" method= "POST">
-<br>
-		<label for="street">Street address:</label>
-		<input type="text" placeholder=" " min="1" max="100" name="street"><br>
-		<label for="street2">Apt#:</label>
-		<input type="text" placeholder="" min="1" max="10" name="street2"><br>
-		<label for="city">City:</label>
-		<input type="text" placeholder=" " min="1" max="100" name="city"><br>
-		<label for="state">State:</label>
-		<input type="text" placeholder=" " min="1" max="100" name="state"><br>
-		<label for="postalCode">Postal code:</label>
-		<input type="text" placeholder=" " min="1" max="100" name="postalCode"></br>
-		
-<br>
-		<input type="submit" value="submit">
-		
-	</form>
-	
+		<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
 </html>

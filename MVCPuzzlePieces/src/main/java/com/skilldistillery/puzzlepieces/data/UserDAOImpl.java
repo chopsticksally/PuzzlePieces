@@ -62,6 +62,20 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public Address createAddress(int id, Address newAddress) {
+		UserInformation newUser = em.find(UserInformation.class,
+				em.find(User.class, id).getUserInformation().getId());
+		newUser.setAddress(newAddress);
+		System.out.println("****************************");
+		System.out.println(newAddress);
+		System.out.println("****************************");
+		em.persist(newUser);
+		em.flush();
+		Address addedAddress = newUser.getAddress();
+		return addedAddress;
+	}
+	
+	@Override
 	public Address updateAddress(int id, Address updatedAddress) {
 		Address managedAddress = em.find(Address.class,
 				em.find(User.class, id).getUserInformation().getAddress().getId());
@@ -70,7 +84,7 @@ public class UserDAOImpl implements UserDAO {
 		managedAddress.setCity(updatedAddress.getCity());
 		managedAddress.setState(updatedAddress.getState());
 		managedAddress.setPostalCode(updatedAddress.getPostalCode());
-
+		
 		em.persist(managedAddress);
 		em.flush();
 		return managedAddress;
@@ -231,4 +245,5 @@ public class UserDAOImpl implements UserDAO {
 		return userAverage;
 
 	}
+
 }

@@ -13,6 +13,8 @@ import com.skilldistillery.puzzlepieces.entities.UserRating;
 public interface UserDAO {
 
 	User createUser(User user);
+	
+	Address createAddress(int id, Address newAddress);
 
 	public User updateUser(int id, User updated);
 

@@ -14,7 +14,7 @@
 		<div class="wrapper">
 			<form action="registering.do" method="post" name="Login_Form"
 				class="form-signin">
-				<h3 class="form-signin-heading">Join the puzzle club!</h3>
+				<h3 class="form-signin-heading">Join the puzzle club! <br> Create a Username & Password</h3>
 				<hr class="colorgraph">
 				<br> <input type="text" class="form-control" name="userName" value="${username }"
 					placeholder="Username" required="" autofocus="" /> 
@@ -26,14 +26,14 @@
 					placeholder="Confirm Password" required="" />
 
 				<button class="btn btn-lg btn-primary btn-block" name="Submit"
-					value="Register" type="Submit">Register!</button>
+					value="Register" type="Submit">Next</button>
 				<c:if test="${not empty errorMessage }">
 					<h4 class="errorMessage">${errorMessage}</h4>
 				</c:if>
 			</form>
 		</div>
 	</div>
-
+	<jsp:include page="footer.jsp" />
 	<jsp:include page="script.jsp" />
 </body>
 </html>

@@ -39,6 +39,12 @@ ul.nav.justify-content-center {
 	font-size: 30px;
 }
 
+footer.footer{
+	background-color: #D6D8EE;
+	font-size: 20px;
+	margin-top: 20%;
+}
+
 .wrapper {
 	margin-top: 80px;
 	margin-bottom: 20px;
@@ -106,13 +112,4 @@ input[type="password"] {
 		25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe
 		50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1
 		87.5%, #62c2e4 87.5%, #62c2e4);
-}
-td{
-	 padding: 10px;
-    text-align: center;
-}
-table{
-	text-align: center;
-}
-	
 }

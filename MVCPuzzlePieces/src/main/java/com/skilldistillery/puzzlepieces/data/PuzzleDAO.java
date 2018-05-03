@@ -37,9 +37,11 @@ public interface PuzzleDAO {
 
 	boolean notAcceptRequest(int id, String message);
 
-	boolean acceptRequestToBorrow(int id, String message);
+	User acceptRequestToBorrow(int id, String message);
 
-	boolean acceptRequestToOwn(int id, String message);
+	User acceptRequestToOwn(int id, String message);
+	
+	InventoryItem getInventoryItemByRequestId(int id);
 
 	Request sendOrCreateRequest(int inventoryId, User user, String message);
 

@@ -234,7 +234,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	}
 
 	@Override
-	public boolean acceptRequestToBorrow(int id, String message) {
+	public User acceptRequestToBorrow(int id, String message) {
 
 		Request request = em.find(Request.class, id);
 		if (request != null) {
@@ -243,7 +243,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			request.setMessage(message);
 			em.persist(request);
 			em.flush();
-
+			User requester = request.getRequester();
 			Borrow borrow = new Borrow();
 			LocalDate date = LocalDate.now();
 			LocalDate returnDate = date.plusMonths(2);
@@ -255,14 +255,14 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			borrow.setInventoryItem(request.getInventoryItem());
 			em.persist(borrow);
 			em.flush();
-			return true;
+			return requester;
 		}
-		return false;
+		return null;
 
 	}
 
 	@Override
-	public boolean acceptRequestToOwn(int id, String message) {
+	public User acceptRequestToOwn(int id, String message) {
 		Request request = em.find(Request.class, id);
 
 		if (request != null) {
@@ -271,6 +271,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			request.setMessage(message);
 			em.persist(request);
 			em.flush();
+			User requester = request.getRequester();
 			Borrow borrow = new Borrow();
 			borrow.setBorrowDate(new Date());
 			borrow.setReturnDate(null);
@@ -283,9 +284,9 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			ii.setOwner(request.getRequester());
 			em.persist(ii);
 			em.flush();
-			return true;
+			return requester;
 		}
-		return false;
+		return null;
 
 	}
 
@@ -351,6 +352,14 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		Request request = em.find(Request.class, id);
 		return request;
 	}
+	
+	@Override
+	public InventoryItem getInventoryItemByRequestId(int id) {
+			String query = "select r.inventoryItem from Request r where r.id=:id";
+			InventoryItem ii = em.createQuery(query, InventoryItem.class).setParameter("id", id).getResultList().get(0);
+			return ii;
+			//SURROUND WITH TRY/CATCH AFTER TESTING!!!
+	}
 
 	@Override
 	public List<PuzzleRating> getPuzzleRatingsByPuzzleId(int puzzleId) {
@@ -401,5 +410,6 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 		return puzzleAverage;
 
 	}
+
 
 }
