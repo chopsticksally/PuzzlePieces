@@ -107,7 +107,7 @@ public class UserController {
 			List<InventoryItem> ii = puzzleDao.retrieveAll();
 			Collections.shuffle(ii);
 			mv.addObject("inventoryItems", ii);
-			mv.setViewName("logged-in-home");
+			mv.setViewName("register-user-info");
 
 		}
 		return mv;
@@ -131,14 +131,26 @@ public class UserController {
 
 	}
 
-	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
-	public ModelAndView logout(SessionStatus logout) {
+	@RequestMapping(path = "/registerAddress.do", method = RequestMethod.POST)
+	public ModelAndView registerAddress(@RequestParam(name = "id") Integer userId, Address address,
+			HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		List<InventoryItem> ii = puzzleDao.retrieveAll();
-		Collections.shuffle(ii);
-		mv.addObject("inventoryItems", ii);
-		logout.setComplete();
-		mv.setViewName("home");
+		try {
+			Address updatedAddress = dao.updateAddress(userId, address);
+			// mv.addObject("address",updatedAddress );
+			System.out.println("****************************");
+			System.out.println(updatedAddress);
+			System.out.println("****************************");
+			User user = (User) session.getAttribute("userLoggedIn");
+			if (updatedAddress != null) {
+				user.getUserInformation().setAddress(updatedAddress);
+				session.setAttribute("userLoggedIn", user);
+				mv.setViewName("logged-in-home");
+			}
+		} catch (Exception e) {
+			mv.setViewName("register-user-address");
+
+		}
 		return mv;
 
 	}
@@ -244,25 +256,6 @@ public class UserController {
 
 	}
 
-	@RequestMapping(path = "/registerAddress.do", method = RequestMethod.POST)
-	public ModelAndView registerAddress(@RequestParam(name = "id") Integer userId, Address address,
-			HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			Address updatedAddress = dao.updateAddress(userId, address);
-			// mv.addObject("address",updatedAddress );
-			User user = (User) session.getAttribute("userLoggedIn");
-			user.getUserInformation().setAddress(updatedAddress);
-			session.setAttribute("userLoggedIn", user);
-			mv.setViewName("logged-in");
-		} catch (Exception e) {
-			mv.setViewName("register-user-address");
-
-		}
-		return mv;
-
-	}
-
 	@RequestMapping(path = "/searchUserPage.do", method = RequestMethod.GET)
 	public String searchUserPage() {
 		return "search-user";
@@ -352,10 +345,22 @@ public class UserController {
 		return userAverage;
 
 	}
-	
+
 	@RequestMapping(path = "/aboutUs.do", method = RequestMethod.GET)
 	public String aboutUsPage() {
 		return "about-us";
+
+	}
+
+	@RequestMapping(path = "/logout.do", method = RequestMethod.GET)
+	public ModelAndView logout(SessionStatus logout) {
+		ModelAndView mv = new ModelAndView();
+		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		Collections.shuffle(ii);
+		mv.addObject("inventoryItems", ii);
+		logout.setComplete();
+		mv.setViewName("home");
+		return mv;
 
 	}
 }
