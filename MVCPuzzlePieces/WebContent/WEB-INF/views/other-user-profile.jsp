@@ -34,7 +34,7 @@ table, th, td {
 			<tr>
 				<td>
 					<div class="container-fluid bg-2 text-center">
-						<p>Puzzle name: ${items.puzzle.name }</p>
+						<p id="capitalize">Puzzle name: ${items.puzzle.name }</p>
 						<p>Puzzle Id#: ${items.id}</p>
 						<p>Condition: ${items.condition}</p>
 						<img alt="stuuff" src="${items.puzzle.imageUrl }" width="295"
@@ -50,7 +50,7 @@ table, th, td {
 
 					<td>
 						<div class="container-fluid bg-2 text-center">
-							<p>Puzzle name: ${items.puzzle.name }</p>
+							<p id="capitalize">Puzzle name: ${items.puzzle.name }</p>
 							<p>Puzzle Id#: ${items.id}</p>
 							<p>Condition: ${items.condition}</p>
 							<img alt="stuuff" src="${items.puzzle.imageUrl }" width="295"
@@ -102,8 +102,8 @@ table, th, td {
 					<c:if test="${borrowcount % 5 != 0}">
 						<td>
 							<div class="container-fluid text-center">
-								<p>${borrow.inventoryItem.puzzle.name }</p>
-								<c:if test="${returnDate not empty }">
+								<p id="capitalize">${borrow.inventoryItem.puzzle.name }</p>
+								<c:if test="${not empty returnDate }">
 								<p>From: ${borrow.inventoryItem.owner.userName }</p>
 								</c:if>
 								<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
@@ -114,11 +114,11 @@ table, th, td {
 										pattern="yyyy-MM-dd" />
 								</p>
 								<p>
-									Return by: <c:if test="${borrow.returnDate not empty }">
+									Return by: <c:if test="${not empty borrow.returnDate }">
 									<fmt:formatDate value="${borrow.returnDate }"
 										pattern="yyyy-MM-dd" />
 									</c:if>
-									<c:if test="${borrow.returnDate empty }">
+									<c:if test="${empty borrow.returnDate }">
 									  You own this puzzle now!
 									</c:if>
 								</p>
@@ -142,12 +142,12 @@ table, th, td {
 		<h4 class="header">User Ratings</h4>
 		<c:if test="${not empty userRatings}">
 			<div class="container bg-5 text-center">
-				<h5>${userInfo.user.userName}'s Rating:${rating } out of
-					${fn:length(userRatings)} ratings</h5>
+				<h5 class="uppercase">${userInfo.user.userName}'s Rating: ${rating } out of 5 <br>
+					From ${fn:length(userRatings)} Users</h5>
 			</div>
 			<div class="container bg-5 text-left">
 				<c:forEach var="ratings" items="${userRatings }">
-					<p>User that Rated: ${ratings.raterUser.userName}</p>
+					<p id="capitalize">User that Rated: ${ratings.raterUser.userName}</p>
 					<p>Rating: ${ratings.rating}</p>
 					<p>Comment: ${ratings.comment}</p>
 					<hr>

@@ -14,7 +14,7 @@ table, th, td {
 </style>
 <body>
 	<jsp:include page="logged-in-navbar.jsp" />
-	<h3 class="header">User: ${userLoggedIn.userName}</h3>
+	<h3 class="header" id="capitalize">User: ${userLoggedIn.userName}</h3>
 	<div class="container-fluid bg-3 text-center">
 		<div class="container-fluid bg-3 text-center">
 			<h4 class="header">Current Location</h4>
@@ -37,9 +37,7 @@ table, th, td {
 						<tr>
 							<td>
 								<div class="container-fluid bg-2 text-center ">
-									<h3>
-										<p class="uppercase">${items.puzzle.name }</p>
-									</h3>
+									<h3 class="uppercase">${items.puzzle.name }</h3>
 									<img type="center" alt="${items.puzzle.name } Puzzle Photo"
 										src="${items.puzzle.imageUrl }" width="295" height="260">
 									<br>
@@ -53,9 +51,7 @@ table, th, td {
 					<c:if test="${invcount % 3 != 0}">
 						<td>
 							<div class="container-fluid bg-2 text-center ">
-								<h3>
-									<p class="uppercase">${items.puzzle.name }</p>
-								</h3>
+								<h3 class="uppercase">${items.puzzle.name }</h3>
 								<img type="center" alt="${items.puzzle.name } Puzzle Photo"
 									src="${items.puzzle.imageUrl }" width="295" height="260">
 								<br>
@@ -76,7 +72,7 @@ table, th, td {
 				<h4 class="header">Requests Received</h4>
 				<c:forEach var="req" items="${userRequests }">
 					<c:if test="${req.active == true}">
-						<p>Request from: ${req.requester.userName }</p>
+						<p id="capitalize">Request from: ${req.requester.userName }</p>
 						<p>User Comment: ${req.message }</p>
 						<p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
 						<form action="replyToRequest.do" method="get">
@@ -93,7 +89,8 @@ table, th, td {
 				<c:forEach var="sentReq" items="${sentRequests }">
 					<br>
 					<hr>
-					<p>User Request Sent To: ${sentReq.requestee.userName }</p>
+					<p id="capitalize">User Request Sent To:
+						${sentReq.requestee.userName }</p>
 					<p>Message: ${sentReq.message }</p>
 					<p>Requested Puzzle Name: ${sentReq.inventoryItem.puzzle.name }</p>
 					<br>
@@ -116,8 +113,8 @@ table, th, td {
 									<h4>
 										<p class="uppercase">${borrows.inventoryItem.puzzle.name }</p>
 									</h4>
-									<c:if test="${borrows.returnDate not empty }">
-									<p>From User: ${borrows.inventoryItem.owner.userName }</p>
+									<c:if test="${not empty borrows.returnDate }">
+										<p>From User: ${borrows.inventoryItem.owner.userName }</p>
 									</c:if>
 									<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 										width="221" height="195"
@@ -128,11 +125,12 @@ table, th, td {
 											pattern="yyyy-MM-dd" />
 									</p>
 									<p>
-										Return by:<c:if test="${borrows.returnDate not empty }">
-										<fmt:formatDate value="${borrows.returnDate }"
-											pattern="yyyy-MM-dd" />
-											</c:if>
-											<c:if test="${borrows.returnDate empty }">
+										Return by:
+										<c:if test="${not empty borrows.returnDate }">
+											<fmt:formatDate value="${borrows.returnDate }"
+												pattern="yyyy-MM-dd" />
+										</c:if>
+										<c:if test="${empty borrows.returnDate }">
 											 You own this puzzle now!
 											 </c:if>
 									</p>
@@ -142,9 +140,8 @@ table, th, td {
 							<c:if test="${borrowcount % 5 != 0}">
 								<td>
 									<div class="container-fluid text-center">
-										<h4>
-											<p class="uppercase">${borrows.inventoryItem.puzzle.name }</p>
-										</h4>
+										<h4 class="uppercase">
+											${borrows.inventoryItem.puzzle.name }</h4>
 										<img src="${borrows.inventoryItem.puzzle.imageUrl }"
 											width="221" height="195"
 											alt="${borrows.inventoryItem.puzzle.name } Puzzle">
@@ -181,7 +178,8 @@ table, th, td {
 			</div>
 			<div class="container bg-5 text-left">
 				<c:forEach var="ratings" items="${userRatings }">
-					<p>User that rated you: ${ratings.raterUser.userName}</p>
+					<p id="capitalize">User that rated you:
+						${ratings.raterUser.userName}</p>
 					<p>Rating they gave you: ${ratings.rating}</p>
 					<p>Comment: ${ratings.comment}</p>
 					<hr>
@@ -195,7 +193,8 @@ table, th, td {
 		<h4 class="header">User Submitted Ratings</h4>
 		<c:if test="${not empty userSubmittedRatings}">
 			<c:forEach var="submittedRatings" items="${userSubmittedRatings }">
-				<p>User Rated: ${submittedRatings.ratedUser.userName}</p>
+				<p id="capitalize">User Rated:
+					${submittedRatings.ratedUser.userName}</p>
 				<p>Gave this user: ${submittedRatings.rating}</p>
 				<p>Comment: ${submittedRatings.comment}</p>
 			</c:forEach>
