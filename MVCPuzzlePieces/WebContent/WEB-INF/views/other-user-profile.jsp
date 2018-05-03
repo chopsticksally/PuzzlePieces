@@ -59,7 +59,7 @@ table, th, td {
 							</form>
 					</td>
 				</c:if>
-				<c:set var="invcount" value="${count + 1}" scope="page" />
+				<c:set var="invcount" value="${invcount + 1}" scope="page" />
 
 				</c:forEach>
 			</tr>
@@ -114,7 +114,7 @@ table, th, td {
 							</div>
 						</td>
 					</c:if>
-					<c:set var="borrowcount" value="${count + 1}" scope="page" />
+					<c:set var="borrowcount" value="${borrowcount + 1}" scope="page" />
 					</c:forEach>
 				</tr>
 			</table>
