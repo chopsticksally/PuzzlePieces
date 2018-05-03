@@ -14,6 +14,27 @@ table, th, td {
 </style>
 <body>
     <jsp:include page="logged-in-navbar.jsp" />
+    <!-- THIS CAN TOTALLY BE REMOVED WITHOUT BREAKING ANYTHING I DON'T THINK, PURELY TESTING -->
+    <c:if test="${not empty userRequester && not empty requestedItem}">
+      <div class="containerbg-3 text-center">
+    <h5>REMINDER: Due to recent high-profile hackings,</h5>
+    <h5>PuzzlePieces has decided to not save user addresses to the screen.</h5>
+    <h5>Please screenshot or save this information some other way.</h5>
+    <h5>We apologize for the inconvenience.</h5><br>
+          <h4 class="header">SEND ${requestedItem.puzzle.name} TO:</h4>
+          <h5>User: ${userRequester.userName }</h5>
+          <h5>User Email: ${userRequester.userInformation.email }</h5>
+          <h5>User Address:</h5>
+          <ul>
+          <li><h5>Address(1): ${userRequester.userInformation.address.street }</h5></li>
+          <li><h5>Address(2): ${userRequester.userInformation.address.street2 }</h5></li>
+          <li><h5>City: ${userRequester.userInformation.address.city }</h5></li>
+          <li><h5>State: ${userRequester.userInformation.address.state }</h5></li>
+          <li><h5>ZIP: ${userRequester.userInformation.address.postalCode }</h5></li>
+          </ul>
+      </div>
+     </c:if>
+     <!-- SEE ABOVE -->
     <h3 class="header">User: ${userLoggedIn.userName}</h3>
     <div class="container bg-3 text-center">
         <div class="containerbg-3 text-center">
