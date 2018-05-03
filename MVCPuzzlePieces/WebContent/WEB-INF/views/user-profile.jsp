@@ -64,7 +64,7 @@ table, th, td {
                             <br>
                             <p>
                                 <a href="userInventoryDetails.do?itemId=${items.id }"><button
-                                        class="btn">View Puzzle Details</button></a>
+                                       class="btn btn-outline-info">View Puzzle Details</button></a>
                             </p>
                         </div>
                     </td>
@@ -78,7 +78,7 @@ table, th, td {
                                 <br>
                                 <p>
                                     <a href="userInventoryDetails.do?itemId=${items.id }"><button
-                                            class="btn">View Puzzle Details</button></a>
+                                            class="btn btn-outline-info">View Puzzle Details</button></a>
                                 </p>
                             </div>
                         </td>
@@ -99,7 +99,7 @@ table, th, td {
                         <p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
                         <form action="replyToRequest.do" method="get">
                             <input type="hidden" value="${req.id}" name="id"> <input
-                                type="submit" value="Reply">
+                                type="submit" class="btn btn-outline-info" value="Reply">
                         </form>
                         <br>
                     </c:if>

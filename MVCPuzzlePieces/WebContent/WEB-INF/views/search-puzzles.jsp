@@ -42,7 +42,7 @@
 			<option value="2">Like new</option>
 			<option value="3">Used</option>
 			<option value="4">Worn</option>
-		</select> <br> <br> <input type="submit" value="Search">
+		</select> <br> <br> <input type="submit" class="btn btn-outline-info" value="Search">
 
 	</form>
 
