@@ -10,17 +10,20 @@
 	<!-- <h1 class="header">Search for your *Requestie Bestie*</h1> -->
 	<div class = "container">
 	<div class="wrapper">
-		<form action="searchUser.do" method="GET">      
+		<form action="searchUser.do" method="GET" class="form-signin">      
 		    <h2 class="form-signin-heading">Search for your *Requestie Bestie*</h2>
 			  <hr class="colorgraph"><br>
-			  <div class="container bg-3 text-center">
-			  <h3><label for="userRating">Search by User Name</label></h3>
-			  <label for="userName"><input type="text" value="${user.userName}" min="1" max="100" class="form-control" name="userName" placeholder="Search by Username:" required="" autofocus="" /></label>
-			  </div>
+			  <h3><label for="userName">Search by User Name</label></h3>
+			  <input type="text" value="${user.userName}" min="1" max="100" class="form-control" name="userName" placeholder="Search by Username:" required="" autofocus="" />
 			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Submit" type="Submit">Submit</button>  			
 		</form>			
-		<form action="searchUserByRating.do" method="GET">
-		 <div class="container bg-3 text-center">
+		</div>
+		</div>
+	<div class = "container">
+	<div class="wrapper">
+		<form action="searchUserByRating.do" method="GET" class="form-signin">
+		 <h2 class="form-signin-heading">Search for your *Requestie Bestie*</h2>
+			  <hr class="colorgraph"><br>
 		<h3><label for="userRating">Search by User Rating</label></h3>
 			<h1><select name="userRating">
 			<option value="1">More than 1</option>
@@ -28,7 +31,7 @@
 			<option value="3">More than 3</option>
 			<option value="4">More than 4</option>
 			<option value="5">Perfect 5</option>
-			</select></h1></div>
+			</select></h1>
 			  <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Submit" type="Submit">Submit</button>  			
 		</form>
 	</div>

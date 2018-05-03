@@ -1,5 +1,6 @@
 package com.skilldistillery.puzzlepieces.controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -36,6 +37,7 @@ public class UserController {
 	public ModelAndView homePage() {
 		ModelAndView mv = new ModelAndView();
 		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		Collections.shuffle(ii);
 		mv.addObject("inventoryItems", ii);
 		// TEST
 		System.out.println(ii.size());
@@ -47,6 +49,7 @@ public class UserController {
 	public ModelAndView loggedInHomePage() {
 		ModelAndView mv = new ModelAndView();
 		List<InventoryItem> ii = puzzleDao.retrieveAll();
+		Collections.shuffle(ii);
 		mv.addObject("inventoryItems", ii);
 		mv.setViewName("logged-in-home");
 		return mv;
