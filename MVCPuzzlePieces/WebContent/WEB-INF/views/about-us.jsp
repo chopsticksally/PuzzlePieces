@@ -28,11 +28,13 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				<img alt="" src="">
+				<img alt="Picture of Miranda" src="css/images/MirandaPicture.jpg"
+					class="headshot">
 			</div>
 			<div class="col-md-3">
 				<h3>Miranda Martin</h3>
 				<p>Full-Stack Java Developer</p>
+				
 			</div>
 		</div>
 		<div class="row">

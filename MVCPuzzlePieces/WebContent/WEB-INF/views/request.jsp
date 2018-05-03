@@ -15,7 +15,7 @@
 			<input type="hidden" value="${inventoryId}" name="id"> <br>
 
 			<label for="userName">Message:</label>
-			<textarea type="message" class="form-control" name="message"
+			<textarea type="message" class="form-control" name="comment"
 			placeholder="Write your message here..." required=""></textarea>
 
 			<button class="btn btn-lg btn-info btn-block" name="Submit"
