@@ -11,9 +11,14 @@
 	<img src="${puzzle.imageUrl}" width="275" height="250"
 		alt="${puzzle.name}">
 
-	<h3>Rate this puzzle!</h3>
+<div class="container">
+		<div class="wrapper">
 
-	<form action="ratePuzzle.do" method="post">
+	<form action="ratePuzzle.do" method="post" class="form-signin">
+	
+	<h3 class="form-signin-heading">Rate this puzzle!</h3>
+	<hr class="colorgraph">
+	
 	<input type= "hidden" name ="id" value= "${ii.puzzle.id}">
 	<input type= "hidden" name ="inventoryId" value= "${ii.id}">
 		<select name="rating">
@@ -28,9 +33,11 @@
 		<textarea name="comment" rows="10" cols="30"
 			placeholder="Leave a comment..."></textarea>
 		<br> 
-		<button type="submit" class="btn btn-outline-info"
-				value="Rate">Rate</button>
+		<button class="btn btn-lg btn-primary btn-block" name="Submit"
+			value="Submit" type="Submit">Rate Puzzle</button>
 	</form>
+	</div>
+	</div>
 
 
 	<jsp:include page="footer.jsp" />

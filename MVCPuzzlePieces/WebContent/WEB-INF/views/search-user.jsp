@@ -22,7 +22,7 @@
 					class="form-control" name="userName"
 					placeholder="Search by Username:" required="" autofocus="" />
 				<button class="btn btn-lg btn-primary btn-block" name="Submit"
-					value="Submit" type="Submit">Submit</button>
+					value="Submit" type="Submit">Search</button>
 			</form>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 					</select>
 				</h1>
 				<button class="btn btn-lg btn-primary btn-block" name="Submit"
-					value="Submit" type="Submit">Submit</button>
+					value="Submit" type="Submit">Search</button>
 			</form>
 		</div>
 	</div>
