@@ -24,6 +24,7 @@ table, th, td {
 	</div>
 	<div>
 		<h4 class="header">Current Inventory</h4>
+		<hr class="colorgraph">
 		<c:set var="invcount" value="0" scope="page" />
 		<table>
 			<tr>
@@ -71,6 +72,7 @@ table, th, td {
 
 	<div>
 		<h4 class="header">Puzzles Borrowed</h4>
+		<hr class="colorgraph">
 		<c:if test="${not empty borrows }">
 			<c:set var="borrowcount" value="0" scope="page" />
 			<table>
@@ -80,7 +82,7 @@ table, th, td {
 				</tr>
 				<tr>
 					<td>
-						<div class="container-fluid text-left">
+						<div class="container text-left">
 							<p>${borrow.inventoryItem.puzzle.name }</p>
 							<img src="${borrow.inventoryItem.puzzle.imageUrl }" width="221"
 								height="195" alt="${borrow.inventoryItem.puzzle.name } Puzzle">
@@ -123,7 +125,7 @@ table, th, td {
 		</c:if>
 	</div>
 	</div>
-	<div class="container-fluid bg-5 text-center">
+	<div class="container bg-5 text-center">
 		<c:if test="${empty borrows }">No Borrowed Puzzles</c:if>
 	</div>
 	</div>
@@ -134,6 +136,7 @@ table, th, td {
 			<div class="container bg-5 text-center">
 				<h5>${userInfo.user.userName}'sRating:${rating }
 					${fn:length(userRatings)} ratings</h5>
+		<hr class="colorgraph">
 			</div>
 			<div class="container bg-5 text-left">
 				<c:forEach var="ratings" items="${userRatings }">
