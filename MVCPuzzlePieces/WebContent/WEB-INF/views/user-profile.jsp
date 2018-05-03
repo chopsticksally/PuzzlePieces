@@ -94,6 +94,8 @@ table, th, td {
                 <h4 class="header">Requests Received</h4>
                 <c:forEach var="req" items="${userRequests }">
                     <c:if test="${req.active == true}">
+                        <br>               
+                       <hr>
                         <p>Request from: ${req.requester.userName }</p>
                         <p>User Comment: ${req.message }</p>
                         <p>User is Requesting: ${req.inventoryItem.puzzle.name }</p>
@@ -201,6 +203,8 @@ table, th, td {
                 <p>User Rated: ${submittedRatings.ratedUser.userName}</p>
                 <p>Gave this user: ${submittedRatings.rating}</p>
                 <p>Comment: ${submittedRatings.comment}</p>
+               <hr>
+               <br>
             </c:forEach>
         </c:if>
         <c:if test="${empty userSubmittedRatings}">No submitted ratings</c:if>
