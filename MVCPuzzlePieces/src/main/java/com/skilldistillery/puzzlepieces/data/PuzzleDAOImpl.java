@@ -220,23 +220,23 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	public boolean notAcceptRequest(int id, String message) {
 
 		Request request = em.find(Request.class, id);
-		if (request != null) {
+//		if (request != null) {
 			request.setAccepted(false);
 			request.setActive(false);
 			request.setMessage(message);
 			em.persist(request);
 			em.flush();
 			return true;
-		} else {
-			return false;
-		}
+//		} else {
+//			return false;
+//		}
 	}
 
 	@Override
 	public User acceptRequestToBorrow(int id, String message) {
 
 		Request request = em.find(Request.class, id);
-		if (request != null) {
+//		if (request != null) {
 			request.setAccepted(true);
 			request.setActive(false);
 			request.setMessage(message);
@@ -255,8 +255,8 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			em.persist(borrow);
 			em.flush();
 			return requester;
-		}
-		return null;
+//		}
+//		return null;
 
 	}
 
@@ -264,7 +264,7 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 	public User acceptRequestToOwn(int id, String message) {
 		Request request = em.find(Request.class, id);
 
-		if (request != null) {
+//		if (request != null) {
 			request.setAccepted(true);
 			request.setActive(false);
 			request.setMessage(message);
@@ -284,8 +284,8 @@ public class PuzzleDAOImpl implements PuzzleDAO {
 			em.persist(ii);
 			em.flush();
 			return requester;
-		}
-		return null;
+//		}
+//		return null;
 
 	}
 

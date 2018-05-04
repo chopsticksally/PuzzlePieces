@@ -13,7 +13,7 @@
 		<form action="acceptingOrRejectingRequest.do" method="post" class="form-signin">
 			<h3 class="form-signin-heading">Reply to your request</h3>
 			<hr class="colorgraph">
-			<input type="hidden" value="${request.inventoryItem.id }" name="id"> <br>
+			<input type="hidden" value="${request.id }" name="id"> <br>
 			<h4 class="uppercase">${request.requester.userName}:</h4>
 			<h5 class="message">${request.message}</h5>
 			<h4>
